@@ -74,7 +74,7 @@ section{
 
   padding:0 5%;
 
-  background:rgba(2,15,38,.92);
+  background:rgba(2,15,38,.93);
   backdrop-filter:blur(14px);
 
   border-bottom:1px solid rgba(255,255,255,.13);
@@ -91,13 +91,15 @@ section{
 }
 
 .nav-logo{
-  width:45px;
-  height:45px;
+  width:58px;
+  height:50px;
 
-  object-fit:cover;
-  border-radius:50%;
+  object-fit:contain;
 
-  border:2px solid rgba(255,255,255,.75);
+  border-radius:0;
+  border:none;
+
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,.45));
 }
 
 .brand-text{
@@ -155,33 +157,46 @@ section{
   font-size:.78rem;
 
   background:rgba(255,255,255,.12);
+
   border:1px solid rgba(255,255,255,.2);
 }
 
 .live-button.live{
   background:var(--red);
   border-color:var(--red);
+
   animation:livePulse 1.5s infinite;
 }
 
 .live-dot{
   width:9px;
   height:9px;
+
   border-radius:50%;
+
   background:#aab3bb;
 }
 
 .live-button.live .live-dot{
   background:white;
+
   animation:blink .75s infinite;
 }
 
 @keyframes blink{
-  0%,50%{opacity:1}
-  51%,100%{opacity:.15}
+
+  0%,50%{
+    opacity:1;
+  }
+
+  51%,100%{
+    opacity:.15;
+  }
+
 }
 
 @keyframes livePulse{
+
   0%{
     box-shadow:0 0 0 0 rgba(227,27,35,.65);
   }
@@ -193,6 +208,7 @@ section{
   100%{
     box-shadow:0 0 0 0 rgba(227,27,35,0);
   }
+
 }
 
 
@@ -209,14 +225,14 @@ section{
 
   text-align:center;
 
-  padding:120px 20px 70px;
+  padding:115px 20px 70px;
 
   color:white;
 
   background:
   linear-gradient(
-    rgba(0,15,45,.25),
-    rgba(0,18,50,.80)
+    rgba(0,15,45,.20),
+    rgba(0,18,50,.78)
   ),
   url("ravchurch.png");
 
@@ -230,56 +246,44 @@ section{
 }
 
 .official-logo{
-  width:170px;
-  height:170px;
-
-  max-width:42vw;
-  max-height:42vw;
-
-  object-fit:cover;
-
-  border-radius:50%;
-
-  margin-bottom:20px;
-
-  border:4px solid rgba(255,255,255,.92);
-
-  box-shadow:0 15px 45px rgba(0,0,0,.45);
-}
-
-.hero-small{
   display:block;
 
-  font-size:.78rem;
-  font-weight:900;
-  letter-spacing:3px;
+  width:min(420px,75vw);
+  height:auto;
 
-  margin-bottom:12px;
-}
+  margin:0 auto 18px;
 
-.hero h1{
-  font-size:clamp(2.8rem,7vw,6rem);
-  line-height:.95;
+  object-fit:contain;
 
-  text-shadow:0 6px 25px rgba(0,0,0,.75);
+  border-radius:0;
+  border:none;
+
+  filter:
+    drop-shadow(0 10px 16px rgba(0,0,0,.70));
 }
 
 .hero-subtitle{
-  margin-top:17px;
+  margin-top:5px;
 
-  font-size:clamp(1.1rem,2.5vw,1.6rem);
+  font-size:clamp(1.5rem,3.5vw,2.3rem);
 
-  font-weight:700;
+  font-weight:900;
 
-  text-shadow:0 3px 12px rgba(0,0,0,.8);
+  text-shadow:
+    0 3px 12px rgba(0,0,0,.9);
 }
 
 .hero-address{
-  margin-top:14px;
-  line-height:1.6;
-  font-size:.96rem;
+  margin-top:15px;
 
-  text-shadow:0 2px 10px rgba(0,0,0,.9);
+  line-height:1.6;
+
+  font-size:1rem;
+
+  font-weight:700;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.9);
 }
 
 .hero-actions{
@@ -303,13 +307,16 @@ section{
 
   font-weight:900;
 
-  transition:.2s;
+  transition:
+    transform .2s,
+    box-shadow .2s;
 }
 
 .hero-btn:hover{
   transform:translateY(-3px);
 
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.25);
 }
 
 .directions{
@@ -326,7 +333,8 @@ section{
   background:var(--blue);
   color:white;
 
-  border:1px solid rgba(255,255,255,.45);
+  border:
+    1px solid rgba(255,255,255,.45);
 }
 
 
@@ -336,12 +344,15 @@ section{
 
 .welcome{
   background:white;
+
   padding:75px 20px;
+
   text-align:center;
 }
 
 .welcome-inner{
   max-width:850px;
+
   margin:auto;
 }
 
@@ -352,54 +363,62 @@ section{
 
   font-size:.75rem;
   font-weight:900;
+
   letter-spacing:2.5px;
 }
 
 .welcome h2{
   color:var(--dark);
 
-  font-size:clamp(2rem,5vw,3.3rem);
+  font-size:
+    clamp(2rem,5vw,3.3rem);
 
-  margin:10px 0 15px;
+  margin:
+    10px 0 15px;
 }
 
 .welcome p{
   color:var(--muted);
 
   font-size:1.08rem;
+
   line-height:1.8;
 }
 
 
 /* =========================================================
-   EVENTS SECTION
+   EVENTS
 ========================================================= */
 
 .events-section{
-  padding:80px 20px 90px;
+  padding:
+    80px 20px
+    90px;
 
   background:
-  radial-gradient(
-    circle at 90% 10%,
-    rgba(44,116,255,.30),
-    transparent 32%
-  ),
-  linear-gradient(
-    135deg,
-    #02152f,
-    #073a8a
-  );
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(44,116,255,.30),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #02152f,
+      #073a8a
+    );
 
   color:white;
 }
 
 .events-container{
   width:min(1150px,100%);
+
   margin:auto;
 }
 
 .events-heading{
   text-align:center;
+
   margin-bottom:35px;
 }
 
@@ -408,7 +427,9 @@ section{
 }
 
 .events-heading h2{
-  font-size:clamp(2.2rem,5vw,3.7rem);
+  font-size:
+    clamp(2.2rem,5vw,3.7rem);
+
   margin-top:8px;
 }
 
@@ -419,16 +440,18 @@ section{
 .events-heading p{
   max-width:650px;
 
-  margin:12px auto 0;
+  margin:
+    12px auto 0;
 
   line-height:1.7;
 
-  color:rgba(255,255,255,.82);
+  color:
+    rgba(255,255,255,.82);
 }
 
 
 /* =========================================================
-   EVENT DIGITAL SCREEN
+   EVENT SCREEN
 ========================================================= */
 
 .event-screen{
@@ -436,24 +459,26 @@ section{
 
   width:min(900px,100%);
 
-  margin:35px auto 0;
+  margin:
+    35px auto 0;
 
   padding:12px;
 
   border-radius:25px;
 
   background:
-  linear-gradient(
-    145deg,
-    #071426,
-    #020812
-  );
+    linear-gradient(
+      145deg,
+      #071426,
+      #020812
+    );
 
-  border:2px solid rgba(255,255,255,.20);
+  border:
+    2px solid rgba(255,255,255,.20);
 
   box-shadow:
-  0 25px 65px rgba(0,0,0,.55),
-  inset 0 0 0 1px rgba(255,255,255,.06);
+    0 25px 65px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(255,255,255,.06);
 
   overflow:hidden;
 }
@@ -472,17 +497,21 @@ section{
 
 .event-screen-title{
   font-size:.76rem;
+
   font-weight:900;
+
   letter-spacing:1.5px;
 }
 
 .event-screen-status{
   display:flex;
   align-items:center;
+
   gap:7px;
 
   font-size:.62rem;
   font-weight:900;
+
   letter-spacing:1px;
 
   color:#9db1c7;
@@ -496,7 +525,8 @@ section{
 
   background:#27e78c;
 
-  box-shadow:0 0 9px #27e78c;
+  box-shadow:
+    0 0 9px #27e78c;
 }
 
 .event-slider{
@@ -512,11 +542,16 @@ section{
 
   background:#000;
 
-  box-shadow:inset 0 0 25px rgba(0,0,0,.8);
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,.8);
 }
+
+
+/* EVENT SLIDES */
 
 .event-slide{
   position:absolute;
+
   inset:0;
 
   opacity:0;
@@ -532,7 +567,9 @@ section{
 
 .event-slide.active{
   opacity:1;
+
   transform:scale(1);
+
   pointer-events:auto;
 }
 
@@ -552,15 +589,17 @@ section{
   right:0;
   bottom:0;
 
-  padding:55px 25px 22px;
+  padding:
+    55px 25px
+    22px;
 
   text-align:left;
 
   background:
-  linear-gradient(
-    transparent,
-    rgba(0,0,0,.92)
-  );
+    linear-gradient(
+      transparent,
+      rgba(0,0,0,.92)
+    );
 }
 
 .event-overlay-date{
@@ -568,6 +607,7 @@ section{
 
   font-size:.7rem;
   font-weight:900;
+
   letter-spacing:1.8px;
 }
 
@@ -576,7 +616,8 @@ section{
 
   color:white;
 
-  font-size:clamp(1.25rem,4vw,2.2rem);
+  font-size:
+    clamp(1.25rem,4vw,2.2rem);
 
   font-weight:900;
 }
@@ -586,6 +627,7 @@ section{
 
 .event-no-events{
   position:absolute;
+
   inset:0;
 
   display:flex;
@@ -600,26 +642,25 @@ section{
   padding:20px;
 
   background:
-  radial-gradient(
-    circle at center,
-    #0b4ca5,
-    #02152f 70%
-  );
+    radial-gradient(
+      circle at center,
+      #0b4ca5,
+      #02152f 70%
+    );
 }
 
 .event-no-events img{
-  width:110px;
-  height:110px;
+  width:min(300px,50%);
+  height:auto;
 
-  max-width:28%;
+  object-fit:contain;
 
-  object-fit:cover;
+  border-radius:0;
 
-  border-radius:50%;
+  border:none;
 
-  border:3px solid rgba(255,255,255,.8);
-
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  filter:
+    drop-shadow(0 10px 15px rgba(0,0,0,.5));
 }
 
 .event-coming{
@@ -629,6 +670,7 @@ section{
 
   font-size:.72rem;
   font-weight:900;
+
   letter-spacing:3px;
 }
 
@@ -637,13 +679,15 @@ section{
 
   color:white;
 
-  font-size:clamp(1.4rem,5vw,2.5rem);
+  font-size:
+    clamp(1.4rem,5vw,2.5rem);
 }
 
 .event-no-events p{
   margin-top:8px;
 
-  color:rgba(255,255,255,.76);
+  color:
+    rgba(255,255,255,.76);
 
   line-height:1.55;
 
@@ -658,7 +702,8 @@ section{
 
   top:50%;
 
-  transform:translateY(-25%);
+  transform:
+    translateY(-25%);
 
   z-index:20;
 
@@ -669,7 +714,8 @@ section{
 
   border-radius:50%;
 
-  background:rgba(0,0,0,.58);
+  background:
+    rgba(0,0,0,.58);
 
   color:white;
 
@@ -677,13 +723,15 @@ section{
 
   cursor:pointer;
 
-  backdrop-filter:blur(5px);
+  backdrop-filter:
+    blur(5px);
 
   transition:.2s;
 }
 
 .slider-arrow:hover{
   background:var(--yellow);
+
   color:var(--dark);
 }
 
@@ -751,13 +799,16 @@ section{
 
 .event-bottom-text span{
   font-size:.65rem;
+
   letter-spacing:1.4px;
 
-  color:rgba(255,255,255,.58);
+  color:
+    rgba(255,255,255,.58);
 }
 
 .event-bottom-text strong{
   font-size:.78rem;
+
   letter-spacing:1px;
 
   color:white;
@@ -765,27 +816,29 @@ section{
 
 
 /* =========================================================
-   GROUPS INTRO
+   GROUPS
 ========================================================= */
 
 .groups-intro{
-  padding:75px 20px 95px;
+  padding:
+    75px 20px
+    95px;
 
   text-align:center;
 
   color:white;
 
   background:
-  radial-gradient(
-    circle at 80% 20%,
-    rgba(22,167,160,.35),
-    transparent 35%
-  ),
-  linear-gradient(
-    135deg,
-    #043b55,
-    #075d7c
-  );
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(22,167,160,.35),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #043b55,
+      #075d7c
+    );
 }
 
 .group-logo{
@@ -799,11 +852,13 @@ section{
 
   padding:5px;
 
-  box-shadow:0 12px 30px rgba(0,0,0,.22);
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.22);
 }
 
 .groups-intro h2{
-  font-size:clamp(2.2rem,6vw,4rem);
+  font-size:
+    clamp(2.2rem,6vw,4rem);
 
   margin-top:18px;
 }
@@ -815,7 +870,8 @@ section{
 .groups-intro p{
   max-width:700px;
 
-  margin:12px auto 0;
+  margin:
+    12px auto 0;
 
   line-height:1.7;
 }
@@ -826,9 +882,15 @@ section{
 ========================================================= */
 
 .finder-wrap{
-  width:min(1050px,calc(100% - 30px));
+  width:
+    min(
+      1050px,
+      calc(100% - 30px)
+    );
 
-  margin:-45px auto 40px;
+  margin:
+    -45px auto
+    40px;
 
   position:relative;
 
@@ -842,7 +904,8 @@ section{
 
   padding:30px;
 
-  box-shadow:0 15px 45px rgba(3,55,75,.16);
+  box-shadow:
+    0 15px 45px rgba(3,55,75,.16);
 }
 
 .finder h3{
@@ -858,7 +921,8 @@ section{
 
   color:var(--muted);
 
-  margin:8px 0 22px;
+  margin:
+    8px 0 22px;
 }
 
 .address-label{
@@ -866,7 +930,8 @@ section{
 
   max-width:800px;
 
-  margin:0 auto 7px;
+  margin:
+    0 auto 7px;
 
   color:var(--dark);
 
@@ -890,13 +955,16 @@ section{
 
 .search-row input{
   flex:1;
+
   min-width:0;
 
-  padding:17px 18px;
+  padding:
+    17px 18px;
 
   border-radius:12px;
 
-  border:2px solid #dce8eb;
+  border:
+    2px solid #dce8eb;
 
   font-size:1rem;
 
@@ -912,7 +980,8 @@ section{
 
   border-radius:12px;
 
-  padding:15px 22px;
+  padding:
+    15px 22px;
 
   background:var(--green);
 
@@ -925,13 +994,15 @@ section{
 
 .search-btn:disabled{
   opacity:.65;
+
   cursor:wait;
 }
 
 .search-message{
   max-width:800px;
 
-  margin:14px auto 0;
+  margin:
+    14px auto 0;
 
   text-align:center;
 
@@ -944,18 +1015,21 @@ section{
 
 .search-message.success{
   color:var(--green);
+
   font-weight:800;
 }
 
 .search-message.error{
   color:#b3261e;
+
   font-weight:800;
 }
 
 .reset-distance{
   display:none;
 
-  margin:13px auto 0;
+  margin:
+    13px auto 0;
 
   border:0;
 
@@ -983,7 +1057,8 @@ section{
 }
 
 .filter{
-  border:1px solid #cadce1;
+  border:
+    1px solid #cadce1;
 
   border-radius:999px;
 
@@ -991,7 +1066,8 @@ section{
 
   color:var(--dark);
 
-  padding:9px 15px;
+  padding:
+    9px 15px;
 
   font-weight:800;
 
@@ -1012,11 +1088,16 @@ section{
 ========================================================= */
 
 .cells-section{
-  width:min(1250px,calc(100% - 30px));
+  width:
+    min(
+      1250px,
+      calc(100% - 30px)
+    );
 
   margin:auto;
 
-  padding:5px 0 75px;
+  padding:
+    5px 0 75px;
 }
 
 .cells-title{
@@ -1028,7 +1109,8 @@ section{
 .cells-title h2{
   color:var(--dark);
 
-  font-size:clamp(1.9rem,4vw,2.7rem);
+  font-size:
+    clamp(1.9rem,4vw,2.7rem);
 }
 
 .cells-title p{
@@ -1040,7 +1122,8 @@ section{
 .cells-grid{
   display:grid;
 
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
 
   gap:24px;
 }
@@ -1052,21 +1135,26 @@ section{
 
   overflow:hidden;
 
-  border:1px solid #e0eaed;
+  border:
+    1px solid #e0eaed;
 
-  box-shadow:0 10px 30px rgba(8,65,85,.11);
+  box-shadow:
+    0 10px 30px rgba(8,65,85,.11);
 
   transition:.2s;
 }
 
 .cell-card:hover{
-  transform:translateY(-4px);
+  transform:
+    translateY(-4px);
 
-  box-shadow:0 16px 36px rgba(8,65,85,.16);
+  box-shadow:
+    0 16px 36px rgba(8,65,85,.16);
 }
 
 .cell-card.nearest{
-  border:3px solid var(--yellow);
+  border:
+    3px solid var(--yellow);
 }
 
 .cell-header{
@@ -1075,11 +1163,11 @@ section{
   color:white;
 
   background:
-  linear-gradient(
-    135deg,
-    #043b55,
-    #075d7c
-  );
+    linear-gradient(
+      135deg,
+      #043b55,
+      #075d7c
+    );
 
   position:relative;
 }
@@ -1105,13 +1193,16 @@ section{
 
   margin-top:9px;
 
-  padding:6px 11px;
+  padding:
+    6px 11px;
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.15);
+  background:
+    rgba(255,255,255,.15);
 
-  border:1px solid rgba(255,255,255,.2);
+  border:
+    1px solid rgba(255,255,255,.2);
 
   font-size:.76rem;
 
@@ -1134,7 +1225,8 @@ section{
   top:18px;
   right:18px;
 
-  padding:7px 11px;
+  padding:
+    7px 11px;
 
   border-radius:999px;
 
@@ -1146,7 +1238,8 @@ section{
 
   font-weight:900;
 
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.15);
 }
 
 .nearest-label{
@@ -1154,7 +1247,8 @@ section{
 
   margin-top:10px;
 
-  padding:7px 10px;
+  padding:
+    7px 10px;
 
   border-radius:8px;
 
@@ -1193,11 +1287,13 @@ section{
 .people{
   display:grid;
 
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 
   gap:10px;
 
-  padding:20px 15px 8px;
+  padding:
+    20px 15px 8px;
 }
 
 .person{
@@ -1224,11 +1320,11 @@ section{
   overflow:hidden;
 
   background:
-  linear-gradient(
-    145deg,
-    #e3f1f4,
-    #c8e3e7
-  );
+    linear-gradient(
+      145deg,
+      #e3f1f4,
+      #c8e3e7
+    );
 
   color:var(--blue);
 
@@ -1236,7 +1332,8 @@ section{
 
   border:4px solid white;
 
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.12);
 }
 
 .photo img{
@@ -1280,7 +1377,8 @@ section{
 ========================================================= */
 
 .cell-info{
-  padding:15px 20px 20px;
+  padding:
+    15px 20px 20px;
 }
 
 .info-row{
@@ -1288,15 +1386,18 @@ section{
 
   gap:10px;
 
-  padding:10px 0;
+  padding:
+    10px 0;
 
-  border-top:1px solid #edf2f4;
+  border-top:
+    1px solid #edf2f4;
 }
 
 .info-icon{
   width:27px;
 
-  flex:0 0 27px;
+  flex:
+    0 0 27px;
 }
 
 .info-label{
@@ -1330,7 +1431,8 @@ section{
 .actions{
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
   gap:9px;
 
@@ -1338,7 +1440,8 @@ section{
 }
 
 .action{
-  padding:12px 8px;
+  padding:
+    12px 8px;
 
   border-radius:11px;
 
@@ -1377,30 +1480,38 @@ section{
 .location-section{
   background:white;
 
-  padding:75px 20px;
+  padding:
+    75px 20px;
 
   text-align:center;
 }
 
 .location-logo{
-  width:125px;
-  height:125px;
+  display:block;
 
-  object-fit:cover;
+  width:min(300px,65vw);
+  height:auto;
 
-  border-radius:50%;
+  object-fit:contain;
 
-  margin-bottom:18px;
+  border-radius:0;
+  border:none;
 
-  box-shadow:0 10px 25px rgba(0,0,0,.15);
+  margin:
+    0 auto 20px;
+
+  filter:
+    drop-shadow(0 8px 12px rgba(0,0,0,.25));
 }
 
 .location-section h2{
   color:var(--dark);
 
-  font-size:clamp(2rem,5vw,3rem);
+  font-size:
+    clamp(2rem,5vw,3rem);
 
-  margin:9px 0 12px;
+  margin:
+    9px 0 12px;
 }
 
 .location-section p{
@@ -1416,7 +1527,8 @@ section{
 
   margin-top:22px;
 
-  padding:15px 25px;
+  padding:
+    15px 25px;
 
   border-radius:12px;
 
@@ -1441,20 +1553,26 @@ footer{
 
   text-align:center;
 
-  padding:45px 20px;
+  padding:
+    45px 20px;
 }
 
 .footer-logo{
-  width:80px;
-  height:80px;
+  display:block;
 
-  object-fit:cover;
+  width:min(240px,60vw);
+  height:auto;
 
-  border-radius:50%;
+  object-fit:contain;
 
-  margin-bottom:15px;
+  border-radius:0;
+  border:none;
 
-  border:2px solid rgba(255,255,255,.5);
+  margin:
+    0 auto 18px;
+
+  filter:
+    drop-shadow(0 7px 10px rgba(0,0,0,.5));
 }
 
 footer p{
@@ -1492,12 +1610,13 @@ footer p{
   .navbar{
     height:65px;
 
-    padding:0 12px;
+    padding:
+      0 12px;
   }
 
   .nav-logo{
-    width:40px;
-    height:40px;
+    width:52px;
+    height:44px;
   }
 
   .brand-main{
@@ -1509,7 +1628,8 @@ footer p{
   }
 
   .live-button{
-    padding:8px 10px;
+    padding:
+      8px 10px;
 
     font-size:.68rem;
   }
@@ -1517,18 +1637,20 @@ footer p{
   .hero{
     min-height:92vh;
 
-    padding-top:95px;
+    padding:
+      95px 15px 55px;
 
     background-position:center;
   }
 
   .official-logo{
-    width:135px;
-    height:135px;
+    width:min(330px,82vw);
+
+    height:auto;
   }
 
-  .hero h1{
-    font-size:clamp(2.4rem,12vw,3.8rem);
+  .hero-subtitle{
+    font-size:1.55rem;
   }
 
   .hero-actions{
@@ -1538,7 +1660,11 @@ footer p{
   }
 
   .hero-btn{
-    width:min(310px,100%);
+    width:
+      min(
+        310px,
+        100%
+      );
   }
 
   .event-screen{
@@ -1575,8 +1701,7 @@ footer p{
   }
 
   .event-no-events img{
-    width:75px;
-    height:75px;
+    width:min(190px,52%);
   }
 
   .event-no-events p{
@@ -1584,7 +1709,8 @@ footer p{
   }
 
   .finder{
-    padding:22px 15px;
+    padding:
+      22px 15px;
   }
 
   .search-row{
@@ -1597,6 +1723,7 @@ footer p{
 
   .people{
     padding-left:8px;
+
     padding-right:8px;
   }
 
@@ -1644,7 +1771,7 @@ footer p{
   >
 
     <img
-      src="ravofficial.jpg"
+      src="ravofficial.png"
       class="nav-logo"
       alt="Ríos de Agua Viva"
     >
@@ -1666,19 +1793,31 @@ footer p{
 
   <div class="nav-links">
 
-    <a class="nav-link" href="#inicio">
+    <a
+      class="nav-link"
+      href="#inicio"
+    >
       INICIO
     </a>
 
-    <a class="nav-link" href="#eventos">
+    <a
+      class="nav-link"
+      href="#eventos"
+    >
       EVENTOS
     </a>
 
-    <a class="nav-link" href="#celulas">
+    <a
+      class="nav-link"
+      href="#celulas"
+    >
       CÉLULAS
     </a>
 
-    <a class="nav-link" href="#ubicacion">
+    <a
+      class="nav-link"
+      href="#ubicacion"
+    >
       UBICACIÓN
     </a>
 
@@ -1708,24 +1847,18 @@ footer p{
      HERO
 ===================================================== -->
 
-<header id="inicio" class="hero">
+<header
+  id="inicio"
+  class="hero"
+>
 
   <div class="hero-content">
 
     <img
-      src="ravofficial.jpg"
+      src="ravofficial.png"
       class="official-logo"
-      alt="Logo oficial Ríos de Agua Viva Apostolic Church"
+      alt="Ríos de Agua Viva Apostolic Church"
     >
-
-    <span class="hero-small">
-      IGLESIA APOSTÓLICA
-    </span>
-
-    <h1>
-      RÍOS DE<br>
-      AGUA VIVA
-    </h1>
 
     <div class="hero-subtitle">
       Bienvenidos a Casa
@@ -1812,7 +1945,10 @@ footer p{
      EVENTS
 ===================================================== -->
 
-<section id="eventos" class="events-section">
+<section
+  id="eventos"
+  class="events-section"
+>
 
   <div class="events-container">
 
@@ -1833,10 +1969,6 @@ footer p{
 
     </div>
 
-
-    <!-- =================================================
-         DIGITAL EVENT SCREEN
-    ================================================== -->
 
     <div class="event-screen">
 
@@ -1864,10 +1996,11 @@ footer p{
       >
 
 
-        <!-- =================================================
-             CUANDO TENGAMOS EVENTOS LOS PONDREMOS AQUÍ.
+        <!--
+        =====================================================
+        AQUÍ PONDREMOS LOS FLYERS.
 
-             EJEMPLO:
+        EJEMPLO:
 
         <div class="event-slide">
 
@@ -1891,7 +2024,7 @@ footer p{
         </div>
 
 
-        PARA UN SEGUNDO EVENTO:
+        SEGUNDO EVENTO:
 
         <div class="event-slide">
 
@@ -1914,10 +2047,9 @@ footer p{
 
         </div>
 
-        ================================================= -->
+        =====================================================
+        -->
 
-
-        <!-- CUANDO NO HAY EVENTOS -->
 
         <div
           class="event-no-events"
@@ -1925,7 +2057,7 @@ footer p{
         >
 
           <img
-            src="ravofficial.jpg"
+            src="ravofficial.png"
             alt="Ríos de Agua Viva"
           >
 
@@ -2006,7 +2138,10 @@ footer p{
      GROUPS
 ===================================================== -->
 
-<section id="celulas" class="groups-intro">
+<section
+  id="celulas"
+  class="groups-intro"
+>
 
   <img
     src="gruposvida.png"
@@ -2161,9 +2296,7 @@ footer p{
   >
 
 
-<!-- =====================================================
-     CELL 1
-===================================================== -->
+<!-- CELL 1 -->
 
 <article
   class="cell-card"
@@ -2256,9 +2389,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -2281,9 +2412,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      ☎️
-    </div>
+    <div class="info-icon">☎️</div>
 
     <div>
 
@@ -2325,9 +2454,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 2
-===================================================== -->
+<!-- CELL 2 -->
 
 <article
   class="cell-card"
@@ -2365,13 +2492,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Líder
-    </span>
+    <span class="role">Líder</span>
 
     <span class="person-name">
       Omar Chinchilla
@@ -2382,9 +2505,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Asistente
@@ -2399,9 +2520,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
     <span class="role">
       Anfitriones
@@ -2420,9 +2539,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -2445,9 +2562,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      ☎️
-    </div>
+    <div class="info-icon">☎️</div>
 
     <div>
 
@@ -2489,9 +2604,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 3
-===================================================== -->
+<!-- CELL 3 -->
 
 <article
   class="cell-card"
@@ -2521,13 +2634,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Líder
-    </span>
+    <span class="role">Líder</span>
 
     <span class="person-name">
       Angel Castrejon
@@ -2538,9 +2647,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Asistente
@@ -2555,9 +2662,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
     <span class="role">
       Anfitriones
@@ -2576,9 +2681,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -2612,9 +2715,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 4
-===================================================== -->
+<!-- CELL 4 -->
 
 <article
   class="cell-card"
@@ -2663,13 +2764,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Leader
-    </span>
+    <span class="role">Leader</span>
 
     <span class="person-name">
       Mizael Montañez
@@ -2680,9 +2777,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Assistant
@@ -2697,13 +2792,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
-    <span class="role">
-      Hosts
-    </span>
+    <span class="role">Hosts</span>
 
     <span class="person-name">
       Familia Montañez
@@ -2718,9 +2809,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -2743,9 +2832,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      ☎️
-    </div>
+    <div class="info-icon">☎️</div>
 
     <div>
 
@@ -2787,9 +2874,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 6
-===================================================== -->
+<!-- CELL 6 -->
 
 <article
   class="cell-card"
@@ -2827,13 +2912,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Líder
-    </span>
+    <span class="role">Líder</span>
 
     <span class="person-name">
       Joel Velez
@@ -2844,9 +2925,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Asistente
@@ -2861,9 +2940,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
     <span class="role">
       Anfitriones
@@ -2882,9 +2959,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -2907,9 +2982,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      ☎️
-    </div>
+    <div class="info-icon">☎️</div>
 
     <div>
 
@@ -2951,9 +3024,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 7
-===================================================== -->
+<!-- CELL 7 -->
 
 <article
   class="cell-card"
@@ -2991,13 +3062,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Líder
-    </span>
+    <span class="role">Líder</span>
 
     <span class="person-name">
       Baltazar Alvidrez
@@ -3008,9 +3075,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Asistente
@@ -3025,9 +3090,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
     <span class="role">
       Anfitriones
@@ -3046,9 +3109,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -3071,9 +3132,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      ☎️
-    </div>
+    <div class="info-icon">☎️</div>
 
     <div>
 
@@ -3115,9 +3174,7 @@ footer p{
 </article>
 
 
-<!-- =====================================================
-     CELL 8
-===================================================== -->
+<!-- CELL 8 -->
 
 <article
   class="cell-card"
@@ -3147,13 +3204,9 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
-    <span class="role">
-      Líder
-    </span>
+    <span class="role">Líder</span>
 
     <span class="person-name">
       Sarita Portillo
@@ -3164,9 +3217,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      👤
-    </div>
+    <div class="photo">👤</div>
 
     <span class="role">
       Asistente
@@ -3181,9 +3232,7 @@ footer p{
 
   <div class="person">
 
-    <div class="photo">
-      🏠
-    </div>
+    <div class="photo">🏠</div>
 
     <span class="role">
       Anfitriones
@@ -3202,9 +3251,7 @@ footer p{
 
   <div class="info-row">
 
-    <div class="info-icon">
-      📍
-    </div>
+    <div class="info-icon">📍</div>
 
     <div>
 
@@ -3247,10 +3294,13 @@ footer p{
      LOCATION
 ===================================================== -->
 
-<section id="ubicacion" class="location-section">
+<section
+  id="ubicacion"
+  class="location-section"
+>
 
   <img
-    src="ravofficial.jpg"
+    src="ravofficial.png"
     class="location-logo"
     alt="Ríos de Agua Viva"
   >
@@ -3299,7 +3349,7 @@ footer p{
 <footer>
 
   <img
-    src="ravofficial.jpg"
+    src="ravofficial.png"
     class="footer-logo"
     alt="Ríos de Agua Viva"
   >
@@ -3327,16 +3377,13 @@ footer p{
 
 /* =========================================================
    LIVE SYSTEM
-
-   CAMBIA false A true CUANDO ESTÉN EN VIVO.
 ========================================================= */
 
 const LIVE_IS_ON = false;
 
-
 /*
-  AQUÍ PONDREMOS DESPUÉS EL LINK
-  DE YOUTUBE O FACEBOOK.
+  MÁS ADELANTE CAMBIAREMOS ESTOS LINKS
+  POR YOUTUBE O FACEBOOK.
 */
 
 const LIVE_URL = "#";
@@ -3399,7 +3446,7 @@ configureLive();
 
 
 /* =========================================================
-   CELL FILTERS
+   FILTERS
 ========================================================= */
 
 let currentFilter = "all";
@@ -3790,10 +3837,8 @@ async function findNearest(){
 
         }else{
 
-
           card.dataset.distance =
             "999999";
-
 
         }
 
@@ -3955,7 +4000,7 @@ async function findNearest(){
 }
 
 
-/* ENTER */
+/* ENTER KEY */
 
 document
   .getElementById(
@@ -3976,7 +4021,7 @@ document
 
 
 /* =========================================================
-   RESET CELL ORDER
+   RESET
 ========================================================= */
 
 function resetOrder(){
