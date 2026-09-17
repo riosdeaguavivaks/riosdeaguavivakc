@@ -2,311 +2,772 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#063b55">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta name="theme-color" content="#061a4b">
 
 <title>Ríos de Agua Viva | Apostolic Church</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 :root{
-  --blue:#075d7c;
-  --dark:#032f43;
-  --teal:#16a7a0;
+  --blue:#063f92;
+  --royal:#082d7a;
+  --dark:#031c42;
+  --navy:#02152f;
+  --lightblue:#eaf4ff;
+  --teal:#0c8fa0;
   --green:#07975f;
-  --yellow:#ffb819;
+  --yellow:#ffbd20;
   --red:#e31b23;
-  --white:#fff;
-  --bg:#f3f8fa;
+  --white:#ffffff;
+  --bg:#f4f7fb;
   --text:#17323e;
   --muted:#687d87;
 }
 
-html{scroll-behavior:smooth}
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
+  overflow-x:hidden;
 }
 
-/* NAVIGATION */
+section{
+  scroll-margin-top:80px;
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .navbar{
   position:fixed;
-  top:0;left:0;right:0;
+  top:0;
+  left:0;
+  right:0;
+
+  height:72px;
+
   z-index:1000;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:14px 5%;
-  background:rgba(2,32,47,.88);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.12);
+
+  padding:0 5%;
+
+  background:rgba(2,15,38,.92);
+
+  backdrop-filter:blur(14px);
+
+  border-bottom:
+  1px solid rgba(255,255,255,.13);
 }
 
-.brand{
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
   color:white;
-  font-weight:900;
   text-decoration:none;
+  font-weight:900;
 }
 
-.brand span{color:var(--yellow)}
+.nav-logo{
+  width:45px;
+  height:45px;
+
+  object-fit:cover;
+  border-radius:50%;
+
+  border:2px solid rgba(255,255,255,.75);
+}
+
+.brand-text{
+  line-height:1.05;
+}
+
+.brand-main{
+  display:block;
+  font-size:.92rem;
+}
+
+.brand-small{
+  display:block;
+  margin-top:3px;
+
+  font-size:.58rem;
+  letter-spacing:1.4px;
+
+  opacity:.72;
+}
 
 .nav-links{
   display:flex;
   align-items:center;
-  gap:22px;
+  gap:20px;
 }
 
-.nav-links a{
+.nav-link{
   color:white;
   text-decoration:none;
-  font-weight:700;
-  font-size:.9rem;
+
+  font-size:.84rem;
+  font-weight:800;
 }
 
-/* LIVE */
+.nav-link:hover{
+  color:var(--yellow);
+}
+
+/* =========================================================
+   LIVE BUTTON
+========================================================= */
 
 .live-button{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:10px 16px;
+
+  padding:10px 15px;
+
   border-radius:999px;
-  background:rgba(255,255,255,.12);
+
   color:white;
-  border:1px solid rgba(255,255,255,.2);
+  text-decoration:none;
   font-weight:900;
+  font-size:.78rem;
+
+  background:rgba(255,255,255,.12);
+
+  border:
+  1px solid rgba(255,255,255,.2);
 }
 
 .live-button.live{
   background:var(--red);
   border-color:var(--red);
-  animation:livePulse 1.4s infinite;
+
+  animation:livePulse 1.5s infinite;
 }
 
 .live-dot{
   width:9px;
   height:9px;
+
   border-radius:50%;
-  background:#bbb;
+
+  background:#aab3bb;
 }
 
 .live-button.live .live-dot{
   background:white;
-  animation:blink .8s infinite;
+
+  animation:blink .75s infinite;
 }
 
 @keyframes blink{
-  0%,50%{opacity:1}
-  51%,100%{opacity:.15}
+
+  0%,50%{
+    opacity:1;
+  }
+
+  51%,100%{
+    opacity:.15;
+  }
+
 }
 
 @keyframes livePulse{
-  0%{box-shadow:0 0 0 0 rgba(227,27,35,.65)}
-  70%{box-shadow:0 0 0 12px rgba(227,27,35,0)}
-  100%{box-shadow:0 0 0 0 rgba(227,27,35,0)}
+
+  0%{
+    box-shadow:
+    0 0 0 0 rgba(227,27,35,.65);
+  }
+
+  70%{
+    box-shadow:
+    0 0 0 12px rgba(227,27,35,0);
+  }
+
+  100%{
+    box-shadow:
+    0 0 0 0 rgba(227,27,35,0);
+  }
+
 }
 
-/* MAIN HERO */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
   min-height:100vh;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
+  padding:
+  120px 20px
+  70px;
+
   color:white;
-  padding:120px 20px 70px;
 
   background:
-    linear-gradient(rgba(0,22,35,.28),rgba(0,30,45,.72)),
-    url("ravchurch.png");
+  linear-gradient(
+    rgba(0,15,45,.25),
+    rgba(0,18,50,.80)
+  ),
+  url("ravchurch.png");
 
   background-size:cover;
   background-position:center;
 }
 
-.hero-content{max-width:900px}
+.hero-content{
+  width:100%;
+  max-width:950px;
+}
+
+.official-logo{
+  width:170px;
+  height:170px;
+
+  max-width:42vw;
+  max-height:42vw;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  margin-bottom:20px;
+
+  border:
+  4px solid rgba(255,255,255,.92);
+
+  box-shadow:
+  0 15px 45px rgba(0,0,0,.45);
+}
 
 .hero-small{
-  display:inline-block;
-  padding:8px 17px;
-  margin-bottom:18px;
-  border-radius:999px;
-  background:rgba(0,0,0,.42);
-  border:1px solid rgba(255,255,255,.3);
-  font-weight:800;
-  letter-spacing:1.3px;
+  display:block;
+
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:3px;
+
+  margin-bottom:12px;
 }
 
 .hero h1{
-  font-size:clamp(2.8rem,8vw,6.4rem);
+  font-size:
+  clamp(2.8rem,7vw,6rem);
+
   line-height:.95;
-  text-shadow:0 5px 22px rgba(0,0,0,.7);
+
+  text-shadow:
+  0 6px 25px rgba(0,0,0,.75);
 }
 
-.hero h1 span{color:var(--yellow)}
+.hero h1 span{
+  color:#fff;
+}
 
 .hero-subtitle{
-  margin-top:18px;
-  font-size:clamp(1.1rem,2.4vw,1.6rem);
-  text-shadow:0 3px 12px rgba(0,0,0,.8);
+  margin-top:17px;
+
+  font-size:
+  clamp(1.1rem,2.5vw,1.6rem);
+
+  font-weight:700;
+
+  text-shadow:
+  0 3px 12px rgba(0,0,0,.8);
 }
 
 .hero-address{
-  margin-top:15px;
+  margin-top:14px;
+
   line-height:1.6;
-  text-shadow:0 2px 8px rgba(0,0,0,.8);
+
+  font-size:.96rem;
+
+  text-shadow:
+  0 2px 10px rgba(0,0,0,.9);
 }
 
 .hero-actions{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
+
   gap:12px;
+
   margin-top:28px;
 }
 
 .hero-btn{
-  min-width:180px;
-  padding:15px 22px;
+  min-width:190px;
+
+  padding:15px 20px;
+
   border-radius:12px;
+
   text-decoration:none;
+
   font-weight:900;
+
+  transition:
+  transform .2s,
+  box-shadow .2s;
+}
+
+.hero-btn:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.25);
 }
 
 .directions{
-  background:var(--yellow);
-  color:#18323d;
-}
-
-.watch{
   background:white;
   color:var(--dark);
 }
 
-/* WELCOME */
+.events-button{
+  background:var(--yellow);
+  color:#152e3a;
+}
+
+.watch{
+  background:var(--blue);
+  color:white;
+
+  border:
+  1px solid rgba(255,255,255,.45);
+}
+
+/* =========================================================
+   WELCOME
+========================================================= */
 
 .welcome{
   background:white;
+
+  padding:75px 20px;
+
   text-align:center;
-  padding:70px 20px;
 }
 
 .welcome-inner{
   max-width:850px;
+
   margin:auto;
 }
 
 .section-label{
-  color:var(--green);
-  font-size:.8rem;
+  display:block;
+
+  color:var(--blue);
+
+  font-size:.75rem;
   font-weight:900;
-  letter-spacing:2px;
+
+  letter-spacing:2.5px;
 }
 
 .welcome h2{
   color:var(--dark);
-  font-size:clamp(2rem,5vw,3.2rem);
-  margin:10px 0 15px;
+
+  font-size:
+  clamp(2rem,5vw,3.3rem);
+
+  margin:
+  10px 0
+  15px;
 }
 
 .welcome p{
   color:var(--muted);
+
   font-size:1.08rem;
+
   line-height:1.8;
 }
 
-/* GROUPS HERO */
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.events-section{
+  padding:
+  80px 20px
+  90px;
+
+  background:
+  radial-gradient(
+    circle at 90% 10%,
+    rgba(44,116,255,.30),
+    transparent 32%
+  ),
+  linear-gradient(
+    135deg,
+    #02152f,
+    #073a8a
+  );
+
+  color:white;
+}
+
+.events-container{
+  width:min(
+    1150px,
+    100%
+  );
+
+  margin:auto;
+}
+
+.events-heading{
+  text-align:center;
+
+  margin-bottom:40px;
+}
+
+.events-heading .section-label{
+  color:#79b9ff;
+}
+
+.events-heading h2{
+  font-size:
+  clamp(2.2rem,5vw,3.7rem);
+
+  margin-top:8px;
+}
+
+.events-heading h2 span{
+  color:var(--yellow);
+}
+
+.events-heading p{
+  max-width:650px;
+
+  margin:
+  12px auto 0;
+
+  line-height:1.7;
+
+  color:
+  rgba(255,255,255,.82);
+}
+
+/* EVENT PLACEHOLDER */
+
+.event-empty{
+  max-width:800px;
+
+  margin:auto;
+
+  padding:
+  45px 25px;
+
+  text-align:center;
+
+  border-radius:24px;
+
+  background:
+  rgba(255,255,255,.09);
+
+  border:
+  1px solid rgba(255,255,255,.18);
+
+  backdrop-filter:
+  blur(10px);
+}
+
+.event-calendar-icon{
+  width:80px;
+  height:80px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:
+  0 auto
+  20px;
+
+  border-radius:50%;
+
+  background:
+  rgba(255,255,255,.13);
+
+  font-size:2.2rem;
+}
+
+.event-empty h3{
+  font-size:1.7rem;
+
+  margin-bottom:10px;
+}
+
+.event-empty p{
+  color:
+  rgba(255,255,255,.76);
+
+  line-height:1.65;
+}
+
+/*
+=========================================================
+PARA EVENTOS FUTUROS
+
+Cuando tengamos flyers, podremos utilizar estas tarjetas.
+=========================================================
+*/
+
+.events-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,minmax(0,1fr));
+
+  gap:22px;
+
+  margin-top:30px;
+}
+
+.event-card{
+  display:none;
+
+  overflow:hidden;
+
+  border-radius:20px;
+
+  background:white;
+
+  color:var(--text);
+
+  box-shadow:
+  0 15px 35px rgba(0,0,0,.25);
+}
+
+.event-card img{
+  width:100%;
+
+  aspect-ratio:4/5;
+
+  object-fit:cover;
+}
+
+.event-content{
+  padding:20px;
+}
+
+.event-date{
+  color:var(--blue);
+
+  font-size:.75rem;
+  font-weight:900;
+
+  letter-spacing:1px;
+}
+
+.event-title{
+  margin-top:6px;
+
+  color:var(--dark);
+
+  font-size:1.35rem;
+}
+
+.event-info{
+  margin-top:9px;
+
+  color:var(--muted);
+
+  line-height:1.55;
+
+  font-size:.9rem;
+}
+
+/* =========================================================
+   GROUPS INTRO
+========================================================= */
 
 .groups-intro{
-  padding:65px 20px 90px;
+  padding:
+  75px 20px
+  95px;
+
   text-align:center;
+
   color:white;
 
   background:
-    radial-gradient(circle at 80% 20%,rgba(22,167,160,.35),transparent 35%),
-    linear-gradient(135deg,#043b55,#075d7c);
+  radial-gradient(
+    circle at 80% 20%,
+    rgba(22,167,160,.35),
+    transparent 35%
+  ),
+  linear-gradient(
+    135deg,
+    #043b55,
+    #075d7c
+  );
 }
 
 .group-logo{
-  width:150px;
+  width:155px;
+
   max-width:45vw;
+
   border-radius:50%;
+
   background:white;
+
   padding:5px;
-  box-shadow:0 12px 30px rgba(0,0,0,.22);
+
+  box-shadow:
+  0 12px 30px rgba(0,0,0,.22);
 }
 
 .groups-intro h2{
-  font-size:clamp(2.2rem,6vw,4rem);
+  font-size:
+  clamp(2.2rem,6vw,4rem);
+
   margin-top:18px;
 }
 
-.groups-intro h2 span{color:var(--yellow)}
+.groups-intro h2 span{
+  color:var(--yellow);
+}
 
 .groups-intro p{
   max-width:700px;
-  margin:12px auto 0;
+
+  margin:
+  12px auto 0;
+
   line-height:1.7;
 }
 
-/* FINDER */
+/* =========================================================
+   FINDER
+========================================================= */
 
 .finder-wrap{
-  width:min(1050px,calc(100% - 30px));
-  margin:-45px auto 40px;
+  width:
+  min(
+    1050px,
+    calc(100% - 30px)
+  );
+
+  margin:
+  -45px auto
+  40px;
+
   position:relative;
+
   z-index:5;
 }
 
 .finder{
   background:white;
+
   border-radius:22px;
+
   padding:30px;
-  box-shadow:0 15px 45px rgba(3,55,75,.16);
+
+  box-shadow:
+  0 15px 45px rgba(3,55,75,.16);
 }
 
 .finder h3{
   text-align:center;
+
   color:var(--dark);
+
   font-size:1.65rem;
 }
 
 .finder-description{
   text-align:center;
+
   color:var(--muted);
-  margin:8px 0 22px;
+
+  margin:
+  8px 0
+  22px;
 }
 
 .address-label{
   display:block;
+
   max-width:800px;
-  margin:0 auto 7px;
+
+  margin:
+  0 auto
+  7px;
+
   color:var(--dark);
+
   font-size:.8rem;
   font-weight:900;
+
   text-transform:uppercase;
+
   letter-spacing:.7px;
 }
 
 .search-row{
   max-width:800px;
+
   margin:auto;
+
   display:flex;
+
   gap:10px;
 }
 
 .search-row input{
   flex:1;
+
   min-width:0;
-  padding:17px 18px;
+
+  padding:
+  17px 18px;
+
   border-radius:12px;
-  border:2px solid #dce8eb;
+
+  border:
+  2px solid #dce8eb;
+
   font-size:1rem;
+
   outline:none;
 }
 
@@ -316,396 +777,692 @@ body{
 
 .search-btn{
   border:0;
+
   border-radius:12px;
-  padding:15px 22px;
+
+  padding:
+  15px 22px;
+
   background:var(--green);
+
   color:white;
+
   font-weight:900;
+
   cursor:pointer;
 }
 
 .search-btn:disabled{
   opacity:.65;
+
   cursor:wait;
 }
 
 .search-message{
   max-width:800px;
-  margin:14px auto 0;
+
+  margin:
+  14px auto 0;
+
   text-align:center;
+
   color:var(--muted);
+
   font-size:.9rem;
+
   min-height:22px;
 }
 
 .search-message.success{
   color:var(--green);
+
   font-weight:800;
 }
 
 .search-message.error{
   color:#b3261e;
+
   font-weight:800;
 }
 
 .reset-distance{
   display:none;
-  margin:13px auto 0;
+
+  margin:
+  13px auto 0;
+
   border:0;
+
   background:transparent;
+
   color:var(--blue);
+
   text-decoration:underline;
+
   cursor:pointer;
+
   font-weight:800;
 }
 
 .filters{
   display:flex;
+
   justify-content:center;
+
   flex-wrap:wrap;
+
   gap:8px;
+
   margin-top:20px;
 }
 
 .filter{
-  border:1px solid #cadce1;
+  border:
+  1px solid #cadce1;
+
   border-radius:999px;
+
   background:#f7fafb;
+
   color:var(--dark);
-  padding:9px 15px;
+
+  padding:
+  9px 15px;
+
   font-weight:800;
+
   cursor:pointer;
 }
 
 .filter.active{
   background:var(--blue);
+
   color:white;
+
   border-color:var(--blue);
 }
 
-/* CELL SECTION */
+/* =========================================================
+   CELLS
+========================================================= */
 
 .cells-section{
-  width:min(1250px,calc(100% - 30px));
+  width:
+  min(
+    1250px,
+    calc(100% - 30px)
+  );
+
   margin:auto;
-  padding:5px 0 70px;
+
+  padding:
+  5px 0
+  75px;
 }
 
 .cells-title{
   text-align:center;
+
   margin-bottom:28px;
 }
 
 .cells-title h2{
   color:var(--dark);
-  font-size:clamp(1.9rem,4vw,2.7rem);
+
+  font-size:
+  clamp(1.9rem,4vw,2.7rem);
 }
 
 .cells-title p{
   color:var(--muted);
+
   margin-top:7px;
 }
 
 .cells-grid{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+
+  grid-template-columns:
+  repeat(2,minmax(0,1fr));
+
   gap:24px;
 }
 
 .cell-card{
   background:white;
+
   border-radius:22px;
+
   overflow:hidden;
-  border:1px solid #e0eaed;
-  box-shadow:0 10px 30px rgba(8,65,85,.11);
+
+  border:
+  1px solid #e0eaed;
+
+  box-shadow:
+  0 10px 30px rgba(8,65,85,.11);
+
   transition:.2s;
 }
 
 .cell-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 36px rgba(8,65,85,.16);
+  transform:
+  translateY(-4px);
+
+  box-shadow:
+  0 16px 36px rgba(8,65,85,.16);
 }
 
 .cell-card.nearest{
-  border:3px solid var(--yellow);
+  border:
+  3px solid var(--yellow);
 }
 
 .cell-header{
   padding:20px;
+
   color:white;
-  background:linear-gradient(135deg,var(--dark),var(--blue));
+
+  background:
+  linear-gradient(
+    135deg,
+    #043b55,
+    #075d7c
+  );
+
   position:relative;
 }
 
 .cell-number{
   color:var(--yellow);
+
   font-size:.8rem;
+
   font-weight:900;
+
   letter-spacing:1.3px;
 }
 
 .cell-header h3{
   font-size:1.7rem;
+
   margin-top:5px;
 }
 
 .language{
   display:inline-block;
+
   margin-top:9px;
-  padding:6px 11px;
+
+  padding:
+  6px 11px;
+
   border-radius:999px;
-  background:rgba(255,255,255,.15);
-  border:1px solid rgba(255,255,255,.2);
+
+  background:
+  rgba(255,255,255,.15);
+
+  border:
+  1px solid rgba(255,255,255,.2);
+
   font-size:.76rem;
+
   font-weight:900;
 }
 
 .language.bilingual{
   background:var(--yellow);
+
   color:#17323e;
+
   border-color:var(--yellow);
 }
 
 .distance-badge{
   display:none;
+
   position:absolute;
+
   top:18px;
   right:18px;
-  padding:7px 11px;
+
+  padding:
+  7px 11px;
+
   border-radius:999px;
+
   background:white;
+
   color:var(--dark);
+
   font-size:.78rem;
+
   font-weight:900;
-  box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.15);
 }
 
 .nearest-label{
   display:none;
+
   margin-top:10px;
-  padding:7px 10px;
+
+  padding:
+  7px 10px;
+
   border-radius:8px;
+
   background:var(--yellow);
+
   color:#17323e;
+
   font-size:.75rem;
+
   font-weight:900;
 }
 
 .bilingual-note{
   margin-top:10px;
+
   padding:10px;
+
   border-radius:10px;
+
   background:#fff5d2;
+
   color:#664c00;
+
   font-size:.82rem;
+
   font-weight:800;
+
   line-height:1.45;
 }
 
-/* PEOPLE */
+/* =========================================================
+   PEOPLE
+========================================================= */
 
 .people{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+  repeat(3,1fr);
+
   gap:10px;
-  padding:20px 15px 8px;
+
+  padding:
+  20px 15px
+  8px;
 }
 
 .person{
   text-align:center;
+
   min-width:0;
 }
 
 .photo{
   width:92px;
   height:92px;
+
   max-width:100%;
+
   margin:auto;
+
   border-radius:50%;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   overflow:hidden;
-  background:linear-gradient(145deg,#e3f1f4,#c8e3e7);
+
+  background:
+  linear-gradient(
+    145deg,
+    #e3f1f4,
+    #c8e3e7
+  );
+
   color:var(--blue);
+
   font-size:2rem;
-  border:4px solid white;
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
+
+  border:
+  4px solid white;
+
+  box-shadow:
+  0 4px 14px rgba(0,0,0,.12);
 }
 
 .photo img{
   width:100%;
   height:100%;
+
   object-fit:cover;
 }
 
 .role{
   display:block;
+
   margin-top:9px;
+
   color:var(--green);
+
   font-size:.65rem;
+
   font-weight:900;
+
   letter-spacing:.5px;
+
   text-transform:uppercase;
 }
 
 .person-name{
   display:block;
+
   margin-top:4px;
+
   font-size:.88rem;
+
   font-weight:900;
+
   line-height:1.25;
 }
 
-/* CELL INFO */
+/* =========================================================
+   CELL INFO
+========================================================= */
 
 .cell-info{
-  padding:15px 20px 20px;
+  padding:
+  15px 20px
+  20px;
 }
 
 .info-row{
   display:flex;
+
   gap:10px;
-  padding:10px 0;
-  border-top:1px solid #edf2f4;
+
+  padding:
+  10px 0;
+
+  border-top:
+  1px solid #edf2f4;
 }
 
 .info-icon{
   width:27px;
-  flex:0 0 27px;
+
+  flex:
+  0 0 27px;
 }
 
 .info-label{
   display:block;
+
   color:var(--muted);
+
   font-size:.68rem;
+
   font-weight:900;
+
   letter-spacing:.5px;
+
   text-transform:uppercase;
+
   margin-bottom:3px;
 }
 
 .info-value{
   font-size:.93rem;
+
   font-weight:700;
+
   line-height:1.45;
 }
 
-.pending{color:#986b00}
+.pending{
+  color:#986b00;
+}
 
 .actions{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+  1fr 1fr;
+
   gap:9px;
+
   margin-top:13px;
 }
 
 .action{
-  padding:12px 8px;
+  padding:
+  12px 8px;
+
   border-radius:11px;
+
   text-decoration:none;
+
   text-align:center;
+
   font-size:.85rem;
+
   font-weight:900;
 }
 
 .call{
   background:var(--green);
+
   color:white;
 }
 
 .map{
   background:#e7f4f6;
+
   color:var(--dark);
 }
 
 .disabled{
   opacity:.45;
+
   pointer-events:none;
 }
 
-/* LOCATION */
+/* =========================================================
+   CHURCH LOCATION
+========================================================= */
 
 .location-section{
   background:white;
-  padding:70px 20px;
+
+  padding:
+  75px 20px;
+
   text-align:center;
+}
+
+.location-logo{
+  width:125px;
+  height:125px;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  margin-bottom:18px;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,.15);
 }
 
 .location-section h2{
   color:var(--dark);
-  font-size:clamp(2rem,5vw,3rem);
-  margin-bottom:12px;
+
+  font-size:
+  clamp(2rem,5vw,3rem);
+
+  margin:
+  9px 0
+  12px;
 }
 
 .location-section p{
   color:var(--muted);
+
   line-height:1.7;
+
   font-size:1.05rem;
 }
 
 .location-button{
   display:inline-block;
+
   margin-top:22px;
-  padding:15px 25px;
+
+  padding:
+  15px 25px;
+
   border-radius:12px;
+
   background:var(--yellow);
+
   color:#17323e;
+
   text-decoration:none;
+
   font-weight:900;
 }
 
+/* =========================================================
+   FOOTER
+========================================================= */
+
 footer{
-  background:#022b3d;
+  background:#02152f;
+
   color:white;
+
   text-align:center;
-  padding:38px 20px;
+
+  padding:
+  45px 20px;
+}
+
+.footer-logo{
+  width:80px;
+  height:80px;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  margin-bottom:15px;
+
+  border:
+  2px solid rgba(255,255,255,.5);
 }
 
 footer p{
   line-height:1.7;
+
   opacity:.85;
+
   font-size:.9rem;
 }
 
-/* MOBILE */
+/* =========================================================
+   MOBILE
+========================================================= */
 
-@media(max-width:850px){
-  .nav-links a.nav-item{display:none}
-  .cells-grid{grid-template-columns:1fr}
+@media(max-width:900px){
+
+  .nav-link{
+    display:none;
+  }
+
+  .cells-grid{
+    grid-template-columns:1fr;
+  }
+
+  .events-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
 }
 
 @media(max-width:600px){
 
-  .navbar{padding:11px 14px}
-  .brand{font-size:.88rem}
+  .navbar{
+    height:65px;
 
-  .live-button{
-    padding:8px 11px;
+    padding:
+    0 12px;
+  }
+
+  .nav-logo{
+    width:40px;
+    height:40px;
+  }
+
+  .brand-main{
     font-size:.75rem;
   }
 
+  .brand-small{
+    display:none;
+  }
+
+  .live-button{
+    padding:
+    8px 10px;
+
+    font-size:.68rem;
+  }
+
   .hero{
-    min-height:88vh;
-    padding-top:100px;
+    min-height:92vh;
+
+    padding-top:95px;
+
     background-position:center;
   }
 
+  .official-logo{
+    width:135px;
+    height:135px;
+  }
+
   .hero h1{
-    font-size:clamp(2.5rem,13vw,4rem);
+    font-size:
+    clamp(2.4rem,12vw,3.8rem);
   }
 
   .hero-actions{
     flex-direction:column;
+
     align-items:center;
   }
 
   .hero-btn{
-    width:min(300px,100%);
+    width:
+    min(
+      310px,
+      100%
+    );
+  }
+
+  .events-grid{
+    grid-template-columns:1fr;
   }
 
   .finder{
-    padding:22px 15px;
+    padding:
+    22px 15px;
   }
 
   .search-row{
@@ -724,36 +1481,95 @@ footer p{
   .photo{
     width:75px;
     height:75px;
+
     font-size:1.7rem;
   }
 
-  .person-name{font-size:.76rem}
-  .role{font-size:.57rem}
+  .person-name{
+    font-size:.76rem;
+  }
+
+  .role{
+    font-size:.57rem;
+  }
 
   .distance-badge{
     position:static;
+
     margin-top:10px;
+
     width:max-content;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <nav class="navbar">
 
-  <a href="#inicio" class="brand">
-    RÍOS DE <span>AGUA VIVA</span>
+  <a
+    href="#inicio"
+    class="nav-brand"
+  >
+
+    <img
+      src="ravofficial.jpg"
+      class="nav-logo"
+      alt="Ríos de Agua Viva"
+    >
+
+    <div class="brand-text">
+
+      <span class="brand-main">
+        RÍOS DE AGUA VIVA
+      </span>
+
+      <span class="brand-small">
+        APOSTOLIC CHURCH
+      </span>
+
+    </div>
+
   </a>
+
 
   <div class="nav-links">
 
-    <a class="nav-item" href="#inicio">Inicio</a>
-    <a class="nav-item" href="#celulas">Células</a>
-    <a class="nav-item" href="#ubicacion">Ubicación</a>
+    <a
+      class="nav-link"
+      href="#inicio"
+    >
+      INICIO
+    </a>
+
+    <a
+      class="nav-link"
+      href="#eventos"
+    >
+      EVENTOS
+    </a>
+
+    <a
+      class="nav-link"
+      href="#celulas"
+    >
+      CÉLULAS
+    </a>
+
+    <a
+      class="nav-link"
+      href="#ubicacion"
+    >
+      UBICACIÓN
+    </a>
+
 
     <a
       id="liveButton"
@@ -762,23 +1578,40 @@ footer p{
       target="_blank"
       rel="noopener"
     >
+
       <span class="live-dot"></span>
-      <span id="liveText">TRANSMISIONES</span>
+
+      <span id="liveText">
+        TRANSMISIONES
+      </span>
+
     </a>
 
   </div>
 
 </nav>
 
-<!-- HERO -->
 
-<header id="inicio" class="hero">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header
+  id="inicio"
+  class="hero"
+>
 
   <div class="hero-content">
 
-    <div class="hero-small">
+    <img
+      src="ravofficial.jpg"
+      class="official-logo"
+      alt="Logo oficial Ríos de Agua Viva Apostolic Church"
+    >
+
+    <span class="hero-small">
       IGLESIA APOSTÓLICA
-    </div>
+    </span>
 
     <h1>
       RÍOS DE<br>
@@ -790,9 +1623,13 @@ footer p{
     </div>
 
     <div class="hero-address">
+
       4000 Victory Dr.<br>
+
       Kansas City, KS 66102
+
     </div>
+
 
     <div class="hero-actions">
 
@@ -805,6 +1642,15 @@ footer p{
         📍 CÓMO LLEGAR
       </a>
 
+
+      <a
+        class="hero-btn events-button"
+        href="#eventos"
+      >
+        📅 PRÓXIMOS EVENTOS
+      </a>
+
+
       <a
         id="heroLiveButton"
         class="hero-btn watch"
@@ -812,7 +1658,7 @@ footer p{
         target="_blank"
         rel="noopener"
       >
-        ▶ VER TRANSMISIONES
+        ▶ TRANSMISIONES
       </a>
 
     </div>
@@ -821,7 +1667,10 @@ footer p{
 
 </header>
 
-<!-- WELCOME -->
+
+<!-- =====================================================
+     WELCOME
+===================================================== -->
 
 <section class="welcome">
 
@@ -836,19 +1685,146 @@ footer p{
     </h2>
 
     <p>
-      Bienvenido a Iglesia Apostólica Ríos de Agua Viva.
-      Deseamos que nuestra iglesia sea un lugar donde puedas
-      crecer en tu relación con Dios, encontrar una familia
-      de fe y experimentar el poder transformador de Jesucristo.
+
+      Bienvenido a Iglesia Apostólica
+      Ríos de Agua Viva.
+
+      Deseamos que nuestra iglesia sea
+      un lugar donde puedas crecer en
+      tu relación con Dios, encontrar
+      una familia de fe y experimentar
+      el poder transformador de
+      Jesucristo.
+
     </p>
 
   </div>
 
 </section>
 
-<!-- GROUPS INTRO -->
 
-<section id="celulas" class="groups-intro">
+<!-- =====================================================
+     EVENTS
+===================================================== -->
+
+<section
+  id="eventos"
+  class="events-section"
+>
+
+  <div class="events-container">
+
+    <div class="events-heading">
+
+      <span class="section-label">
+        MANTENTE CONECTADO
+      </span>
+
+      <h2>
+        PRÓXIMOS <span>EVENTOS</span>
+      </h2>
+
+      <p>
+
+        Mantente informado de nuestras
+        próximas actividades, servicios
+        especiales y eventos de
+        Ríos de Agua Viva.
+
+      </p>
+
+    </div>
+
+
+    <!--
+      POR AHORA NO TENEMOS EVENTOS PUBLICADOS.
+      CUANDO ME DES UN FLYER, CAMBIAREMOS ESTA
+      PARTE AUTOMÁTICAMENTE.
+    -->
+
+    <div
+      id="noEvents"
+      class="event-empty"
+    >
+
+      <div class="event-calendar-icon">
+        📅
+      </div>
+
+      <h3>
+        Próximamente
+      </h3>
+
+      <p>
+
+        Muy pronto publicaremos aquí
+        nuestros próximos eventos.
+
+        <br><br>
+
+        ¡Te esperamos en
+        Ríos de Agua Viva!
+
+      </p>
+
+    </div>
+
+
+    <!--
+    =====================================================
+    FUTUROS EVENTOS
+
+    No es necesario modificar esto todavía.
+
+    Cuando tengas el primer flyer, podemos activar
+    una tarjeta como ésta:
+
+    <div class="events-grid">
+
+      <article class="event-card"
+               style="display:block;">
+
+        <img
+          src="evento1.jpg"
+          alt="Próximo evento"
+        >
+
+        <div class="event-content">
+
+          <span class="event-date">
+            OCTUBRE 25 • 2026
+          </span>
+
+          <h3 class="event-title">
+            Nombre del Evento
+          </h3>
+
+          <p class="event-info">
+            Hora • Información • Lugar
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+    =====================================================
+    -->
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GROUPS
+===================================================== -->
+
+<section
+  id="celulas"
+  class="groups-intro"
+>
 
   <img
     src="gruposvida.png"
@@ -861,14 +1837,22 @@ footer p{
   </h2>
 
   <p>
-    Encuentra un Grupo de Vida cerca de ti.
-    Escribe tu dirección y te mostraremos
-    las Células en orden de distancia.
+
+    Encuentra un Grupo de Vida
+    cerca de ti.
+
+    Escribe tu dirección y
+    te mostraremos las Células
+    en orden de distancia.
+
   </p>
 
 </section>
 
-<!-- FINDER -->
+
+<!-- =====================================================
+     FINDER
+===================================================== -->
 
 <div class="finder-wrap">
 
@@ -879,9 +1863,13 @@ footer p{
     </h3>
 
     <p class="finder-description">
-      Introduce tu dirección y ordenaremos los grupos
-      desde el más cercano hasta el más lejano.
+
+      Introduce tu dirección y
+      ordenaremos los grupos desde
+      el más cercano hasta el más lejano.
+
     </p>
+
 
     <label
       class="address-label"
@@ -889,6 +1877,7 @@ footer p{
     >
       Introduce tu dirección aquí
     </label>
+
 
     <div class="search-row">
 
@@ -909,13 +1898,20 @@ footer p{
 
     </div>
 
+
     <div
       id="searchMessage"
       class="search-message"
     >
-      Las distancias mostradas son aproximadas en línea recta.
-      “Cómo llegar” abre la ruta real en Google Maps.
+
+      Las distancias mostradas son
+      aproximadas.
+
+      “Cómo llegar” abre la ruta
+      en Google Maps.
+
     </div>
+
 
     <button
       id="resetDistance"
@@ -924,6 +1920,7 @@ footer p{
     >
       Mostrar orden original
     </button>
+
 
     <div class="filters">
 
@@ -961,609 +1958,1128 @@ footer p{
 
 </div>
 
-<!-- CELLS -->
+
+<!-- =====================================================
+     CELLS
+===================================================== -->
 
 <section class="cells-section">
 
   <div class="cells-title">
-    <h2>Nuestras Células</h2>
-    <p id="resultsSubtitle">Reunión de Amigos</p>
+
+    <h2>
+      Nuestras Células
+    </h2>
+
+    <p id="resultsSubtitle">
+      Reunión de Amigos
+    </p>
+
   </div>
 
-  <div id="cellsGrid" class="cells-grid">
 
-    <!-- CELL 1 -->
+  <div
+    id="cellsGrid"
+    class="cells-grid"
+  >
 
-    <article
-      class="cell-card"
-      data-order="1"
-      data-language="spanish"
-      data-lat="39.05754"
-      data-lng="-94.70495"
-      data-has-location="true"
-    >
 
-      <div class="cell-header">
+<!-- =====================================================
+     CELL 1
+===================================================== -->
 
-        <span class="cell-number">Célula #1</span>
+<article
+  class="cell-card"
+  data-order="1"
+  data-language="spanish"
+  data-lat="39.05754"
+  data-lng="-94.70495"
+  data-has-location="true"
+>
 
-        <h3>Reunión de Amigos</h3>
+<div class="cell-header">
 
-        <span class="language">ESPAÑOL</span>
+  <span class="cell-number">
+    Célula #1
+  </span>
 
-        <span class="distance-badge"></span>
-        <div class="nearest-label">⭐ GRUPO MÁS CERCANO</div>
+  <h3>
+    Reunión de Amigos
+  </h3>
 
-      </div>
+  <span class="language">
+    ESPAÑOL
+  </span>
 
-      <div class="people">
+  <span class="distance-badge"></span>
 
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Henry Hernandez</span>
-        </div>
+  <div class="nearest-label">
+    ⭐ GRUPO MÁS CERCANO
+  </div>
 
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name">Miguel Campos</span>
-        </div>
+</div>
 
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name">Familia Legarreta</span>
-        </div>
 
-      </div>
+<div class="people">
 
-      <div class="cell-info">
+  <div class="person">
 
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value">
-              5519 Inland Dr.<br>
-              Kansas City, KS 66106
-            </div>
-          </div>
-        </div>
+    <div class="photo">
+      👤
+    </div>
 
-        <div class="info-row">
-          <div class="info-icon">☎️</div>
-          <div>
-            <span class="info-label">Información</span>
-            <div class="info-value">
-              (913) 944-0855
-            </div>
-          </div>
-        </div>
+    <span class="role">
+      Líder
+    </span>
 
-        <div class="actions">
-
-          <a
-            class="action call"
-            href="tel:+19139440855"
-          >
-            ☎ Llamar
-          </a>
-
-          <a
-            class="action map"
-            href="https://www.google.com/maps/dir/?api=1&destination=5519+Inland+Dr+Kansas+City+KS+66106"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 Cómo llegar
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 2 -->
-
-    <article
-      class="cell-card"
-      data-order="2"
-      data-language="spanish"
-      data-lat="39.12670"
-      data-lng="-94.83020"
-      data-has-location="true"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #2</span>
-        <h3>Reunión de Amigos</h3>
-        <span class="language">ESPAÑOL</span>
-
-        <span class="distance-badge"></span>
-        <div class="nearest-label">⭐ GRUPO MÁS CERCANO</div>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Omar Chinchilla</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name">Yesenia Duran</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name">Familia Leal</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value">
-              2508 N 109th Ter.<br>
-              Kansas City, KS 66109
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">☎️</div>
-          <div>
-            <span class="info-label">Información</span>
-            <div class="info-value">
-              (913) 701-1024
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action call"
-            href="tel:+19137011024"
-          >
-            ☎ Llamar
-          </a>
-
-          <a
-            class="action map"
-            href="https://www.google.com/maps/dir/?api=1&destination=2508+N+109th+Ter+Kansas+City+KS+66109"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 Cómo llegar
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 3 -->
-
-    <article
-      class="cell-card"
-      data-order="3"
-      data-language="spanish"
-      data-has-location="false"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #3</span>
-        <h3>Reunión de Amigos</h3>
-        <span class="language">ESPAÑOL</span>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Angel Castrejon</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name">Lidia Haworth</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name">Familia Castrejon</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value pending">
-              Dirección pendiente
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <span class="action call disabled">☎ Información</span>
-          <span class="action map disabled">📍 Pendiente</span>
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 4 -->
-
-    <article
-      class="cell-card"
-      data-order="4"
-      data-language="bilingual english"
-      data-lat="39.24220"
-      data-lng="-94.63630"
-      data-has-location="true"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #4</span>
-        <h3>Friends Gathering</h3>
-
-        <span class="language bilingual">
-          BILINGUAL
-        </span>
-
-        <span class="distance-badge"></span>
-        <div class="nearest-label">⭐ CLOSEST GROUP</div>
-
-        <div class="bilingual-note">
-          🇺🇸 Primary Language: English<br>
-          🇲🇽 Segundo idioma: Español
-        </div>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Leader</span>
-          <span class="person-name">Mizael Montañez</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Assistant</span>
-          <span class="person-name">Jose Girón</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Hosts</span>
-          <span class="person-name">Familia Montañez</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Address</span>
-            <div class="info-value">
-              4706 NW 82nd St.<br>
-              Kansas City, MO 64151
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">☎️</div>
-          <div>
-            <span class="info-label">Information</span>
-            <div class="info-value">
-              (631) 877-0103
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action call"
-            href="tel:+16318770103"
-          >
-            ☎ Call
-          </a>
-
-          <a
-            class="action map"
-            href="https://www.google.com/maps/dir/?api=1&destination=4706+NW+82nd+St+Kansas+City+MO+64151"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 Directions
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 6 -->
-
-    <article
-      class="cell-card"
-      data-order="6"
-      data-language="spanish"
-      data-lat="39.12570"
-      data-lng="-94.65020"
-      data-has-location="true"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #6</span>
-        <h3>Reunión de Amigos</h3>
-        <span class="language">ESPAÑOL</span>
-
-        <span class="distance-badge"></span>
-        <div class="nearest-label">⭐ GRUPO MÁS CERCANO</div>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Joel Velez</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name">Julio Cruz</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name">Familia Antillón</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value">
-              1709 Cleveland Ave.<br>
-              Kansas City, KS 66104
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">☎️</div>
-          <div>
-            <span class="info-label">Información</span>
-            <div class="info-value">
-              (816) 809-2734
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action call"
-            href="tel:+18168092734"
-          >
-            ☎ Llamar
-          </a>
-
-          <a
-            class="action map"
-            href="https://www.google.com/maps/dir/?api=1&destination=1709+Cleveland+Ave+Kansas+City+KS+66104"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 Cómo llegar
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 7 -->
-
-    <article
-      class="cell-card"
-      data-order="7"
-      data-language="spanish"
-      data-lat="39.07120"
-      data-lng="-94.43060"
-      data-has-location="true"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #7</span>
-        <h3>Reunión de Amigos</h3>
-        <span class="language">ESPAÑOL</span>
-
-        <span class="distance-badge"></span>
-        <div class="nearest-label">⭐ GRUPO MÁS CERCANO</div>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Baltazar Alvidrez</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name">Julio Alas</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name">Familia Lujan</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value">
-              3024 S. Ralston Ave.<br>
-              Independence, MO 64052
-            </div>
-          </div>
-        </div>
-
-        <div class="info-row">
-          <div class="info-icon">☎️</div>
-          <div>
-            <span class="info-label">Información</span>
-            <div class="info-value">
-              (816) 469-2553
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-
-          <a
-            class="action call"
-            href="tel:+18164692553"
-          >
-            ☎ Llamar
-          </a>
-
-          <a
-            class="action map"
-            href="https://www.google.com/maps/dir/?api=1&destination=3024+S+Ralston+Ave+Independence+MO+64052"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 Cómo llegar
-          </a>
-
-        </div>
-
-      </div>
-
-    </article>
-
-    <!-- CELL 8 -->
-
-    <article
-      class="cell-card"
-      data-order="8"
-      data-language="spanish"
-      data-has-location="false"
-    >
-
-      <div class="cell-header">
-
-        <span class="cell-number">Célula #8</span>
-        <h3>Reunión de Amigos</h3>
-        <span class="language">ESPAÑOL</span>
-
-      </div>
-
-      <div class="people">
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Líder</span>
-          <span class="person-name">Sarita Portillo</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">👤</div>
-          <span class="role">Asistente</span>
-          <span class="person-name pending">Pendiente</span>
-        </div>
-
-        <div class="person">
-          <div class="photo">🏠</div>
-          <span class="role">Anfitriones</span>
-          <span class="person-name pending">Pendiente</span>
-        </div>
-
-      </div>
-
-      <div class="cell-info">
-
-        <div class="info-row">
-          <div class="info-icon">📍</div>
-          <div>
-            <span class="info-label">Dirección</span>
-            <div class="info-value pending">
-              Dirección pendiente
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <span class="action call disabled">☎ Información</span>
-          <span class="action map disabled">📍 Pendiente</span>
-        </div>
-
-      </div>
-
-    </article>
+    <span class="person-name">
+      Henry Hernandez
+    </span>
 
   </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name">
+      Miguel Campos
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name">
+      Familia Legarreta
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value">
+
+        5519 Inland Dr.<br>
+
+        Kansas City, KS 66106
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      ☎️
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Información
+      </span>
+
+      <div class="info-value">
+        (913) 944-0855
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <a
+      class="action call"
+      href="tel:+19139440855"
+    >
+      ☎ Llamar
+    </a>
+
+    <a
+      class="action map"
+      href="https://www.google.com/maps/dir/?api=1&destination=5519+Inland+Dr+Kansas+City+KS+66106"
+      target="_blank"
+      rel="noopener"
+    >
+      📍 Cómo llegar
+    </a>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 2
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="2"
+  data-language="spanish"
+  data-lat="39.12670"
+  data-lng="-94.83020"
+  data-has-location="true"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #2
+  </span>
+
+  <h3>
+    Reunión de Amigos
+  </h3>
+
+  <span class="language">
+    ESPAÑOL
+  </span>
+
+  <span class="distance-badge"></span>
+
+  <div class="nearest-label">
+    ⭐ GRUPO MÁS CERCANO
+  </div>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Líder
+    </span>
+
+    <span class="person-name">
+      Omar Chinchilla
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name">
+      Yesenia Duran
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name">
+      Familia Leal
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value">
+
+        2508 N 109th Ter.<br>
+
+        Kansas City, KS 66109
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      ☎️
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Información
+      </span>
+
+      <div class="info-value">
+        (913) 701-1024
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <a
+      class="action call"
+      href="tel:+19137011024"
+    >
+      ☎ Llamar
+    </a>
+
+    <a
+      class="action map"
+      href="https://www.google.com/maps/dir/?api=1&destination=2508+N+109th+Ter+Kansas+City+KS+66109"
+      target="_blank"
+      rel="noopener"
+    >
+      📍 Cómo llegar
+    </a>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 3
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="3"
+  data-language="spanish"
+  data-has-location="false"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #3
+  </span>
+
+  <h3>
+    Reunión de Amigos
+  </h3>
+
+  <span class="language">
+    ESPAÑOL
+  </span>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Líder
+    </span>
+
+    <span class="person-name">
+      Angel Castrejon
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name">
+      Lidia Haworth
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name">
+      Familia Castrejon
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value pending">
+        Dirección pendiente
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <span class="action call disabled">
+      ☎ Información
+    </span>
+
+    <span class="action map disabled">
+      📍 Pendiente
+    </span>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 4
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="4"
+  data-language="bilingual english"
+  data-lat="39.24220"
+  data-lng="-94.63630"
+  data-has-location="true"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #4
+  </span>
+
+  <h3>
+    Friends Gathering
+  </h3>
+
+  <span class="language bilingual">
+    BILINGUAL
+  </span>
+
+  <span class="distance-badge"></span>
+
+  <div class="nearest-label">
+    ⭐ CLOSEST GROUP
+  </div>
+
+
+  <div class="bilingual-note">
+
+    🇺🇸 Primary Language: English
+
+    <br>
+
+    🇲🇽 Segundo idioma: Español
+
+  </div>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Leader
+    </span>
+
+    <span class="person-name">
+      Mizael Montañez
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Assistant
+    </span>
+
+    <span class="person-name">
+      Jose Girón
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Hosts
+    </span>
+
+    <span class="person-name">
+      Familia Montañez
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Address
+      </span>
+
+      <div class="info-value">
+
+        4706 NW 82nd St.<br>
+
+        Kansas City, MO 64151
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      ☎️
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Information
+      </span>
+
+      <div class="info-value">
+        (631) 877-0103
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <a
+      class="action call"
+      href="tel:+16318770103"
+    >
+      ☎ Call
+    </a>
+
+    <a
+      class="action map"
+      href="https://www.google.com/maps/dir/?api=1&destination=4706+NW+82nd+St+Kansas+City+MO+64151"
+      target="_blank"
+      rel="noopener"
+    >
+      📍 Directions
+    </a>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 6
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="6"
+  data-language="spanish"
+  data-lat="39.12570"
+  data-lng="-94.65020"
+  data-has-location="true"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #6
+  </span>
+
+  <h3>
+    Reunión de Amigos
+  </h3>
+
+  <span class="language">
+    ESPAÑOL
+  </span>
+
+  <span class="distance-badge"></span>
+
+  <div class="nearest-label">
+    ⭐ GRUPO MÁS CERCANO
+  </div>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Líder
+    </span>
+
+    <span class="person-name">
+      Joel Velez
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name">
+      Julio Cruz
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name">
+      Familia Antillón
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value">
+
+        1709 Cleveland Ave.<br>
+
+        Kansas City, KS 66104
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      ☎️
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Información
+      </span>
+
+      <div class="info-value">
+        (816) 809-2734
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <a
+      class="action call"
+      href="tel:+18168092734"
+    >
+      ☎ Llamar
+    </a>
+
+    <a
+      class="action map"
+      href="https://www.google.com/maps/dir/?api=1&destination=1709+Cleveland+Ave+Kansas+City+KS+66104"
+      target="_blank"
+      rel="noopener"
+    >
+      📍 Cómo llegar
+    </a>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 7
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="7"
+  data-language="spanish"
+  data-lat="39.07120"
+  data-lng="-94.43060"
+  data-has-location="true"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #7
+  </span>
+
+  <h3>
+    Reunión de Amigos
+  </h3>
+
+  <span class="language">
+    ESPAÑOL
+  </span>
+
+  <span class="distance-badge"></span>
+
+  <div class="nearest-label">
+    ⭐ GRUPO MÁS CERCANO
+  </div>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Líder
+    </span>
+
+    <span class="person-name">
+      Baltazar Alvidrez
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name">
+      Julio Alas
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name">
+      Familia Lujan
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value">
+
+        3024 S. Ralston Ave.<br>
+
+        Independence, MO 64052
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      ☎️
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Información
+      </span>
+
+      <div class="info-value">
+        (816) 469-2553
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <a
+      class="action call"
+      href="tel:+18164692553"
+    >
+      ☎ Llamar
+    </a>
+
+    <a
+      class="action map"
+      href="https://www.google.com/maps/dir/?api=1&destination=3024+S+Ralston+Ave+Independence+MO+64052"
+      target="_blank"
+      rel="noopener"
+    >
+      📍 Cómo llegar
+    </a>
+
+  </div>
+
+</div>
+
+</article>
+
+
+<!-- =====================================================
+     CELL 8
+===================================================== -->
+
+<article
+  class="cell-card"
+  data-order="8"
+  data-language="spanish"
+  data-has-location="false"
+>
+
+<div class="cell-header">
+
+  <span class="cell-number">
+    Célula #8
+  </span>
+
+  <h3>
+    Reunión de Amigos
+  </h3>
+
+  <span class="language">
+    ESPAÑOL
+  </span>
+
+</div>
+
+
+<div class="people">
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Líder
+    </span>
+
+    <span class="person-name">
+      Sarita Portillo
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      👤
+    </div>
+
+    <span class="role">
+      Asistente
+    </span>
+
+    <span class="person-name pending">
+      Pendiente
+    </span>
+
+  </div>
+
+
+  <div class="person">
+
+    <div class="photo">
+      🏠
+    </div>
+
+    <span class="role">
+      Anfitriones
+    </span>
+
+    <span class="person-name pending">
+      Pendiente
+    </span>
+
+  </div>
+
+</div>
+
+
+<div class="cell-info">
+
+  <div class="info-row">
+
+    <div class="info-icon">
+      📍
+    </div>
+
+    <div>
+
+      <span class="info-label">
+        Dirección
+      </span>
+
+      <div class="info-value pending">
+        Dirección pendiente
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="actions">
+
+    <span class="action call disabled">
+      ☎ Información
+    </span>
+
+    <span class="action map disabled">
+      📍 Pendiente
+    </span>
+
+  </div>
+
+</div>
+
+</article>
+
+
+</div>
 
 </section>
 
-<!-- LOCATION -->
 
-<section id="ubicacion" class="location-section">
+<!-- =====================================================
+     CHURCH LOCATION
+===================================================== -->
+
+<section
+  id="ubicacion"
+  class="location-section"
+>
+
+  <img
+    src="ravofficial.jpg"
+    class="location-logo"
+    alt="Ríos de Agua Viva"
+  >
 
   <span class="section-label">
     VISÍTANOS
@@ -1574,10 +3090,22 @@ footer p{
   </h2>
 
   <p>
-    Iglesia Apostólica Ríos de Agua Viva<br>
-    <strong>4000 Victory Dr.</strong><br>
+
+    Iglesia Apostólica
+    Ríos de Agua Viva
+
+    <br>
+
+    <strong>
+      4000 Victory Dr.
+    </strong>
+
+    <br>
+
     Kansas City, KS 66102
+
   </p>
+
 
   <a
     class="location-button"
@@ -1590,246 +3118,418 @@ footer p{
 
 </section>
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
 
+  <img
+    src="ravofficial.jpg"
+    class="footer-logo"
+    alt="Ríos de Agua Viva"
+  >
+
   <p>
-    <strong>Iglesia Apostólica Ríos de Agua Viva</strong><br>
-    4000 Victory Dr. • Kansas City, KS 66102
+
+    <strong>
+      Iglesia Apostólica
+      Ríos de Agua Viva
+    </strong>
+
+    <br>
+
+    4000 Victory Dr.
+    •
+    Kansas City, KS 66102
+
     <br><br>
-    © 2026 Ríos de Agua Viva
+
+    © 2026
+    Ríos de Agua Viva
+
   </p>
 
 </footer>
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
 
-/* ==========================================
-   LIVE
-========================================== */
+/* =========================================================
+   LIVE SYSTEM
+
+   CAMBIAR false POR true CUANDO ESTEMOS EN VIVO.
+========================================================= */
 
 const LIVE_IS_ON = false;
 
+
 /*
-  Cuando tengamos los enlaces oficiales,
-  los ponemos aquí.
+  MÁS ADELANTE PONDREMOS AQUÍ
+  EL ENLACE OFICIAL DE YOUTUBE
+  O FACEBOOK.
 */
 
 const LIVE_URL = "#";
+
 const TRANSMISSIONS_URL = "#";
+
 
 function configureLive(){
 
   const liveButton =
-    document.getElementById("liveButton");
+  document.getElementById(
+    "liveButton"
+  );
 
   const liveText =
-    document.getElementById("liveText");
+  document.getElementById(
+    "liveText"
+  );
 
   const heroButton =
-    document.getElementById("heroLiveButton");
+  document.getElementById(
+    "heroLiveButton"
+  );
+
 
   if(LIVE_IS_ON){
 
-    liveButton.classList.add("live");
+    liveButton
+    .classList
+    .add("live");
+
 
     liveText.textContent =
-      "LIVE • EN VIVO";
+    "LIVE • EN VIVO";
+
 
     liveButton.href =
-      LIVE_URL;
+    LIVE_URL;
+
 
     heroButton.href =
-      LIVE_URL;
+    LIVE_URL;
+
 
     heroButton.textContent =
-      "🔴 LIVE • VER AHORA";
+    "🔴 LIVE • VER AHORA";
+
 
     heroButton.style.background =
-      "#e31b23";
+    "#e31b23";
+
 
     heroButton.style.color =
-      "#ffffff";
+    "#ffffff";
+
 
   }else{
 
-    liveButton.classList.remove("live");
+    liveButton
+    .classList
+    .remove("live");
+
 
     liveText.textContent =
-      "TRANSMISIONES";
+    "TRANSMISIONES";
+
 
     liveButton.href =
-      TRANSMISSIONS_URL;
+    TRANSMISSIONS_URL;
+
 
     heroButton.href =
-      TRANSMISSIONS_URL;
+    TRANSMISSIONS_URL;
 
   }
 
 }
 
+
 configureLive();
 
 
-/* ==========================================
-   FILTERS
-========================================== */
+/* =========================================================
+   CELL FILTERS
+========================================================= */
 
-let currentFilter = "all";
+let currentFilter =
+"all";
 
-function filterCells(language,button){
 
-  currentFilter = language;
+function filterCells(
+  language,
+  button
+){
+
+  currentFilter =
+  language;
+
 
   document
-    .querySelectorAll(".filter")
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
+  .querySelectorAll(
+    ".filter"
+  )
+  .forEach(
+    btn =>
+    btn.classList.remove(
+      "active"
+    )
+  );
 
-  button.classList.add("active");
+
+  button
+  .classList
+  .add("active");
+
 
   applyCurrentFilter();
 
 }
 
+
 function applyCurrentFilter(){
 
   document
-    .querySelectorAll(".cell-card")
-    .forEach(card => {
+  .querySelectorAll(
+    ".cell-card"
+  )
+  .forEach(card => {
 
-      const languages =
-        card.dataset.language || "";
+    const languages =
+    card.dataset.language || "";
 
-      const show =
-        currentFilter === "all" ||
-        languages.includes(currentFilter);
 
-      card.style.display =
-        show ? "" : "none";
+    const show =
 
-    });
+    currentFilter === "all"
+
+    ||
+
+    languages.includes(
+      currentFilter
+    );
+
+
+    card.style.display =
+    show ? "" : "none";
+
+  });
 
 }
 
 
-/* ==========================================
-   ADDRESS GEOCODING
-========================================== */
+/* =========================================================
+   GEOCODING
+========================================================= */
 
-async function geocodeAddress(address){
-
-  /*
-    Nominatim/OpenStreetMap se usa aquí
-    para convertir la dirección ingresada
-    en latitud y longitud sin guardar
-    una API key dentro de GitHub.
-  */
+async function geocodeAddress(
+  address
+){
 
   const query =
-    encodeURIComponent(address);
+  encodeURIComponent(
+    address
+  );
+
 
   const url =
-    "https://nominatim.openstreetmap.org/search" +
-    "?format=jsonv2&limit=1&countrycodes=us&q=" +
-    query;
+
+  "https://nominatim.openstreetmap.org/search" +
+
+  "?format=jsonv2" +
+
+  "&limit=1" +
+
+  "&countrycodes=us" +
+
+  "&q=" +
+
+  query;
+
 
   const response =
-    await fetch(url,{
+  await fetch(
+    url,
+    {
       headers:{
-        "Accept":"application/json"
+        "Accept":
+        "application/json"
       }
-    });
+    }
+  );
+
 
   if(!response.ok){
-    throw new Error("Geocoding error");
+
+    throw new Error(
+      "Geocoding error"
+    );
+
   }
+
 
   const data =
-    await response.json();
+  await response.json();
+
 
   if(!data.length){
+
     return null;
+
   }
 
+
   return{
-    lat:parseFloat(data[0].lat),
-    lng:parseFloat(data[0].lon),
-    displayName:data[0].display_name
+
+    lat:
+    parseFloat(
+      data[0].lat
+    ),
+
+    lng:
+    parseFloat(
+      data[0].lon
+    ),
+
+    displayName:
+    data[0].display_name
+
   };
 
 }
 
 
-/* ==========================================
+/* =========================================================
    DISTANCE CALCULATION
-========================================== */
+========================================================= */
 
-function distanceMiles(lat1,lng1,lat2,lng2){
+function distanceMiles(
+  lat1,
+  lng1,
+  lat2,
+  lng2
+){
 
   const earthRadiusMiles =
-    3958.7613;
+  3958.7613;
+
 
   const toRadians =
-    degrees =>
-      degrees * Math.PI / 180;
+  degrees =>
+  degrees *
+  Math.PI /
+  180;
+
 
   const dLat =
-    toRadians(lat2-lat1);
+  toRadians(
+    lat2-lat1
+  );
+
 
   const dLng =
-    toRadians(lng2-lng1);
+  toRadians(
+    lng2-lng1
+  );
+
 
   const a =
-    Math.sin(dLat/2) *
-    Math.sin(dLat/2) +
 
-    Math.cos(toRadians(lat1)) *
-    Math.cos(toRadians(lat2)) *
+  Math.sin(dLat/2) *
+  Math.sin(dLat/2)
 
-    Math.sin(dLng/2) *
-    Math.sin(dLng/2);
+  +
+
+  Math.cos(
+    toRadians(lat1)
+  )
+
+  *
+
+  Math.cos(
+    toRadians(lat2)
+  )
+
+  *
+
+  Math.sin(dLng/2)
+
+  *
+
+  Math.sin(dLng/2);
+
 
   const c =
-    2 *
-    Math.atan2(
-      Math.sqrt(a),
-      Math.sqrt(1-a)
-    );
 
-  return earthRadiusMiles * c;
+  2 *
+
+  Math.atan2(
+
+    Math.sqrt(a),
+
+    Math.sqrt(1-a)
+
+  );
+
+
+  return
+
+  earthRadiusMiles *
+  c;
 
 }
 
 
-/* ==========================================
-   FIND / SORT CELLS
-========================================== */
+/* =========================================================
+   FIND NEAREST CELL
+========================================================= */
 
 async function findNearest(){
 
   const input =
-    document.getElementById("addressInput");
+  document.getElementById(
+    "addressInput"
+  );
+
 
   const message =
-    document.getElementById("searchMessage");
+  document.getElementById(
+    "searchMessage"
+  );
+
 
   const button =
-    document.getElementById("distanceButton");
+  document.getElementById(
+    "distanceButton"
+  );
+
 
   const reset =
-    document.getElementById("resetDistance");
+  document.getElementById(
+    "resetDistance"
+  );
+
 
   const address =
-    input.value.trim();
+  input.value.trim();
+
 
   if(!address){
 
     message.className =
-      "search-message error";
+    "search-message error";
+
 
     message.textContent =
-      "Por favor introduce tu dirección.";
+    "Por favor introduce tu dirección.";
+
 
     input.focus();
 
@@ -1837,150 +3537,230 @@ async function findNearest(){
 
   }
 
-  button.disabled = true;
+
+  button.disabled =
+  true;
+
 
   button.textContent =
-    "Buscando...";
+  "Buscando...";
+
 
   message.className =
-    "search-message";
+  "search-message";
+
 
   message.textContent =
-    "📍 Localizando tu dirección...";
+  "📍 Localizando tu dirección...";
 
 
   try{
 
+
     const location =
-      await geocodeAddress(address);
+    await geocodeAddress(
+      address
+    );
+
 
     if(!location){
 
       throw new Error(
-        "No encontramos esa dirección."
+        "Address not found"
       );
 
     }
 
+
     const grid =
-      document.getElementById("cellsGrid");
+    document.getElementById(
+      "cellsGrid"
+    );
+
 
     const cards =
-      Array.from(
-        grid.querySelectorAll(".cell-card")
-      );
+    Array.from(
+
+      grid.querySelectorAll(
+        ".cell-card"
+      )
+
+    );
 
 
-    cards.forEach(card => {
-
-      card.classList.remove("nearest");
-
-      const badge =
-        card.querySelector(".distance-badge");
-
-      const nearestLabel =
-        card.querySelector(".nearest-label");
-
-      if(badge){
-        badge.style.display = "none";
-        badge.textContent = "";
-      }
-
-      if(nearestLabel){
-        nearestLabel.style.display = "none";
-      }
+    cards.forEach(
+      card => {
 
 
-      if(
-        card.dataset.hasLocation === "true"
-      ){
+        card
+        .classList
+        .remove(
+          "nearest"
+        );
 
-        const lat =
-          parseFloat(card.dataset.lat);
 
-        const lng =
-          parseFloat(card.dataset.lng);
+        const badge =
+        card.querySelector(
+          ".distance-badge"
+        );
 
-        const miles =
-          distanceMiles(
-            location.lat,
-            location.lng,
-            lat,
-            lng
+
+        const nearestLabel =
+        card.querySelector(
+          ".nearest-label"
+        );
+
+
+        if(badge){
+
+          badge.style.display =
+          "none";
+
+          badge.textContent =
+          "";
+
+        }
+
+
+        if(nearestLabel){
+
+          nearestLabel.style.display =
+          "none";
+
+        }
+
+
+        if(
+          card.dataset.hasLocation
+          ===
+          "true"
+        ){
+
+          const lat =
+          parseFloat(
+            card.dataset.lat
           );
 
-        card.dataset.distance =
+
+          const lng =
+          parseFloat(
+            card.dataset.lng
+          );
+
+
+          const miles =
+          distanceMiles(
+
+            location.lat,
+
+            location.lng,
+
+            lat,
+
+            lng
+
+          );
+
+
+          card.dataset.distance =
           miles;
 
-      }else{
 
-        card.dataset.distance =
+        }else{
+
+
+          card.dataset.distance =
           "999999";
 
+
+        }
+
       }
-
-    });
-
-
-    cards.sort((a,b) => {
-
-      return(
-        parseFloat(a.dataset.distance) -
-        parseFloat(b.dataset.distance)
-      );
-
-    });
+    );
 
 
-    cards.forEach(card =>
-      grid.appendChild(card)
+    cards.sort(
+      (a,b) =>
+
+      parseFloat(
+        a.dataset.distance
+      )
+
+      -
+
+      parseFloat(
+        b.dataset.distance
+      )
+    );
+
+
+    cards.forEach(
+      card =>
+      grid.appendChild(
+        card
+      )
     );
 
 
     const availableCards =
-      cards.filter(
-        card =>
-          card.dataset.hasLocation === "true"
-      );
+    cards.filter(
+      card =>
+
+      card.dataset.hasLocation
+      ===
+      "true"
+    );
 
 
     availableCards.forEach(
       (card,index) => {
 
+
         const miles =
-          parseFloat(
-            card.dataset.distance
-          );
+        parseFloat(
+          card.dataset.distance
+        );
+
 
         const badge =
-          card.querySelector(
-            ".distance-badge"
-          );
+        card.querySelector(
+          ".distance-badge"
+        );
+
 
         if(badge){
 
           badge.textContent =
-            miles.toFixed(1) + " mi aprox.";
+          miles.toFixed(1)
+          +
+          " mi aprox.";
+
 
           badge.style.display =
-            "inline-block";
+          "inline-block";
 
         }
 
 
         if(index === 0){
 
-          card.classList.add("nearest");
+          card
+          .classList
+          .add(
+            "nearest"
+          );
+
 
           const nearestLabel =
-            card.querySelector(
-              ".nearest-label"
-            );
+          card.querySelector(
+            ".nearest-label"
+          );
+
 
           if(nearestLabel){
 
             nearestLabel.style.display =
-              "block";
+            "block";
 
           }
 
@@ -1990,147 +3770,220 @@ async function findNearest(){
     );
 
 
-    document.getElementById(
+    document
+    .getElementById(
       "resultsSubtitle"
-    ).textContent =
-      "Ordenadas desde la más cercana a tu dirección";
+    )
+    .textContent =
+
+    "Ordenadas desde la más cercana a tu dirección";
 
 
     message.className =
-      "search-message success";
+    "search-message success";
+
 
     message.textContent =
-      "✓ Grupos ordenados por cercanía. " +
-      "La distancia mostrada es aproximada; " +
-      "usa “Cómo llegar” para ver la ruta real.";
+
+    "✓ Grupos ordenados por cercanía. " +
+
+    "Usa “Cómo llegar” para ver la ruta real en Google Maps.";
 
 
     reset.style.display =
-      "block";
+    "block";
 
 
     applyCurrentFilter();
 
 
     document
-      .querySelector(".cells-title")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
+    .querySelector(
+      ".cells-title"
+    )
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
 
 
   }catch(error){
 
+
     message.className =
-      "search-message error";
+    "search-message error";
+
 
     message.textContent =
-      "No pudimos encontrar esa dirección. " +
-      "Intenta escribir calle, ciudad, estado y código postal.";
+
+    "No pudimos encontrar esa dirección. " +
+
+    "Intenta escribir calle, ciudad, estado y código postal.";
+
 
   }finally{
 
+
     button.disabled =
-      false;
+    false;
+
 
     button.textContent =
-      "📍 BUSCAR POR DISTANCIA";
+    "📍 BUSCAR POR DISTANCIA";
+
 
   }
 
 }
 
 
-/* ENTER KEY */
+/* =========================================================
+   ENTER KEY
+========================================================= */
 
 document
-  .getElementById("addressInput")
-  .addEventListener(
-    "keydown",
-    function(event){
+.getElementById(
+  "addressInput"
+)
+.addEventListener(
+  "keydown",
+  function(event){
 
-      if(event.key === "Enter"){
-        findNearest();
+    if(
+      event.key ===
+      "Enter"
+    ){
+
+      findNearest();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   RESET CELL ORDER
+========================================================= */
+
+function resetOrder(){
+
+  const grid =
+  document.getElementById(
+    "cellsGrid"
+  );
+
+
+  const cards =
+  Array.from(
+
+    grid.querySelectorAll(
+      ".cell-card"
+    )
+
+  );
+
+
+  cards.sort(
+    (a,b) =>
+
+    parseInt(
+      a.dataset.order
+    )
+
+    -
+
+    parseInt(
+      b.dataset.order
+    )
+  );
+
+
+  cards.forEach(
+    card => {
+
+
+      grid.appendChild(
+        card
+      );
+
+
+      card
+      .classList
+      .remove(
+        "nearest"
+      );
+
+
+      delete
+      card.dataset.distance;
+
+
+      const badge =
+      card.querySelector(
+        ".distance-badge"
+      );
+
+
+      const nearestLabel =
+      card.querySelector(
+        ".nearest-label"
+      );
+
+
+      if(badge){
+
+        badge.style.display =
+        "none";
+
+        badge.textContent =
+        "";
+
+      }
+
+
+      if(nearestLabel){
+
+        nearestLabel.style.display =
+        "none";
+
       }
 
     }
   );
 
 
-/* ==========================================
-   RESET ORDER
-========================================== */
-
-function resetOrder(){
-
-  const grid =
-    document.getElementById("cellsGrid");
-
-  const cards =
-    Array.from(
-      grid.querySelectorAll(".cell-card")
-    );
-
-
-  cards.sort((a,b) => {
-
-    return(
-      parseInt(a.dataset.order) -
-      parseInt(b.dataset.order)
-    );
-
-  });
-
-
-  cards.forEach(card => {
-
-    grid.appendChild(card);
-
-    card.classList.remove("nearest");
-
-    delete card.dataset.distance;
-
-    const badge =
-      card.querySelector(".distance-badge");
-
-    const nearestLabel =
-      card.querySelector(".nearest-label");
-
-    if(badge){
-      badge.style.display = "none";
-      badge.textContent = "";
-    }
-
-    if(nearestLabel){
-      nearestLabel.style.display = "none";
-    }
-
-  });
-
-
-  document.getElementById(
+  document
+  .getElementById(
     "resultsSubtitle"
-  ).textContent =
-    "Reunión de Amigos";
+  )
+  .textContent =
+  "Reunión de Amigos";
 
 
+  const message =
   document.getElementById(
     "searchMessage"
-  ).className =
-    "search-message";
+  );
 
 
-  document.getElementById(
-    "searchMessage"
-  ).textContent =
-    "Las distancias mostradas son aproximadas en línea recta. “Cómo llegar” abre la ruta real en Google Maps.";
+  message.className =
+  "search-message";
 
 
-  document.getElementById(
+  message.textContent =
+
+  "Las distancias mostradas son aproximadas. " +
+
+  "“Cómo llegar” abre la ruta en Google Maps.";
+
+
+  document
+  .getElementById(
     "resetDistance"
-  ).style.display =
-    "none";
+  )
+  .style.display =
+  "none";
 
 
   applyCurrentFilter();
