@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#075d7c">
+
+  <title>Grupos de Vida | Ríos de Agua Viva</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --blue: #075d7c;
+      --blue-dark: #043b55;
+      --teal: #16a7a0;
+      --green: #07975f;
+      --yellow: #ffb819;
+      --background: #f3f8fa;
+      --white: #ffffff;
+      --text: #17323e;
+      --muted: #667b85;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(22, 167, 160, .35),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #043b55 0%,
+          #075d7c 55%,
+          #0c7d91 100%
+        );
+
+      color: white;
+      text-align: center;
+      padding: 55px 20px 75px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.04);
+      right: -180px;
+      bottom: -250px;
+    }
+
+    .logo {
+      width: 170px;
+      max-width: 48vw;
+      border-radius: 50%;
+      background: white;
+      padding: 6px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.25);
+      margin-bottom: 22px;
+    }
+
+    .hero-label {
+      display: inline-block;
+      background: var(--yellow);
+      color: #17323e;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      font-size: .82rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      color: var(--yellow);
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      opacity: .94;
+    }
+
+    /* =========================
+       SEARCH
+    ========================== */
+
+    .finder-wrap {
+      width: min(1000px, calc(100% - 30px));
+      margin: -38px auto 35px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .finder {
+      background: white;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 15px 45px rgba(3, 55, 75, .15);
+    }
+
+    .finder h2 {
+      color: var(--blue-dark);
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 7px;
+    }
+
+    .finder-subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .search-row input {
+      flex: 1;
+      min-width: 0;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 2px solid #dbe7eb;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-row input:focus {
+      border-color: var(--teal);
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .search-btn {
+      border: 0;
+      background: var(--green);
+      color: white;
+      padding: 15px 23px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: .95rem;
+    }
+
+    .search-btn:hover {
+      filter: brightness(.94);
+    }
+
+    .search-message {
+      text-align: center;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: .9rem;
+      min-height: 20px;
+    }
+
+    /* =========================
+       FILTERS
+    ========================== */
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .filter {
+      border: 1px solid #cddde2;
+      background: #f7fafb;
+      color: var(--blue-dark);
+      border-radius: 999px;
+      padding: 9px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .filter.active {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+    }
+
+    /* =========================
+       CELULAS
+    ========================== */
+
+    .section {
+      width: min(1250px, calc(100% - 30px));
+      margin: 0 auto;
+      padding: 15px 0 60px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      color: var(--blue-dark);
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .cells-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .cell-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 10px 32px rgba(8, 65, 85, .11);
+      border: 1px solid #e0ebee;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .cell-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 38px rgba(8, 65, 85, .16);
+    }
+
+    .cell-header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      color: white;
+      padding: 20px;
+      position: relative;
+    }
+
+    .cell-number {
+      color: var(--yellow);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .cell-header h3 {
+      font-size: 1.7rem;
+      margin-top: 5px;
+    }
+
+    .language {
+      display: inline-block;
+      margin-top: 10px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .language.bilingual {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: #17323e;
+    }
+
+    /* =========================
+       PEOPLE
+    ========================== */
+
+    .people {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 20px 20px 8px;
+    }
+
+    .person {
+      text-align: center;
+      min-width: 0;
+    }
+
+    .photo-placeholder {
+      width: 92px;
+      height: 92px;
+      max-width: 100%;
+      margin: auto;
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          145deg,
+          #e4f2f4,
+          #c8e4e8
+        );
+      border: 4px solid white;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 2.1rem;
+      overflow: hidden;
+    }
+
+    .photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .role {
+      display: block;
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: .67rem;
+      font-weight: 900;
+      letter-spacing: .6px;
+      margin-top: 10px;
+    }
+
+    .person-name {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+
+    /* =========================
+       INFO
+    ========================== */
+
+    .cell-info {
+      padding: 16px 20px 20px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-top: 1px solid #edf2f4;
+    }
+
+    .info-icon {
+      width: 28px;
+      flex: 0 0 28px;
+      font-size: 1.15rem;
+    }
+
+    .info-label {
+      display: block;
+      color: var(--muted);
+      font-size: .7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 3px;
+    }
+
+    .info-value {
+      line-height: 1.4;
+      font-weight: 700;
+      font-size: .94rem;
+    }
+
+    .pending {
+      color: #9a6a00;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .action-btn {
+      text-decoration: none;
+      text-align: center;
+      border-radius: 11px;
+      padding: 12px 10px;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .call-btn {
+      background: var(--green);
+      color: white;
+    }
+
+    .map-btn {
+      background: #e9f5f6;
+      color: var(--blue-dark);
+    }
+
+    .disabled {
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    /* =========================
+       BILINGUAL NOTE
+    ========================== */
+
+    .bilingual-note {
+      background: #fff6d9;
+      border: 1px solid #ffe08a;
+      border-radius: 11px;
+      padding: 11px;
+      margin-top: 10px;
+      color: #6b5100;
+      font-size: .83rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #032f43;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer img {
+      width: 75px;
+      border-radius: 50%;
+      background: white;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      opacity: .8;
+      line-height: 1.6;
+      font-size: .9rem;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 800px) {
+      .cells-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .finder {
+        padding: 22px 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .search-row {
+        flex-direction: column;
+      }
+
+      .search-btn {
+        width: 100%;
+      }
+
+      .people {
+        gap: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .photo-placeholder {
+        width: 76px;
+        height: 76px;
+        font-size: 1.8rem;
+      }
+
+      .person-name {
+        font-size: .78rem;
+      }
+
+      .role {
+        font-size: .6rem;
+      }
+
+      .cell-header h3 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+
+    <img
+      src="gruposvida.png"
+      alt="Grupos de Vida"
+      class="logo"
+    >
+
+    <br>
+
+    <div class="hero-label">
+      RÍOS DE AGUA VIVA
+    </div>
+
+    <h1>
+      GRUPOS DE <span>VIDA</span>
+    </h1>
+
+    <p>
+      Encuentra una Célula cerca de ti.
+      Un lugar para crecer en la fe, hacer amigos
+      y compartir juntos la Palabra de Dios.
+    </p>
+
+  </header>
+
+
+  <!-- FINDER -->
+  <div class="finder-wrap">
+
+    <div class="finder">
+
+      <h2>📍 Encuentra una Célula Cerca de Ti</h2>
+
+      <p class="finder-subtitle">
+        Escribe tu dirección para encontrar el grupo más cercano.
+      </p>
+
+      <div class="search-row">
+
+        <input
+          id="addressInput"
+          type="text"
+          placeholder="Escribe tu dirección, ciudad o código postal"
+        >
+
+        <button
+          class="search-btn"
+          onclick="findNearest()"
+        >
+          Buscar Célula
+        </button>
+
+      </div>
+
+      <div
+        id="searchMessage"
+        class="search-message"
+      >
+        El buscador por distancia será activado próximamente.
+      </div>
+
+
+      <div class="filters">
+
+        <button
+          class="filter active"
+          onclick="filterCells('all', this)"
+        >
+          Todas
+        </button>
+
+        <button
+          class="filter"
+          onclick="filterCells('spanish', this)"
+        >
+          Español
+        </button>
+
+        <button
+          class="filter"
+          onclick="filterCells('english', this)"
+        >
+          English
+        </button>
+
+        <button
+          class="filter"
+          onclick="filterCells('bilingual', this)"
+        >
+          Bilingüe
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CELULAS -->
+  <main class="section">
+
+    <div class="section-heading">
+      <h2>Nuestras Células</h2>
+      <p>
+        Reunión de Amigos
+      </p>
+    </div>
+
+
+    <div class="cells-grid">
+
+
+      <!-- CELULA 1 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #1</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Henry Hernandez
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name">
+              Miguel Campos
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitriones</span>
+            <span class="person-name">
+              Familia Legarreta
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value">
+                5519 Inland Dr.<br>
+                Kansas City, KS 66106
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">☎️</div>
+            <div>
+              <span class="info-label">Información</span>
+              <div class="info-value">
+                (913) 944-0855
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn"
+              href="tel:+19139440855"
+            >
+              ☎ Llamar
+            </a>
+
+            <a
+              class="action-btn map-btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.google.com/maps/search/?api=1&query=5519+Inland+Dr+Kansas+City+KS+66106"
+            >
+              📍 Cómo llegar
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 2 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #2</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Omar Chinchilla
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name">
+              Yesenia Duran
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitriones</span>
+            <span class="person-name">
+              Familia Leal
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value">
+                2508 N 109th Ter.<br>
+                Kansas City, KS 66109
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">☎️</div>
+            <div>
+              <span class="info-label">Información</span>
+              <div class="info-value">
+                (913) 701-1024
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn"
+              href="tel:+19137011024"
+            >
+              ☎ Llamar
+            </a>
+
+            <a
+              class="action-btn map-btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.google.com/maps/search/?api=1&query=2508+N+109th+Ter+Kansas+City+KS+66109"
+            >
+              📍 Cómo llegar
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 3 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #3</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Angel Castrejon
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name">
+              Lidia Haworth
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitriones</span>
+            <span class="person-name">
+              Familia Castrejon
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value pending">
+                Dirección pendiente
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn disabled"
+              href="#"
+            >
+              ☎ Información
+            </a>
+
+            <a
+              class="action-btn map-btn disabled"
+              href="#"
+            >
+              📍 Ubicación pendiente
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 4 -->
+      <article
+        class="cell-card"
+        data-language="bilingual english"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #4</span>
+          <h3>Friends Gathering</h3>
+
+          <span class="language bilingual">
+            BILINGUAL
+          </span>
+
+          <div class="bilingual-note">
+            🇺🇸 Primary Language: English<br>
+            🇲🇽 Segundo idioma: Español
+          </div>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Leader / Líder</span>
+            <span class="person-name">
+              Mizael Montañez
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Assistant</span>
+            <span class="person-name">
+              Jose Girón
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Hosts</span>
+            <span class="person-name">
+              Familia Montañez
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Address / Dirección</span>
+              <div class="info-value">
+                4706 NW 82nd St.<br>
+                Kansas City, MO 64151
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">☎️</div>
+            <div>
+              <span class="info-label">Information</span>
+              <div class="info-value">
+                (631) 877-0103
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn"
+              href="tel:+16318770103"
+            >
+              ☎ Call
+            </a>
+
+            <a
+              class="action-btn map-btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.google.com/maps/search/?api=1&query=4706+NW+82nd+St+Kansas+City+MO+64151"
+            >
+              📍 Directions
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 6 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #6</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Joel Velez
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name">
+              Julio Cruz
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitriones</span>
+            <span class="person-name">
+              Familia Antillón
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value">
+                1709 Cleveland Ave.<br>
+                Kansas City, KS 66104
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">☎️</div>
+            <div>
+              <span class="info-label">Información</span>
+              <div class="info-value">
+                (816) 809-2734
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn"
+              href="tel:+18168092734"
+            >
+              ☎ Llamar
+            </a>
+
+            <a
+              class="action-btn map-btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.google.com/maps/search/?api=1&query=1709+Cleveland+Ave+Kansas+City+KS+66104"
+            >
+              📍 Cómo llegar
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 7 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #7</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Baltazar Alvidrez
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name">
+              Julio Alas
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitriones</span>
+            <span class="person-name">
+              Familia Lujan
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value">
+                3024 S. Ralston Ave.<br>
+                Independence, MO 64052
+              </div>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">☎️</div>
+            <div>
+              <span class="info-label">Información</span>
+              <div class="info-value">
+                (816) 469-2553
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn"
+              href="tel:+18164692553"
+            >
+              ☎ Llamar
+            </a>
+
+            <a
+              class="action-btn map-btn"
+              target="_blank"
+              rel="noopener"
+              href="https://www.google.com/maps/search/?api=1&query=3024+S+Ralston+Ave+Independence+MO+64052"
+            >
+              📍 Cómo llegar
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- CELULA 8 -->
+      <article
+        class="cell-card"
+        data-language="spanish"
+      >
+
+        <div class="cell-header">
+          <span class="cell-number">Célula #8</span>
+          <h3>Reunión de Amigos</h3>
+          <span class="language">ESPAÑOL</span>
+        </div>
+
+        <div class="people">
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Líder</span>
+            <span class="person-name">
+              Sarita Portillo
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">👤</div>
+            <span class="role">Asistente</span>
+            <span class="person-name pending">
+              Pendiente
+            </span>
+          </div>
+
+          <div class="person">
+            <div class="photo-placeholder">🏠</div>
+            <span class="role">Anfitrión</span>
+            <span class="person-name pending">
+              Pendiente
+            </span>
+          </div>
+
+        </div>
+
+        <div class="cell-info">
+
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <span class="info-label">Dirección</span>
+              <div class="info-value pending">
+                Dirección pendiente
+              </div>
+            </div>
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="action-btn call-btn disabled"
+              href="#"
+            >
+              ☎ Información
+            </a>
+
+            <a
+              class="action-btn map-btn disabled"
+              href="#"
+            >
+              📍 Ubicación pendiente
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+    </div>
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <img
+      src="gruposvida.png"
+      alt="Grupos de Vida"
+    >
+
+    <p>
+      <strong>Iglesia Apostólica Ríos de Agua Viva</strong><br>
+      Grupos de Vida
+    </p>
+
+  </footer>
+
+
+  <script>
+
+    function filterCells(language, button) {
+
+      const cards =
+        document.querySelectorAll(".cell-card");
+
+      const buttons =
+        document.querySelectorAll(".filter");
+
+      buttons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      cards.forEach(card => {
+
+        const languages =
+          card.dataset.language || "";
+
+        if (
+          language === "all" ||
+          languages.includes(language)
+        ) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+
+      });
+
+    }
+
+
+    function findNearest() {
+
+      const input =
+        document.getElementById("addressInput");
+
+      const message =
+        document.getElementById("searchMessage");
+
+      if (!input.value.trim()) {
+
+        message.textContent =
+          "Por favor escribe tu dirección para realizar la búsqueda.";
+
+        return;
+      }
+
+      message.textContent =
+        "📍 Dirección recibida. En el siguiente paso activaremos el cálculo automático de la Célula más cercana.";
+
+    }
+
+  </script>
+
+</body>
+</html>
