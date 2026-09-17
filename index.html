@@ -93,12 +93,7 @@ section{
 .nav-logo{
   width:58px;
   height:50px;
-
   object-fit:contain;
-
-  border-radius:0;
-  border:none;
-
   filter:drop-shadow(0 3px 5px rgba(0,0,0,.45));
 }
 
@@ -114,7 +109,6 @@ section{
 .brand-small{
   display:block;
   margin-top:3px;
-
   font-size:.58rem;
   letter-spacing:1.4px;
   opacity:.72;
@@ -123,13 +117,13 @@ section{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:20px;
+  gap:18px;
 }
 
 .nav-link{
   color:white;
   text-decoration:none;
-  font-size:.84rem;
+  font-size:.82rem;
   font-weight:800;
 }
 
@@ -139,7 +133,7 @@ section{
 
 
 /* =========================================================
-   LIVE BUTTON
+   LIVE
 ========================================================= */
 
 .live-button{
@@ -148,7 +142,6 @@ section{
   gap:8px;
 
   padding:10px 15px;
-
   border-radius:999px;
 
   color:white;
@@ -157,58 +150,36 @@ section{
   font-size:.78rem;
 
   background:rgba(255,255,255,.12);
-
   border:1px solid rgba(255,255,255,.2);
 }
 
 .live-button.live{
   background:var(--red);
   border-color:var(--red);
-
   animation:livePulse 1.5s infinite;
 }
 
 .live-dot{
   width:9px;
   height:9px;
-
   border-radius:50%;
-
   background:#aab3bb;
 }
 
 .live-button.live .live-dot{
   background:white;
-
   animation:blink .75s infinite;
 }
 
 @keyframes blink{
-
-  0%,50%{
-    opacity:1;
-  }
-
-  51%,100%{
-    opacity:.15;
-  }
-
+  0%,50%{opacity:1;}
+  51%,100%{opacity:.15;}
 }
 
 @keyframes livePulse{
-
-  0%{
-    box-shadow:0 0 0 0 rgba(227,27,35,.65);
-  }
-
-  70%{
-    box-shadow:0 0 0 12px rgba(227,27,35,0);
-  }
-
-  100%{
-    box-shadow:0 0 0 0 rgba(227,27,35,0);
-  }
-
+  0%{box-shadow:0 0 0 0 rgba(227,27,35,.65);}
+  70%{box-shadow:0 0 0 12px rgba(227,27,35,0);}
+  100%{box-shadow:0 0 0 0 rgba(227,27,35,0);}
 }
 
 
@@ -230,11 +201,11 @@ section{
   color:white;
 
   background:
-  linear-gradient(
-    rgba(0,15,45,.20),
-    rgba(0,18,50,.78)
-  ),
-  url("ravchurch.png");
+    linear-gradient(
+      rgba(0,15,45,.20),
+      rgba(0,18,50,.78)
+    ),
+    url("ravchurch.png");
 
   background-size:cover;
   background-position:center;
@@ -247,76 +218,48 @@ section{
 
 .official-logo{
   display:block;
-
   width:min(420px,75vw);
   height:auto;
-
   margin:0 auto 18px;
-
   object-fit:contain;
-
-  border-radius:0;
-  border:none;
-
-  filter:
-    drop-shadow(0 10px 16px rgba(0,0,0,.70));
+  filter:drop-shadow(0 10px 16px rgba(0,0,0,.70));
 }
 
 .hero-subtitle{
   margin-top:5px;
-
   font-size:clamp(1.5rem,3.5vw,2.3rem);
-
   font-weight:900;
-
-  text-shadow:
-    0 3px 12px rgba(0,0,0,.9);
+  text-shadow:0 3px 12px rgba(0,0,0,.9);
 }
 
 .hero-address{
   margin-top:15px;
-
   line-height:1.6;
-
   font-size:1rem;
-
   font-weight:700;
-
-  text-shadow:
-    0 2px 10px rgba(0,0,0,.9);
+  text-shadow:0 2px 10px rgba(0,0,0,.9);
 }
 
 .hero-actions{
   display:flex;
   justify-content:center;
   flex-wrap:wrap;
-
   gap:12px;
-
   margin-top:28px;
 }
 
 .hero-btn{
   min-width:190px;
-
   padding:15px 20px;
-
   border-radius:12px;
-
   text-decoration:none;
-
   font-weight:900;
-
-  transition:
-    transform .2s,
-    box-shadow .2s;
+  transition:.2s;
 }
 
 .hero-btn:hover{
   transform:translateY(-3px);
-
-  box-shadow:
-    0 10px 25px rgba(0,0,0,.25);
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
 .directions{
@@ -332,9 +275,7 @@ section{
 .watch{
   background:var(--blue);
   color:white;
-
-  border:
-    1px solid rgba(255,255,255,.45);
+  border:1px solid rgba(255,255,255,.45);
 }
 
 
@@ -344,45 +285,252 @@ section{
 
 .welcome{
   background:white;
-
   padding:75px 20px;
-
   text-align:center;
 }
 
 .welcome-inner{
   max-width:850px;
-
   margin:auto;
 }
 
 .section-label{
   display:block;
-
   color:var(--blue);
-
   font-size:.75rem;
   font-weight:900;
-
   letter-spacing:2.5px;
 }
 
 .welcome h2{
   color:var(--dark);
-
-  font-size:
-    clamp(2rem,5vw,3.3rem);
-
-  margin:
-    10px 0 15px;
+  font-size:clamp(2rem,5vw,3.3rem);
+  margin:10px 0 15px;
 }
 
 .welcome p{
   color:var(--muted);
-
   font-size:1.08rem;
-
   line-height:1.8;
+}
+
+
+/* =========================================================
+   SERVICE TIMES
+========================================================= */
+
+.service-times{
+  position:relative;
+  overflow:hidden;
+  padding:80px 20px 90px;
+
+  background:
+    radial-gradient(circle at 10% 10%,rgba(60,190,255,.22),transparent 30%),
+    radial-gradient(circle at 90% 90%,rgba(0,104,255,.20),transparent 35%),
+    linear-gradient(135deg,#f8fcff,#e5f5ff);
+
+  color:var(--dark);
+}
+
+.service-times::before,
+.service-times::after{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:120px;
+  border:2px solid rgba(0,125,210,.10);
+  border-radius:50%;
+  transform:rotate(-12deg);
+}
+
+.service-times::before{
+  top:20px;
+  left:-180px;
+}
+
+.service-times::after{
+  bottom:10px;
+  right:-180px;
+}
+
+.schedule-container{
+  position:relative;
+  z-index:2;
+  width:min(1100px,100%);
+  margin:auto;
+}
+
+.schedule-heading{
+  text-align:center;
+  margin-bottom:38px;
+}
+
+.schedule-heading .section-label{
+  color:#1682d3;
+}
+
+.schedule-heading h2{
+  margin-top:8px;
+  font-size:clamp(2.1rem,5vw,3.5rem);
+  color:#082d7a;
+}
+
+.schedule-heading h2 span{
+  color:#168bd7;
+}
+
+.schedule-heading p{
+  margin:12px auto 0;
+  max-width:650px;
+  color:#60788c;
+  line-height:1.7;
+}
+
+.schedule-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.schedule-card{
+  background:rgba(255,255,255,.87);
+  border:1px solid rgba(18,126,202,.20);
+  border-radius:24px;
+  padding:30px;
+
+  box-shadow:
+    0 15px 40px rgba(0,77,140,.10);
+
+  backdrop-filter:blur(10px);
+}
+
+.schedule-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding-bottom:18px;
+  margin-bottom:8px;
+
+  border-bottom:2px solid #e1eff8;
+}
+
+.schedule-flag{
+  font-size:2rem;
+}
+
+.schedule-title h3{
+  color:#082d7a;
+  font-size:1.6rem;
+}
+
+.schedule-item{
+  display:flex;
+  align-items:center;
+  gap:15px;
+
+  padding:19px 0;
+
+  border-bottom:1px solid #e6eff5;
+}
+
+.schedule-item:last-child{
+  border-bottom:0;
+}
+
+.schedule-icon{
+  width:50px;
+  height:50px;
+  flex:0 0 50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#e8f5ff;
+
+  font-size:1.5rem;
+}
+
+.schedule-info{
+  flex:1;
+}
+
+.schedule-name{
+  display:block;
+  color:#082d7a;
+  font-size:1.08rem;
+  font-weight:900;
+}
+
+.schedule-time{
+  display:block;
+  margin-top:4px;
+  color:#168bd7;
+  font-size:1rem;
+  font-weight:900;
+}
+
+.zoom-notice{
+  position:relative;
+  z-index:2;
+
+  max-width:900px;
+
+  margin:30px auto 0;
+  padding:25px;
+
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:18px;
+
+  background:
+    linear-gradient(135deg,#063f92,#0b70bd);
+
+  color:white;
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 35px rgba(0,58,120,.20);
+}
+
+.zoom-icon{
+  width:60px;
+  height:60px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,.15);
+
+  font-size:2rem;
+}
+
+.zoom-notice h3{
+  font-size:1.2rem;
+  margin-bottom:7px;
+}
+
+.zoom-notice p{
+  line-height:1.6;
+  color:rgba(255,255,255,.90);
+}
+
+.zoom-english{
+  display:block;
+  margin-top:10px;
+  padding-top:10px;
+
+  border-top:1px solid rgba(255,255,255,.20);
+
+  font-size:.88rem;
+  color:rgba(255,255,255,.80);
 }
 
 
@@ -391,34 +539,22 @@ section{
 ========================================================= */
 
 .events-section{
-  padding:
-    80px 20px
-    90px;
+  padding:80px 20px 90px;
 
   background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(44,116,255,.30),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #02152f,
-      #073a8a
-    );
+    radial-gradient(circle at 90% 10%,rgba(44,116,255,.30),transparent 32%),
+    linear-gradient(135deg,#02152f,#073a8a);
 
   color:white;
 }
 
 .events-container{
   width:min(1150px,100%);
-
   margin:auto;
 }
 
 .events-heading{
   text-align:center;
-
   margin-bottom:35px;
 }
 
@@ -427,9 +563,7 @@ section{
 }
 
 .events-heading h2{
-  font-size:
-    clamp(2.2rem,5vw,3.7rem);
-
+  font-size:clamp(2.2rem,5vw,3.7rem);
   margin-top:8px;
 }
 
@@ -439,42 +573,22 @@ section{
 
 .events-heading p{
   max-width:650px;
-
-  margin:
-    12px auto 0;
-
+  margin:12px auto 0;
   line-height:1.7;
-
-  color:
-    rgba(255,255,255,.82);
+  color:rgba(255,255,255,.82);
 }
-
-
-/* =========================================================
-   EVENT SCREEN
-========================================================= */
 
 .event-screen{
   position:relative;
-
   width:min(900px,100%);
-
-  margin:
-    35px auto 0;
-
+  margin:35px auto 0;
   padding:12px;
 
   border-radius:25px;
 
-  background:
-    linear-gradient(
-      145deg,
-      #071426,
-      #020812
-    );
+  background:linear-gradient(145deg,#071426,#020812);
 
-  border:
-    2px solid rgba(255,255,255,.20);
+  border:2px solid rgba(255,255,255,.20);
 
   box-shadow:
     0 25px 65px rgba(0,0,0,.55),
@@ -491,71 +605,47 @@ section{
   justify-content:space-between;
 
   padding:0 10px;
-
-  color:white;
 }
 
 .event-screen-title{
   font-size:.76rem;
-
   font-weight:900;
-
   letter-spacing:1.5px;
 }
 
 .event-screen-status{
   display:flex;
   align-items:center;
-
   gap:7px;
 
   font-size:.62rem;
   font-weight:900;
-
   letter-spacing:1px;
-
   color:#9db1c7;
 }
 
 .event-screen-status span{
   width:8px;
   height:8px;
-
   border-radius:50%;
-
   background:#27e78c;
-
-  box-shadow:
-    0 0 9px #27e78c;
+  box-shadow:0 0 9px #27e78c;
 }
 
 .event-slider{
   position:relative;
-
   width:100%;
-
   aspect-ratio:16/9;
-
   overflow:hidden;
-
   border-radius:16px;
-
   background:#000;
-
-  box-shadow:
-    inset 0 0 25px rgba(0,0,0,.8);
 }
-
-
-/* EVENT SLIDES */
 
 .event-slide{
   position:absolute;
-
   inset:0;
 
   opacity:0;
-
   transform:scale(1.03);
 
   transition:
@@ -567,32 +657,24 @@ section{
 
 .event-slide.active{
   opacity:1;
-
   transform:scale(1);
-
   pointer-events:auto;
 }
 
 .event-slide img{
   width:100%;
   height:100%;
-
   object-fit:contain;
-
   background:#000;
 }
 
 .event-overlay{
   position:absolute;
-
   left:0;
   right:0;
   bottom:0;
 
-  padding:
-    55px 25px
-    22px;
-
+  padding:55px 25px 22px;
   text-align:left;
 
   background:
@@ -604,134 +686,83 @@ section{
 
 .event-overlay-date{
   color:var(--yellow);
-
   font-size:.7rem;
   font-weight:900;
-
   letter-spacing:1.8px;
 }
 
 .event-overlay-title{
   margin-top:4px;
-
   color:white;
-
-  font-size:
-    clamp(1.25rem,4vw,2.2rem);
-
+  font-size:clamp(1.25rem,4vw,2.2rem);
   font-weight:900;
 }
 
-
-/* NO EVENTS */
-
 .event-no-events{
   position:absolute;
-
   inset:0;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
   justify-content:center;
 
   text-align:center;
-
   padding:20px;
 
   background:
-    radial-gradient(
-      circle at center,
-      #0b4ca5,
-      #02152f 70%
-    );
+    radial-gradient(circle at center,#0b4ca5,#02152f 70%);
 }
 
 .event-no-events img{
   width:min(300px,50%);
   height:auto;
-
   object-fit:contain;
-
-  border-radius:0;
-
-  border:none;
-
-  filter:
-    drop-shadow(0 10px 15px rgba(0,0,0,.5));
+  filter:drop-shadow(0 10px 15px rgba(0,0,0,.5));
 }
 
 .event-coming{
   margin-top:15px;
-
   color:var(--yellow);
-
   font-size:.72rem;
   font-weight:900;
-
   letter-spacing:3px;
 }
 
 .event-no-events h3{
   margin-top:5px;
-
   color:white;
-
-  font-size:
-    clamp(1.4rem,5vw,2.5rem);
+  font-size:clamp(1.4rem,5vw,2.5rem);
 }
 
 .event-no-events p{
   margin-top:8px;
-
-  color:
-    rgba(255,255,255,.76);
-
+  color:rgba(255,255,255,.76);
   line-height:1.55;
-
   font-size:.88rem;
 }
 
-
-/* EVENT ARROWS */
-
 .slider-arrow{
   position:absolute;
-
   top:50%;
-
-  transform:
-    translateY(-25%);
-
+  transform:translateY(-25%);
   z-index:20;
 
   width:42px;
   height:42px;
 
   border:0;
-
   border-radius:50%;
 
-  background:
-    rgba(0,0,0,.58);
-
+  background:rgba(0,0,0,.58);
   color:white;
 
   font-size:2rem;
-
   cursor:pointer;
-
-  backdrop-filter:
-    blur(5px);
-
-  transition:.2s;
 }
 
 .slider-arrow:hover{
   background:var(--yellow);
-
   color:var(--dark);
 }
 
@@ -743,17 +774,12 @@ section{
   right:25px;
 }
 
-
-/* EVENT DOTS */
-
 .event-dots{
   min-height:31px;
 
   display:flex;
-
   justify-content:center;
   align-items:center;
-
   gap:8px;
 
   padding-top:10px;
@@ -764,34 +790,25 @@ section{
   height:8px;
 
   border:0;
-
   border-radius:50%;
 
   background:#62758b;
-
   cursor:pointer;
-
-  transition:.2s;
 }
 
 .event-dot.active{
   width:25px;
-
   border-radius:999px;
-
   background:var(--yellow);
 }
 
 .event-bottom-text{
   display:flex;
-
   justify-content:center;
   align-items:center;
-
   flex-wrap:wrap;
 
   gap:10px;
-
   margin-top:18px;
 
   text-align:center;
@@ -799,19 +816,13 @@ section{
 
 .event-bottom-text span{
   font-size:.65rem;
-
   letter-spacing:1.4px;
-
-  color:
-    rgba(255,255,255,.58);
+  color:rgba(255,255,255,.58);
 }
 
 .event-bottom-text strong{
   font-size:.78rem;
-
   letter-spacing:1px;
-
-  color:white;
 }
 
 
@@ -820,46 +831,30 @@ section{
 ========================================================= */
 
 .groups-intro{
-  padding:
-    75px 20px
-    95px;
+  padding:75px 20px 95px;
 
   text-align:center;
-
   color:white;
 
   background:
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(22,167,160,.35),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #043b55,
-      #075d7c
-    );
+    radial-gradient(circle at 80% 20%,rgba(22,167,160,.35),transparent 35%),
+    linear-gradient(135deg,#043b55,#075d7c);
 }
 
 .group-logo{
   width:155px;
-
   max-width:45vw;
 
   border-radius:50%;
-
   background:white;
 
   padding:5px;
 
-  box-shadow:
-    0 12px 30px rgba(0,0,0,.22);
+  box-shadow:0 12px 30px rgba(0,0,0,.22);
 }
 
 .groups-intro h2{
-  font-size:
-    clamp(2.2rem,6vw,4rem);
-
+  font-size:clamp(2.2rem,6vw,4rem);
   margin-top:18px;
 }
 
@@ -869,10 +864,7 @@ section{
 
 .groups-intro p{
   max-width:700px;
-
-  margin:
-    12px auto 0;
-
+  margin:12px auto 0;
   line-height:1.7;
 }
 
@@ -882,26 +874,15 @@ section{
 ========================================================= */
 
 .finder-wrap{
-  width:
-    min(
-      1050px,
-      calc(100% - 30px)
-    );
-
-  margin:
-    -45px auto
-    40px;
-
+  width:min(1050px,calc(100% - 30px));
+  margin:-45px auto 40px;
   position:relative;
-
   z-index:5;
 }
 
 .finder{
   background:white;
-
   border-radius:22px;
-
   padding:30px;
 
   box-shadow:
@@ -910,64 +891,47 @@ section{
 
 .finder h3{
   text-align:center;
-
   color:var(--dark);
-
   font-size:1.65rem;
 }
 
 .finder-description{
   text-align:center;
-
   color:var(--muted);
-
-  margin:
-    8px 0 22px;
+  margin:8px 0 22px;
 }
 
 .address-label{
   display:block;
-
   max-width:800px;
-
-  margin:
-    0 auto 7px;
+  margin:0 auto 7px;
 
   color:var(--dark);
 
   font-size:.8rem;
   font-weight:900;
-
   text-transform:uppercase;
-
   letter-spacing:.7px;
 }
 
 .search-row{
   max-width:800px;
-
   margin:auto;
 
   display:flex;
-
   gap:10px;
 }
 
 .search-row input{
   flex:1;
-
   min-width:0;
 
-  padding:
-    17px 18px;
+  padding:17px 18px;
 
   border-radius:12px;
-
-  border:
-    2px solid #dce8eb;
+  border:2px solid #dce8eb;
 
   font-size:1rem;
-
   outline:none;
 }
 
@@ -977,108 +941,82 @@ section{
 
 .search-btn{
   border:0;
-
   border-radius:12px;
 
-  padding:
-    15px 22px;
+  padding:15px 22px;
 
   background:var(--green);
-
   color:white;
 
   font-weight:900;
-
   cursor:pointer;
 }
 
 .search-btn:disabled{
   opacity:.65;
-
   cursor:wait;
 }
 
 .search-message{
   max-width:800px;
-
-  margin:
-    14px auto 0;
+  margin:14px auto 0;
 
   text-align:center;
-
   color:var(--muted);
 
   font-size:.9rem;
-
   min-height:22px;
 }
 
 .search-message.success{
   color:var(--green);
-
   font-weight:800;
 }
 
 .search-message.error{
   color:#b3261e;
-
   font-weight:800;
 }
 
 .reset-distance{
   display:none;
-
-  margin:
-    13px auto 0;
+  margin:13px auto 0;
 
   border:0;
-
   background:transparent;
 
   color:var(--blue);
-
   text-decoration:underline;
 
   cursor:pointer;
-
   font-weight:800;
 }
 
 .filters{
   display:flex;
-
   justify-content:center;
-
   flex-wrap:wrap;
 
   gap:8px;
-
   margin-top:20px;
 }
 
 .filter{
-  border:
-    1px solid #cadce1;
-
+  border:1px solid #cadce1;
   border-radius:999px;
 
   background:#f7fafb;
-
   color:var(--dark);
 
-  padding:
-    9px 15px;
+  padding:9px 15px;
 
   font-weight:800;
-
   cursor:pointer;
 }
 
 .filter.active{
   background:var(--blue);
-
   color:white;
-
   border-color:var(--blue);
 }
 
@@ -1088,55 +1026,38 @@ section{
 ========================================================= */
 
 .cells-section{
-  width:
-    min(
-      1250px,
-      calc(100% - 30px)
-    );
-
+  width:min(1250px,calc(100% - 30px));
   margin:auto;
-
-  padding:
-    5px 0 75px;
+  padding:5px 0 75px;
 }
 
 .cells-title{
   text-align:center;
-
   margin-bottom:28px;
 }
 
 .cells-title h2{
   color:var(--dark);
-
-  font-size:
-    clamp(1.9rem,4vw,2.7rem);
+  font-size:clamp(1.9rem,4vw,2.7rem);
 }
 
 .cells-title p{
   color:var(--muted);
-
   margin-top:7px;
 }
 
 .cells-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:24px;
 }
 
 .cell-card{
   background:white;
-
   border-radius:22px;
-
   overflow:hidden;
 
-  border:
-    1px solid #e0eaed;
+  border:1px solid #e0eaed;
 
   box-shadow:
     0 10px 30px rgba(8,65,85,.11);
@@ -1145,16 +1066,14 @@ section{
 }
 
 .cell-card:hover{
-  transform:
-    translateY(-4px);
+  transform:translateY(-4px);
 
   box-shadow:
     0 16px 36px rgba(8,65,85,.16);
 }
 
 .cell-card.nearest{
-  border:
-    3px solid var(--yellow);
+  border:3px solid var(--yellow);
 }
 
 .cell-header{
@@ -1163,28 +1082,20 @@ section{
   color:white;
 
   background:
-    linear-gradient(
-      135deg,
-      #043b55,
-      #075d7c
-    );
+    linear-gradient(135deg,#043b55,#075d7c);
 
   position:relative;
 }
 
 .cell-number{
   color:var(--yellow);
-
   font-size:.8rem;
-
   font-weight:900;
-
   letter-spacing:1.3px;
 }
 
 .cell-header h3{
   font-size:1.7rem;
-
   margin-top:5px;
 }
 
@@ -1192,28 +1103,20 @@ section{
   display:inline-block;
 
   margin-top:9px;
-
-  padding:
-    6px 11px;
+  padding:6px 11px;
 
   border-radius:999px;
 
-  background:
-    rgba(255,255,255,.15);
-
-  border:
-    1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
 
   font-size:.76rem;
-
   font-weight:900;
 }
 
 .language.bilingual{
   background:var(--yellow);
-
   color:#17323e;
-
   border-color:var(--yellow);
 }
 
@@ -1221,61 +1124,48 @@ section{
   display:none;
 
   position:absolute;
-
   top:18px;
   right:18px;
 
-  padding:
-    7px 11px;
+  padding:7px 11px;
 
   border-radius:999px;
 
   background:white;
-
   color:var(--dark);
 
   font-size:.78rem;
-
   font-weight:900;
 
-  box-shadow:
-    0 4px 12px rgba(0,0,0,.15);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 .nearest-label{
   display:none;
 
   margin-top:10px;
-
-  padding:
-    7px 10px;
+  padding:7px 10px;
 
   border-radius:8px;
 
   background:var(--yellow);
-
   color:#17323e;
 
   font-size:.75rem;
-
   font-weight:900;
 }
 
 .bilingual-note{
   margin-top:10px;
-
   padding:10px;
 
   border-radius:10px;
 
   background:#fff5d2;
-
   color:#664c00;
 
   font-size:.82rem;
-
   font-weight:800;
-
   line-height:1.45;
 }
 
@@ -1286,26 +1176,20 @@ section{
 
 .people{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns:repeat(3,1fr);
 
   gap:10px;
-
-  padding:
-    20px 15px 8px;
+  padding:20px 15px 8px;
 }
 
 .person{
   text-align:center;
-
   min-width:0;
 }
 
 .photo{
   width:92px;
   height:92px;
-
   max-width:100%;
 
   margin:auto;
@@ -1313,21 +1197,15 @@ section{
   border-radius:50%;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
   overflow:hidden;
 
   background:
-    linear-gradient(
-      145deg,
-      #e3f1f4,
-      #c8e3e7
-    );
+    linear-gradient(145deg,#e3f1f4,#c8e3e7);
 
   color:var(--blue);
-
   font-size:2rem;
 
   border:4px solid white;
@@ -1339,35 +1217,27 @@ section{
 .photo img{
   width:100%;
   height:100%;
-
   object-fit:cover;
 }
 
 .role{
   display:block;
-
   margin-top:9px;
 
   color:var(--green);
 
   font-size:.65rem;
-
   font-weight:900;
-
   letter-spacing:.5px;
-
   text-transform:uppercase;
 }
 
 .person-name{
   display:block;
-
   margin-top:4px;
 
   font-size:.88rem;
-
   font-weight:900;
-
   line-height:1.25;
 }
 
@@ -1377,27 +1247,21 @@ section{
 ========================================================= */
 
 .cell-info{
-  padding:
-    15px 20px 20px;
+  padding:15px 20px 20px;
 }
 
 .info-row{
   display:flex;
-
   gap:10px;
 
-  padding:
-    10px 0;
+  padding:10px 0;
 
-  border-top:
-    1px solid #edf2f4;
+  border-top:1px solid #edf2f4;
 }
 
 .info-icon{
   width:27px;
-
-  flex:
-    0 0 27px;
+  flex:0 0 27px;
 }
 
 .info-label{
@@ -1406,11 +1270,8 @@ section{
   color:var(--muted);
 
   font-size:.68rem;
-
   font-weight:900;
-
   letter-spacing:.5px;
-
   text-transform:uppercase;
 
   margin-bottom:3px;
@@ -1418,9 +1279,7 @@ section{
 
 .info-value{
   font-size:.93rem;
-
   font-weight:700;
-
   line-height:1.45;
 }
 
@@ -1430,45 +1289,35 @@ section{
 
 .actions{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
+  grid-template-columns:1fr 1fr;
 
   gap:9px;
-
   margin-top:13px;
 }
 
 .action{
-  padding:
-    12px 8px;
-
+  padding:12px 8px;
   border-radius:11px;
 
   text-decoration:none;
-
   text-align:center;
 
   font-size:.85rem;
-
   font-weight:900;
 }
 
 .call{
   background:var(--green);
-
   color:white;
 }
 
 .map{
   background:#e7f4f6;
-
   color:var(--dark);
 }
 
 .disabled{
   opacity:.45;
-
   pointer-events:none;
 }
 
@@ -1479,10 +1328,7 @@ section{
 
 .location-section{
   background:white;
-
-  padding:
-    75px 20px;
-
+  padding:75px 20px;
   text-align:center;
 }
 
@@ -1494,11 +1340,7 @@ section{
 
   object-fit:contain;
 
-  border-radius:0;
-  border:none;
-
-  margin:
-    0 auto 20px;
+  margin:0 auto 20px;
 
   filter:
     drop-shadow(0 8px 12px rgba(0,0,0,.25));
@@ -1510,15 +1352,12 @@ section{
   font-size:
     clamp(2rem,5vw,3rem);
 
-  margin:
-    9px 0 12px;
+  margin:9px 0 12px;
 }
 
 .location-section p{
   color:var(--muted);
-
   line-height:1.7;
-
   font-size:1.05rem;
 }
 
@@ -1526,18 +1365,14 @@ section{
   display:inline-block;
 
   margin-top:22px;
-
-  padding:
-    15px 25px;
+  padding:15px 25px;
 
   border-radius:12px;
 
   background:var(--yellow);
-
   color:#17323e;
 
   text-decoration:none;
-
   font-weight:900;
 }
 
@@ -1548,13 +1383,11 @@ section{
 
 footer{
   background:#02152f;
-
   color:white;
 
   text-align:center;
 
-  padding:
-    45px 20px;
+  padding:45px 20px;
 }
 
 .footer-logo{
@@ -1565,11 +1398,7 @@ footer{
 
   object-fit:contain;
 
-  border-radius:0;
-  border:none;
-
-  margin:
-    0 auto 18px;
+  margin:0 auto 18px;
 
   filter:
     drop-shadow(0 7px 10px rgba(0,0,0,.5));
@@ -1577,9 +1406,7 @@ footer{
 
 footer p{
   line-height:1.7;
-
   opacity:.85;
-
   font-size:.9rem;
 }
 
@@ -1598,6 +1425,10 @@ footer p{
     grid-template-columns:1fr;
   }
 
+  .schedule-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
 
@@ -1609,9 +1440,7 @@ footer p{
 
   .navbar{
     height:65px;
-
-    padding:
-      0 12px;
+    padding:0 12px;
   }
 
   .nav-logo{
@@ -1628,25 +1457,18 @@ footer p{
   }
 
   .live-button{
-    padding:
-      8px 10px;
-
+    padding:8px 10px;
     font-size:.68rem;
   }
 
   .hero{
     min-height:92vh;
-
-    padding:
-      95px 15px 55px;
-
+    padding:95px 15px 55px;
     background-position:center;
   }
 
   .official-logo{
     width:min(330px,82vw);
-
-    height:auto;
   }
 
   .hero-subtitle{
@@ -1655,21 +1477,56 @@ footer p{
 
   .hero-actions{
     flex-direction:column;
-
     align-items:center;
   }
 
   .hero-btn{
-    width:
-      min(
-        310px,
-        100%
-      );
+    width:min(310px,100%);
+  }
+
+  .service-times{
+    padding:65px 14px 75px;
+  }
+
+  .schedule-card{
+    padding:22px 17px;
+    border-radius:19px;
+  }
+
+  .schedule-title h3{
+    font-size:1.35rem;
+  }
+
+  .schedule-item{
+    gap:11px;
+  }
+
+  .schedule-icon{
+    width:44px;
+    height:44px;
+    flex:0 0 44px;
+    font-size:1.3rem;
+  }
+
+  .schedule-name{
+    font-size:.98rem;
+  }
+
+  .schedule-time{
+    font-size:.93rem;
+  }
+
+  .zoom-notice{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .zoom-icon{
+    margin:auto;
   }
 
   .event-screen{
     padding:8px;
-
     border-radius:18px;
   }
 
@@ -1688,7 +1545,6 @@ footer p{
   .slider-arrow{
     width:35px;
     height:35px;
-
     font-size:1.6rem;
   }
 
@@ -1709,8 +1565,7 @@ footer p{
   }
 
   .finder{
-    padding:
-      22px 15px;
+    padding:22px 15px;
   }
 
   .search-row{
@@ -1723,14 +1578,12 @@ footer p{
 
   .people{
     padding-left:8px;
-
     padding-right:8px;
   }
 
   .photo{
     width:75px;
     height:75px;
-
     font-size:1.7rem;
   }
 
@@ -1744,9 +1597,7 @@ footer p{
 
   .distance-badge{
     position:static;
-
     margin-top:10px;
-
     width:max-content;
   }
 
@@ -1754,7 +1605,6 @@ footer p{
 
 </style>
 </head>
-
 
 <body>
 
@@ -1765,10 +1615,7 @@ footer p{
 
 <nav class="navbar">
 
-  <a
-    href="#inicio"
-    class="nav-brand"
-  >
+  <a href="#inicio" class="nav-brand">
 
     <img
       src="ravofficial.png"
@@ -1793,34 +1640,25 @@ footer p{
 
   <div class="nav-links">
 
-    <a
-      class="nav-link"
-      href="#inicio"
-    >
+    <a class="nav-link" href="#inicio">
       INICIO
     </a>
 
-    <a
-      class="nav-link"
-      href="#eventos"
-    >
+    <a class="nav-link" href="#horarios">
+      HORARIOS
+    </a>
+
+    <a class="nav-link" href="#eventos">
       EVENTOS
     </a>
 
-    <a
-      class="nav-link"
-      href="#celulas"
-    >
+    <a class="nav-link" href="#celulas">
       CÉLULAS
     </a>
 
-    <a
-      class="nav-link"
-      href="#ubicacion"
-    >
+    <a class="nav-link" href="#ubicacion">
       UBICACIÓN
     </a>
-
 
     <a
       id="liveButton"
@@ -1829,13 +1667,11 @@ footer p{
       target="_blank"
       rel="noopener"
     >
-
       <span class="live-dot"></span>
 
       <span id="liveText">
         TRANSMISIONES
       </span>
-
     </a>
 
   </div>
@@ -1847,10 +1683,7 @@ footer p{
      HERO
 ===================================================== -->
 
-<header
-  id="inicio"
-  class="hero"
->
+<header id="inicio" class="hero">
 
   <div class="hero-content">
 
@@ -1865,13 +1698,9 @@ footer p{
     </div>
 
     <div class="hero-address">
-
       4000 Victory Dr.<br>
-
       Kansas City, KS 66102
-
     </div>
-
 
     <div class="hero-actions">
 
@@ -1884,14 +1713,12 @@ footer p{
         📍 CÓMO LLEGAR
       </a>
 
-
       <a
         class="hero-btn events-button"
         href="#eventos"
       >
         📅 PRÓXIMOS EVENTOS
       </a>
-
 
       <a
         id="heroLiveButton"
@@ -1927,14 +1754,290 @@ footer p{
     </h2>
 
     <p>
-
       Bienvenido a Iglesia Apostólica Ríos de Agua Viva.
-
       Deseamos que nuestra iglesia sea un lugar donde puedas
       crecer en tu relación con Dios, encontrar una familia
       de fe y experimentar el poder transformador de Jesucristo.
-
     </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     SERVICE TIMES
+===================================================== -->
+
+<section id="horarios" class="service-times">
+
+  <div class="schedule-container">
+
+    <div class="schedule-heading">
+
+      <span class="section-label">
+        ACOMPÁÑANOS
+      </span>
+
+      <h2>
+        HORARIOS <span>/ SERVICE TIMES</span>
+      </h2>
+
+      <p>
+        Te invitamos a acompañarnos en nuestros servicios,
+        clases y tiempos de oración.
+      </p>
+
+    </div>
+
+
+    <div class="schedule-grid">
+
+
+      <!-- ESPAÑOL -->
+
+      <div class="schedule-card">
+
+        <div class="schedule-title">
+
+          <div class="schedule-flag">
+            🇲🇽
+          </div>
+
+          <h3>
+            Servicio Español
+          </h3>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            ⛪
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Servicio Español
+            </span>
+
+            <span class="schedule-time">
+              Domingos • 12:00 PM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            📖
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Clase de Discipulado
+            </span>
+
+            <span class="schedule-time">
+              Jueves • 7:00 PM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            🙏
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Oración por Zoom
+            </span>
+
+            <span class="schedule-time">
+              Lunes a Viernes • 6:00 AM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            🙏
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Oración
+            </span>
+
+            <span class="schedule-time">
+              Todos los Domingos • 8:00 AM
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ENGLISH -->
+
+      <div class="schedule-card">
+
+        <div class="schedule-title">
+
+          <div class="schedule-flag">
+            🇺🇸
+          </div>
+
+          <h3>
+            English Service
+          </h3>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            ⛪
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              English Service
+            </span>
+
+            <span class="schedule-time">
+              Sunday • 10:00 AM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            📖
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Discipleship Class
+            </span>
+
+            <span class="schedule-time">
+              Thursday • 7:00 PM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            🙏
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Prayer by Zoom
+            </span>
+
+            <span class="schedule-time">
+              Monday to Friday • 6:00 AM
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="schedule-item">
+
+          <div class="schedule-icon">
+            🙏
+          </div>
+
+          <div class="schedule-info">
+
+            <span class="schedule-name">
+              Prayer
+            </span>
+
+            <span class="schedule-time">
+              Every Sunday • 8:00 AM
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ZOOM NOTICE -->
+
+    <div class="zoom-notice">
+
+      <div class="zoom-icon">
+        💻
+      </div>
+
+      <div>
+
+        <h3>
+          ¿Deseas conectarte con nosotros por Zoom?
+        </h3>
+
+        <p>
+          Para recibir el enlace de acceso a nuestras reuniones
+          de oración por Zoom, acércate a uno de nuestros líderes
+          o miembros del equipo de la iglesia.
+          Con gusto te ayudaremos a conectarte.
+        </p>
+
+        <span class="zoom-english">
+
+          <strong>
+            Would you like to join us on Zoom?
+          </strong>
+
+          To receive the access link for our Zoom prayer meetings,
+          please speak with one of our church leaders or team members.
+          We will be happy to help you get connected.
+
+        </span>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -1945,10 +2048,7 @@ footer p{
      EVENTS
 ===================================================== -->
 
-<section
-  id="eventos"
-  class="events-section"
->
+<section id="eventos" class="events-section">
 
   <div class="events-container">
 
@@ -1972,7 +2072,6 @@ footer p{
 
     <div class="event-screen">
 
-
       <div class="event-screen-top">
 
         <div class="event-screen-title">
@@ -1980,74 +2079,38 @@ footer p{
         </div>
 
         <div class="event-screen-status">
-
           <span></span>
-
           RAV EVENTS
-
         </div>
 
       </div>
 
 
-      <div
-        class="event-slider"
-        id="eventSlider"
-      >
-
+      <div class="event-slider" id="eventSlider">
 
         <!--
-        =====================================================
-        AQUÍ PONDREMOS LOS FLYERS.
+          CUANDO TENGAS FLYERS DE EVENTOS,
+          LOS AGREGAREMOS AQUÍ.
 
-        EJEMPLO:
+          EJEMPLO:
 
-        <div class="event-slide">
+          <div class="event-slide">
 
-          <img
-            src="evento1.jpg"
-            alt="Evento Ríos de Agua Viva"
-          >
+            <img src="evento1.jpg" alt="Evento">
 
-          <div class="event-overlay">
+            <div class="event-overlay">
 
-            <div class="event-overlay-date">
-              PRÓXIMO EVENTO
-            </div>
+              <div class="event-overlay-date">
+                PRÓXIMO EVENTO
+              </div>
 
-            <div class="event-overlay-title">
-              Nombre del Evento
-            </div>
+              <div class="event-overlay-title">
+                Nombre del Evento
+              </div>
 
-          </div>
-
-        </div>
-
-
-        SEGUNDO EVENTO:
-
-        <div class="event-slide">
-
-          <img
-            src="evento2.jpg"
-            alt="Evento Ríos de Agua Viva"
-          >
-
-          <div class="event-overlay">
-
-            <div class="event-overlay-date">
-              PRÓXIMAMENTE
-            </div>
-
-            <div class="event-overlay-title">
-              Segundo Evento
             </div>
 
           </div>
-
-        </div>
-
-        =====================================================
         -->
 
 
@@ -2070,14 +2133,9 @@ footer p{
           </h3>
 
           <p>
-
-            Mantente conectado.
-
-            <br>
-
+            Mantente conectado.<br>
             Muy pronto publicaremos aquí
             nuestras próximas actividades.
-
           </p>
 
         </div>
@@ -2138,10 +2196,7 @@ footer p{
      GROUPS
 ===================================================== -->
 
-<section
-  id="celulas"
-  class="groups-intro"
->
+<section id="celulas" class="groups-intro">
 
   <img
     src="gruposvida.png"
@@ -2154,12 +2209,9 @@ footer p{
   </h2>
 
   <p>
-
     Encuentra un Grupo de Vida cerca de ti.
-
     Escribe tu dirección y te mostraremos
     las Células en orden de distancia.
-
   </p>
 
 </section>
@@ -2178,11 +2230,9 @@ footer p{
     </h3>
 
     <p class="finder-description">
-
       Introduce tu dirección y ordenaremos
       los grupos desde el más cercano
       hasta el más lejano.
-
     </p>
 
 
@@ -2218,10 +2268,8 @@ footer p{
       id="searchMessage"
       class="search-message"
     >
-
       Las distancias mostradas son aproximadas.
       “Cómo llegar” abre la ruta en Google Maps.
-
     </div>
 
 
@@ -2290,10 +2338,7 @@ footer p{
   </div>
 
 
-  <div
-    id="cellsGrid"
-    class="cells-grid"
-  >
+  <div id="cellsGrid" class="cells-grid">
 
 
 <!-- CELL 1 -->
@@ -2309,17 +2354,11 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #1
-  </span>
+  <span class="cell-number">Célula #1</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
   <span class="distance-badge"></span>
 
@@ -2329,112 +2368,52 @@ footer p{
 
 </div>
 
-
 <div class="people">
 
   <div class="person">
-
-    <div class="photo">
-      👤
-    </div>
-
-    <span class="role">
-      Líder
-    </span>
-
-    <span class="person-name">
-      Henry Hernandez
-    </span>
-
+    <div class="photo">👤</div>
+    <span class="role">Líder</span>
+    <span class="person-name">Henry Hernandez</span>
   </div>
 
-
   <div class="person">
-
-    <div class="photo">
-      👤
-    </div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name">
-      Miguel Campos
-    </span>
-
+    <div class="photo">👤</div>
+    <span class="role">Asistente</span>
+    <span class="person-name">Miguel Campos</span>
   </div>
 
-
   <div class="person">
-
-    <div class="photo">
-      🏠
-    </div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name">
-      Familia Legarreta
-    </span>
-
+    <div class="photo">🏠</div>
+    <span class="role">Anfitriones</span>
+    <span class="person-name">Familia Legarreta</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value">
-
         5519 Inland Dr.<br>
-
         Kansas City, KS 66106
-
       </div>
-
     </div>
-
   </div>
-
 
   <div class="info-row">
-
     <div class="info-icon">☎️</div>
-
     <div>
-
-      <span class="info-label">
-        Información
-      </span>
-
-      <div class="info-value">
-        (913) 944-0855
-      </div>
-
+      <span class="info-label">Información</span>
+      <div class="info-value">(913) 944-0855</div>
     </div>
-
   </div>
-
 
   <div class="actions">
 
-    <a
-      class="action call"
-      href="tel:+19139440855"
-    >
+    <a class="action call" href="tel:+19139440855">
       ☎ Llamar
     </a>
 
@@ -2467,17 +2446,11 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #2
-  </span>
+  <span class="cell-number">Célula #2</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
   <span class="distance-badge"></span>
 
@@ -2487,104 +2460,52 @@ footer p{
 
 </div>
 
-
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Líder</span>
-
-    <span class="person-name">
-      Omar Chinchilla
-    </span>
-
+    <span class="person-name">Omar Chinchilla</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name">
-      Yesenia Duran
-    </span>
-
+    <span class="role">Asistente</span>
+    <span class="person-name">Yesenia Duran</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name">
-      Familia Leal
-    </span>
-
+    <span class="role">Anfitriones</span>
+    <span class="person-name">Familia Leal</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value">
-
         2508 N 109th Ter.<br>
-
         Kansas City, KS 66109
-
       </div>
-
     </div>
-
   </div>
-
 
   <div class="info-row">
-
     <div class="info-icon">☎️</div>
-
     <div>
-
-      <span class="info-label">
-        Información
-      </span>
-
-      <div class="info-value">
-        (913) 701-1024
-      </div>
-
+      <span class="info-label">Información</span>
+      <div class="info-value">(913) 701-1024</div>
     </div>
-
   </div>
-
 
   <div class="actions">
 
-    <a
-      class="action call"
-      href="tel:+19137011024"
-    >
+    <a class="action call" href="tel:+19137011024">
       ☎ Llamar
     </a>
 
@@ -2615,99 +2536,51 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #3
-  </span>
+  <span class="cell-number">Célula #3</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
 </div>
-
 
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Líder</span>
-
-    <span class="person-name">
-      Angel Castrejon
-    </span>
-
+    <span class="person-name">Angel Castrejon</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name">
-      Lidia Haworth
-    </span>
-
+    <span class="role">Asistente</span>
+    <span class="person-name">Lidia Haworth</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name">
-      Familia Castrejon
-    </span>
-
+    <span class="role">Anfitriones</span>
+    <span class="person-name">Familia Castrejon</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value pending">
         Dirección pendiente
       </div>
-
     </div>
-
   </div>
 
-
   <div class="actions">
-
-    <span class="action call disabled">
-      ☎ Información
-    </span>
-
-    <span class="action map disabled">
-      📍 Pendiente
-    </span>
-
+    <span class="action call disabled">☎ Información</span>
+    <span class="action map disabled">📍 Pendiente</span>
   </div>
 
 </div>
@@ -2728,13 +2601,9 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #4
-  </span>
+  <span class="cell-number">Célula #4</span>
 
-  <h3>
-    Friends Gathering
-  </h3>
+  <h3>Friends Gathering</h3>
 
   <span class="language bilingual">
     BILINGUAL
@@ -2746,115 +2615,59 @@ footer p{
     ⭐ CLOSEST GROUP
   </div>
 
-
   <div class="bilingual-note">
-
-    🇺🇸 Primary Language: English
-
-    <br>
-
+    🇺🇸 Primary Language: English<br>
     🇲🇽 Segundo idioma: Español
-
   </div>
 
 </div>
-
 
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Leader</span>
-
-    <span class="person-name">
-      Mizael Montañez
-    </span>
-
+    <span class="person-name">Mizael Montañez</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Assistant
-    </span>
-
-    <span class="person-name">
-      Jose Girón
-    </span>
-
+    <span class="role">Assistant</span>
+    <span class="person-name">Jose Girón</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
     <span class="role">Hosts</span>
-
-    <span class="person-name">
-      Familia Montañez
-    </span>
-
+    <span class="person-name">Familia Montañez</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Address
-      </span>
-
+      <span class="info-label">Address</span>
       <div class="info-value">
-
         4706 NW 82nd St.<br>
-
         Kansas City, MO 64151
-
       </div>
-
     </div>
-
   </div>
-
 
   <div class="info-row">
-
     <div class="info-icon">☎️</div>
-
     <div>
-
-      <span class="info-label">
-        Information
-      </span>
-
-      <div class="info-value">
-        (631) 877-0103
-      </div>
-
+      <span class="info-label">Information</span>
+      <div class="info-value">(631) 877-0103</div>
     </div>
-
   </div>
-
 
   <div class="actions">
 
-    <a
-      class="action call"
-      href="tel:+16318770103"
-    >
+    <a class="action call" href="tel:+16318770103">
       ☎ Call
     </a>
 
@@ -2887,17 +2700,11 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #6
-  </span>
+  <span class="cell-number">Célula #6</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
   <span class="distance-badge"></span>
 
@@ -2907,104 +2714,52 @@ footer p{
 
 </div>
 
-
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Líder</span>
-
-    <span class="person-name">
-      Joel Velez
-    </span>
-
+    <span class="person-name">Joel Velez</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name">
-      Julio Cruz
-    </span>
-
+    <span class="role">Asistente</span>
+    <span class="person-name">Julio Cruz</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name">
-      Familia Antillón
-    </span>
-
+    <span class="role">Anfitriones</span>
+    <span class="person-name">Familia Antillón</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value">
-
         1709 Cleveland Ave.<br>
-
         Kansas City, KS 66104
-
       </div>
-
     </div>
-
   </div>
-
 
   <div class="info-row">
-
     <div class="info-icon">☎️</div>
-
     <div>
-
-      <span class="info-label">
-        Información
-      </span>
-
-      <div class="info-value">
-        (816) 809-2734
-      </div>
-
+      <span class="info-label">Información</span>
+      <div class="info-value">(816) 809-2734</div>
     </div>
-
   </div>
-
 
   <div class="actions">
 
-    <a
-      class="action call"
-      href="tel:+18168092734"
-    >
+    <a class="action call" href="tel:+18168092734">
       ☎ Llamar
     </a>
 
@@ -3037,17 +2792,11 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #7
-  </span>
+  <span class="cell-number">Célula #7</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
   <span class="distance-badge"></span>
 
@@ -3057,104 +2806,52 @@ footer p{
 
 </div>
 
-
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Líder</span>
-
-    <span class="person-name">
-      Baltazar Alvidrez
-    </span>
-
+    <span class="person-name">Baltazar Alvidrez</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name">
-      Julio Alas
-    </span>
-
+    <span class="role">Asistente</span>
+    <span class="person-name">Julio Alas</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name">
-      Familia Lujan
-    </span>
-
+    <span class="role">Anfitriones</span>
+    <span class="person-name">Familia Lujan</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value">
-
         3024 S. Ralston Ave.<br>
-
         Independence, MO 64052
-
       </div>
-
     </div>
-
   </div>
-
 
   <div class="info-row">
-
     <div class="info-icon">☎️</div>
-
     <div>
-
-      <span class="info-label">
-        Información
-      </span>
-
-      <div class="info-value">
-        (816) 469-2553
-      </div>
-
+      <span class="info-label">Información</span>
+      <div class="info-value">(816) 469-2553</div>
     </div>
-
   </div>
-
 
   <div class="actions">
 
-    <a
-      class="action call"
-      href="tel:+18164692553"
-    >
+    <a class="action call" href="tel:+18164692553">
       ☎ Llamar
     </a>
 
@@ -3185,99 +2882,51 @@ footer p{
 
 <div class="cell-header">
 
-  <span class="cell-number">
-    Célula #8
-  </span>
+  <span class="cell-number">Célula #8</span>
 
-  <h3>
-    Reunión de Amigos
-  </h3>
+  <h3>Reunión de Amigos</h3>
 
-  <span class="language">
-    ESPAÑOL
-  </span>
+  <span class="language">ESPAÑOL</span>
 
 </div>
-
 
 <div class="people">
 
   <div class="person">
-
     <div class="photo">👤</div>
-
     <span class="role">Líder</span>
-
-    <span class="person-name">
-      Sarita Portillo
-    </span>
-
+    <span class="person-name">Sarita Portillo</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">👤</div>
-
-    <span class="role">
-      Asistente
-    </span>
-
-    <span class="person-name pending">
-      Pendiente
-    </span>
-
+    <span class="role">Asistente</span>
+    <span class="person-name pending">Pendiente</span>
   </div>
 
-
   <div class="person">
-
     <div class="photo">🏠</div>
-
-    <span class="role">
-      Anfitriones
-    </span>
-
-    <span class="person-name pending">
-      Pendiente
-    </span>
-
+    <span class="role">Anfitriones</span>
+    <span class="person-name pending">Pendiente</span>
   </div>
 
 </div>
 
-
 <div class="cell-info">
 
   <div class="info-row">
-
     <div class="info-icon">📍</div>
-
     <div>
-
-      <span class="info-label">
-        Dirección
-      </span>
-
+      <span class="info-label">Dirección</span>
       <div class="info-value pending">
         Dirección pendiente
       </div>
-
     </div>
-
   </div>
 
-
   <div class="actions">
-
-    <span class="action call disabled">
-      ☎ Información
-    </span>
-
-    <span class="action map disabled">
-      📍 Pendiente
-    </span>
-
+    <span class="action call disabled">☎ Información</span>
+    <span class="action map disabled">📍 Pendiente</span>
   </div>
 
 </div>
@@ -3294,10 +2943,7 @@ footer p{
      LOCATION
 ===================================================== -->
 
-<section
-  id="ubicacion"
-  class="location-section"
->
+<section id="ubicacion" class="location-section">
 
   <img
     src="ravofficial.png"
@@ -3314,9 +2960,7 @@ footer p{
   </h2>
 
   <p>
-
     Iglesia Apostólica Ríos de Agua Viva
-
     <br>
 
     <strong>
@@ -3326,9 +2970,7 @@ footer p{
     <br>
 
     Kansas City, KS 66102
-
   </p>
-
 
   <a
     class="location-button"
@@ -3355,7 +2997,6 @@ footer p{
   >
 
   <p>
-
     <strong>
       Iglesia Apostólica Ríos de Agua Viva
     </strong>
@@ -3367,7 +3008,6 @@ footer p{
     <br><br>
 
     © 2026 Ríos de Agua Viva
-
   </p>
 
 </footer>
@@ -3376,20 +3016,13 @@ footer p{
 <script>
 
 /* =========================================================
-   LIVE SYSTEM
+   LIVE
 ========================================================= */
 
 const LIVE_IS_ON = false;
 
-/*
-  MÁS ADELANTE CAMBIAREMOS ESTOS LINKS
-  POR YOUTUBE O FACEBOOK.
-*/
-
 const LIVE_URL = "#";
-
 const TRANSMISSIONS_URL = "#";
-
 
 function configureLive(){
 
@@ -3401,7 +3034,6 @@ function configureLive(){
 
   const heroButton =
     document.getElementById("heroLiveButton");
-
 
   if(LIVE_IS_ON){
 
@@ -3451,27 +3083,21 @@ configureLive();
 
 let currentFilter = "all";
 
-
 function filterCells(language,button){
 
   currentFilter = language;
 
-
   document
     .querySelectorAll(".filter")
-    .forEach(
-      btn =>
-        btn.classList.remove("active")
+    .forEach(btn =>
+      btn.classList.remove("active")
     );
 
-
   button.classList.add("active");
-
 
   applyCurrentFilter();
 
 }
-
 
 function applyCurrentFilter(){
 
@@ -3482,17 +3108,10 @@ function applyCurrentFilter(){
       const languages =
         card.dataset.language || "";
 
-
       const show =
-
         currentFilter === "all"
-
         ||
-
-        languages.includes(
-          currentFilter
-        );
-
+        languages.includes(currentFilter);
 
       card.style.display =
         show ? "" : "none";
@@ -3511,21 +3130,13 @@ async function geocodeAddress(address){
   const query =
     encodeURIComponent(address);
 
-
   const url =
-
     "https://nominatim.openstreetmap.org/search" +
-
     "?format=jsonv2" +
-
     "&limit=1" +
-
     "&countrycodes=us" +
-
     "&q=" +
-
     query;
-
 
   const response =
     await fetch(
@@ -3537,42 +3148,21 @@ async function geocodeAddress(address){
       }
     );
 
-
   if(!response.ok){
-
-    throw new Error(
-      "Geocoding error"
-    );
-
+    throw new Error("Geocoding error");
   }
-
 
   const data =
     await response.json();
 
-
   if(!data.length){
-
     return null;
-
   }
 
-
   return{
-
-    lat:
-      parseFloat(
-        data[0].lat
-      ),
-
-    lng:
-      parseFloat(
-        data[0].lon
-      ),
-
-    displayName:
-      data[0].display_name
-
+    lat:parseFloat(data[0].lat),
+    lng:parseFloat(data[0].lon),
+    displayName:data[0].display_name
   };
 
 }
@@ -3582,78 +3172,41 @@ async function geocodeAddress(address){
    DISTANCE
 ========================================================= */
 
-function distanceMiles(
-  lat1,
-  lng1,
-  lat2,
-  lng2
-){
+function distanceMiles(lat1,lng1,lat2,lng2){
 
   const earthRadiusMiles =
     3958.7613;
 
-
   const toRadians =
     degrees =>
-      degrees *
-      Math.PI /
-      180;
-
+      degrees * Math.PI / 180;
 
   const dLat =
-    toRadians(
-      lat2-lat1
-    );
-
+    toRadians(lat2-lat1);
 
   const dLng =
-    toRadians(
-      lng2-lng1
-    );
-
+    toRadians(lng2-lng1);
 
   const a =
-
     Math.sin(dLat/2) *
     Math.sin(dLat/2)
-
     +
-
-    Math.cos(
-      toRadians(lat1)
-    )
-
+    Math.cos(toRadians(lat1))
     *
-
-    Math.cos(
-      toRadians(lat2)
-    )
-
+    Math.cos(toRadians(lat2))
     *
-
     Math.sin(dLng/2)
-
     *
-
     Math.sin(dLng/2);
 
-
   const c =
-
     2 *
-
     Math.atan2(
-
       Math.sqrt(a),
-
       Math.sqrt(1-a)
-
     );
 
-
-  return
-    earthRadiusMiles *
-    c;
+  return earthRadiusMiles * c;
 
 }
 
@@ -3665,266 +3218,154 @@ function distanceMiles(
 async function findNearest(){
 
   const input =
-    document.getElementById(
-      "addressInput"
-    );
-
+    document.getElementById("addressInput");
 
   const message =
-    document.getElementById(
-      "searchMessage"
-    );
-
+    document.getElementById("searchMessage");
 
   const button =
-    document.getElementById(
-      "distanceButton"
-    );
-
+    document.getElementById("distanceButton");
 
   const reset =
-    document.getElementById(
-      "resetDistance"
-    );
-
+    document.getElementById("resetDistance");
 
   const address =
     input.value.trim();
-
 
   if(!address){
 
     message.className =
       "search-message error";
 
-
     message.textContent =
       "Por favor introduce tu dirección.";
-
 
     input.focus();
 
     return;
-
   }
 
-
-  button.disabled =
-    true;
-
+  button.disabled = true;
 
   button.textContent =
     "Buscando...";
 
-
   message.className =
     "search-message";
-
 
   message.textContent =
     "📍 Localizando tu dirección...";
 
-
   try{
 
-
     const location =
-      await geocodeAddress(
-        address
-      );
-
+      await geocodeAddress(address);
 
     if(!location){
-
-      throw new Error(
-        "Address not found"
-      );
-
+      throw new Error("Address not found");
     }
 
-
     const grid =
-      document.getElementById(
-        "cellsGrid"
-      );
-
+      document.getElementById("cellsGrid");
 
     const cards =
       Array.from(
-
-        grid.querySelectorAll(
-          ".cell-card"
-        )
-
+        grid.querySelectorAll(".cell-card")
       );
 
+    cards.forEach(card => {
 
-    cards.forEach(
-      card => {
+      card.classList.remove("nearest");
 
+      const badge =
+        card.querySelector(".distance-badge");
 
-        card
-          .classList
-          .remove("nearest");
+      const nearestLabel =
+        card.querySelector(".nearest-label");
 
+      if(badge){
+        badge.style.display = "none";
+        badge.textContent = "";
+      }
 
-        const badge =
-          card.querySelector(
-            ".distance-badge"
+      if(nearestLabel){
+        nearestLabel.style.display = "none";
+      }
+
+      if(card.dataset.hasLocation === "true"){
+
+        const lat =
+          parseFloat(card.dataset.lat);
+
+        const lng =
+          parseFloat(card.dataset.lng);
+
+        const miles =
+          distanceMiles(
+            location.lat,
+            location.lng,
+            lat,
+            lng
           );
 
+        card.dataset.distance =
+          miles;
 
-        const nearestLabel =
-          card.querySelector(
-            ".nearest-label"
-          );
+      }else{
 
-
-        if(badge){
-
-          badge.style.display =
-            "none";
-
-          badge.textContent =
-            "";
-
-        }
-
-
-        if(nearestLabel){
-
-          nearestLabel.style.display =
-            "none";
-
-        }
-
-
-        if(
-          card.dataset.hasLocation
-          ===
-          "true"
-        ){
-
-          const lat =
-            parseFloat(
-              card.dataset.lat
-            );
-
-
-          const lng =
-            parseFloat(
-              card.dataset.lng
-            );
-
-
-          const miles =
-            distanceMiles(
-
-              location.lat,
-
-              location.lng,
-
-              lat,
-
-              lng
-
-            );
-
-
-          card.dataset.distance =
-            miles;
-
-
-        }else{
-
-          card.dataset.distance =
-            "999999";
-
-        }
+        card.dataset.distance =
+          "999999";
 
       }
-    );
 
+    });
 
     cards.sort(
       (a,b) =>
-
-        parseFloat(
-          a.dataset.distance
-        )
-
+        parseFloat(a.dataset.distance)
         -
-
-        parseFloat(
-          b.dataset.distance
-        )
+        parseFloat(b.dataset.distance)
     );
 
-
-    cards.forEach(
-      card =>
-        grid.appendChild(card)
+    cards.forEach(card =>
+      grid.appendChild(card)
     );
-
 
     const availableCards =
       cards.filter(
         card =>
-
-          card.dataset.hasLocation
-          ===
-          "true"
+          card.dataset.hasLocation === "true"
       );
-
 
     availableCards.forEach(
       (card,index) => {
 
-
         const miles =
-          parseFloat(
-            card.dataset.distance
-          );
-
+          parseFloat(card.dataset.distance);
 
         const badge =
-          card.querySelector(
-            ".distance-badge"
-          );
-
+          card.querySelector(".distance-badge");
 
         if(badge){
 
           badge.textContent =
-            miles.toFixed(1)
-            +
+            miles.toFixed(1) +
             " mi aprox.";
-
 
           badge.style.display =
             "inline-block";
 
         }
 
-
         if(index === 0){
 
-          card
-            .classList
-            .add("nearest");
-
+          card.classList.add("nearest");
 
           const nearestLabel =
-            card.querySelector(
-              ".nearest-label"
-            );
-
+            card.querySelector(".nearest-label");
 
           if(nearestLabel){
-
-            nearestLabel.style.display =
-              "block";
-
+            nearestLabel.style.display = "block";
           }
 
         }
@@ -3932,88 +3373,59 @@ async function findNearest(){
       }
     );
 
-
     document
-      .getElementById(
-        "resultsSubtitle"
-      )
+      .getElementById("resultsSubtitle")
       .textContent =
-
       "Ordenadas desde la más cercana a tu dirección";
-
 
     message.className =
       "search-message success";
 
-
     message.textContent =
-
       "✓ Grupos ordenados por cercanía. " +
-
       "Usa “Cómo llegar” para ver la ruta real en Google Maps.";
-
 
     reset.style.display =
       "block";
 
-
     applyCurrentFilter();
 
-
     document
-      .querySelector(
-        ".cells-title"
-      )
+      .querySelector(".cells-title")
       .scrollIntoView({
         behavior:"smooth",
         block:"start"
       });
 
-
   }catch(error){
-
 
     message.className =
       "search-message error";
 
-
     message.textContent =
-
       "No pudimos encontrar esa dirección. " +
-
       "Intenta escribir calle, ciudad, estado y código postal.";
-
 
   }finally{
 
-
-    button.disabled =
-      false;
-
+    button.disabled = false;
 
     button.textContent =
       "📍 BUSCAR POR DISTANCIA";
-
 
   }
 
 }
 
 
-/* ENTER KEY */
-
 document
-  .getElementById(
-    "addressInput"
-  )
+  .getElementById("addressInput")
   .addEventListener(
     "keydown",
     function(event){
 
       if(event.key === "Enter"){
-
         findNearest();
-
       }
 
     }
@@ -4027,122 +3439,64 @@ document
 function resetOrder(){
 
   const grid =
-    document.getElementById(
-      "cellsGrid"
-    );
-
+    document.getElementById("cellsGrid");
 
   const cards =
     Array.from(
-
-      grid.querySelectorAll(
-        ".cell-card"
-      )
-
+      grid.querySelectorAll(".cell-card")
     );
-
 
   cards.sort(
     (a,b) =>
-
-      parseInt(
-        a.dataset.order
-      )
-
+      parseInt(a.dataset.order)
       -
-
-      parseInt(
-        b.dataset.order
-      )
+      parseInt(b.dataset.order)
   );
 
+  cards.forEach(card => {
 
-  cards.forEach(
-    card => {
+    grid.appendChild(card);
 
+    card.classList.remove("nearest");
 
-      grid.appendChild(
-        card
-      );
+    delete card.dataset.distance;
 
+    const badge =
+      card.querySelector(".distance-badge");
 
-      card
-        .classList
-        .remove(
-          "nearest"
-        );
+    const nearestLabel =
+      card.querySelector(".nearest-label");
 
-
-      delete
-        card.dataset.distance;
-
-
-      const badge =
-        card.querySelector(
-          ".distance-badge"
-        );
-
-
-      const nearestLabel =
-        card.querySelector(
-          ".nearest-label"
-        );
-
-
-      if(badge){
-
-        badge.style.display =
-          "none";
-
-        badge.textContent =
-          "";
-
-      }
-
-
-      if(nearestLabel){
-
-        nearestLabel.style.display =
-          "none";
-
-      }
-
+    if(badge){
+      badge.style.display = "none";
+      badge.textContent = "";
     }
-  );
 
+    if(nearestLabel){
+      nearestLabel.style.display = "none";
+    }
+
+  });
 
   document
-    .getElementById(
-      "resultsSubtitle"
-    )
+    .getElementById("resultsSubtitle")
     .textContent =
     "Reunión de Amigos";
 
-
   const message =
-    document.getElementById(
-      "searchMessage"
-    );
-
+    document.getElementById("searchMessage");
 
   message.className =
     "search-message";
 
-
   message.textContent =
-
     "Las distancias mostradas son aproximadas. " +
-
     "“Cómo llegar” abre la ruta en Google Maps.";
 
-
   document
-    .getElementById(
-      "resetDistance"
-    )
+    .getElementById("resetDistance")
     .style.display =
     "none";
-
 
   applyCurrentFilter();
 
@@ -4150,150 +3504,106 @@ function resetOrder(){
 
 
 /* =========================================================
-   AUTOMATIC EVENTS SLIDESHOW
+   EVENTS SLIDESHOW
 ========================================================= */
 
 let currentEvent = 0;
-
 let eventTimer = null;
 
 const EVENT_CHANGE_TIME = 5000;
 
-
 function getEventSlides(){
 
   return Array.from(
-    document.querySelectorAll(
-      ".event-slide"
-    )
+    document.querySelectorAll(".event-slide")
   );
 
 }
-
 
 function initializeEventSlider(){
 
   const slides =
     getEventSlides();
 
-
   const noEvents =
-    document.getElementById(
-      "eventNoEvents"
-    );
-
+    document.getElementById("eventNoEvents");
 
   const dots =
-    document.getElementById(
-      "eventDots"
-    );
-
+    document.getElementById("eventDots");
 
   const prev =
-    document.getElementById(
-      "eventPrev"
-    );
-
+    document.getElementById("eventPrev");
 
   const next =
-    document.getElementById(
-      "eventNext"
-    );
-
+    document.getElementById("eventNext");
 
   dots.innerHTML = "";
-
 
   if(slides.length === 0){
 
     noEvents.style.display =
       "flex";
 
-
     prev.style.display =
       "none";
-
 
     next.style.display =
       "none";
 
-
     return;
-
   }
-
 
   noEvents.style.display =
     "none";
 
-
   slides.forEach(
     (slide,index) => {
 
-
-      slide.classList.remove(
-        "active"
-      );
-
+      slide.classList.remove("active");
 
       const dot =
-        document.createElement(
-          "button"
-        );
-
+        document.createElement("button");
 
       dot.className =
         "event-dot";
-
 
       dot.setAttribute(
         "aria-label",
         "Ver evento " + (index + 1)
       );
 
-
       dot.onclick =
         function(){
 
           showEvent(index);
-
           restartEventTimer();
 
         };
-
 
       dots.appendChild(dot);
 
     }
   );
 
-
   currentEvent = 0;
 
-
   showEvent(0);
-
 
   if(slides.length === 1){
 
     prev.style.display =
       "none";
 
-
     next.style.display =
       "none";
 
-
   }else{
-
 
     prev.style.display =
       "block";
 
-
     next.style.display =
       "block";
-
 
     startEventTimer();
 
@@ -4301,65 +3611,41 @@ function initializeEventSlider(){
 
 }
 
-
 function showEvent(index){
 
   const slides =
     getEventSlides();
 
-
   const dots =
-    document.querySelectorAll(
-      ".event-dot"
-    );
-
+    document.querySelectorAll(".event-dot");
 
   if(!slides.length){
-
     return;
-
   }
-
 
   if(index >= slides.length){
-
     index = 0;
-
   }
-
 
   if(index < 0){
-
-    index =
-      slides.length - 1;
-
+    index = slides.length - 1;
   }
 
-
-  currentEvent =
-    index;
-
+  currentEvent = index;
 
   slides.forEach(
     slide =>
-      slide.classList.remove(
-        "active"
-      )
+      slide.classList.remove("active")
   );
-
 
   dots.forEach(
     dot =>
-      dot.classList.remove(
-        "active"
-      )
+      dot.classList.remove("active")
   );
-
 
   slides[currentEvent]
     .classList
     .add("active");
-
 
   if(dots[currentEvent]){
 
@@ -4371,77 +3657,47 @@ function showEvent(index){
 
 }
 
-
 function nextEvent(){
 
-  showEvent(
-    currentEvent + 1
-  );
-
-
+  showEvent(currentEvent + 1);
   restartEventTimer();
 
 }
-
 
 function previousEvent(){
 
-  showEvent(
-    currentEvent - 1
-  );
-
-
+  showEvent(currentEvent - 1);
   restartEventTimer();
 
 }
-
 
 function startEventTimer(){
 
   const slides =
     getEventSlides();
 
-
   if(slides.length <= 1){
-
     return;
-
   }
 
-
-  clearInterval(
-    eventTimer
-  );
-
+  clearInterval(eventTimer);
 
   eventTimer =
     setInterval(
       function(){
-
-        showEvent(
-          currentEvent + 1
-        );
-
+        showEvent(currentEvent + 1);
       },
-
       EVENT_CHANGE_TIME
-
     );
 
 }
 
-
 function restartEventTimer(){
 
-  clearInterval(
-    eventTimer
-  );
-
-
+  clearInterval(eventTimer);
   startEventTimer();
 
 }
-
 
 initializeEventSlider();
 
