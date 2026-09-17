@@ -316,221 +316,37 @@ section{
 
 
 /* =========================================================
-   SERVICE TIMES
+   HORARIOS IMAGE
 ========================================================= */
 
-.service-times{
+.schedule-image-section{
   position:relative;
-  overflow:hidden;
-  padding:80px 20px 90px;
+  padding:45px 20px;
 
   background:
-    radial-gradient(circle at 10% 10%,rgba(60,190,255,.22),transparent 30%),
-    radial-gradient(circle at 90% 90%,rgba(0,104,255,.20),transparent 35%),
-    linear-gradient(135deg,#f8fcff,#e5f5ff);
+    radial-gradient(circle at 15% 20%,rgba(75,190,255,.18),transparent 30%),
+    radial-gradient(circle at 85% 80%,rgba(0,110,255,.15),transparent 32%),
+    linear-gradient(135deg,#f7fcff,#e8f6ff);
 
-  color:var(--dark);
+  overflow:hidden;
 }
 
-.service-times::before,
-.service-times::after{
-  content:"";
-  position:absolute;
-  width:600px;
-  height:120px;
-  border:2px solid rgba(0,125,210,.10);
-  border-radius:50%;
-  transform:rotate(-12deg);
-}
-
-.service-times::before{
-  top:20px;
-  left:-180px;
-}
-
-.service-times::after{
-  bottom:10px;
-  right:-180px;
-}
-
-.schedule-container{
-  position:relative;
-  z-index:2;
-  width:min(1100px,100%);
+.schedule-image-container{
+  width:min(1500px,100%);
   margin:auto;
 }
 
-.schedule-heading{
-  text-align:center;
-  margin-bottom:38px;
-}
+.schedule-main-image{
+  display:block;
+  width:100%;
+  height:auto;
 
-.schedule-heading .section-label{
-  color:#1682d3;
-}
-
-.schedule-heading h2{
-  margin-top:8px;
-  font-size:clamp(2.1rem,5vw,3.5rem);
-  color:#082d7a;
-}
-
-.schedule-heading h2 span{
-  color:#168bd7;
-}
-
-.schedule-heading p{
-  margin:12px auto 0;
-  max-width:650px;
-  color:#60788c;
-  line-height:1.7;
-}
-
-.schedule-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
-}
-
-.schedule-card{
-  background:rgba(255,255,255,.87);
-  border:1px solid rgba(18,126,202,.20);
   border-radius:24px;
-  padding:30px;
 
   box-shadow:
-    0 15px 40px rgba(0,77,140,.10);
+    0 20px 55px rgba(0,72,135,.18);
 
-  backdrop-filter:blur(10px);
-}
-
-.schedule-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
-
-  padding-bottom:18px;
-  margin-bottom:8px;
-
-  border-bottom:2px solid #e1eff8;
-}
-
-.schedule-flag{
-  font-size:2rem;
-}
-
-.schedule-title h3{
-  color:#082d7a;
-  font-size:1.6rem;
-}
-
-.schedule-item{
-  display:flex;
-  align-items:center;
-  gap:15px;
-
-  padding:19px 0;
-
-  border-bottom:1px solid #e6eff5;
-}
-
-.schedule-item:last-child{
-  border-bottom:0;
-}
-
-.schedule-icon{
-  width:50px;
-  height:50px;
-  flex:0 0 50px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:#e8f5ff;
-
-  font-size:1.5rem;
-}
-
-.schedule-info{
-  flex:1;
-}
-
-.schedule-name{
-  display:block;
-  color:#082d7a;
-  font-size:1.08rem;
-  font-weight:900;
-}
-
-.schedule-time{
-  display:block;
-  margin-top:4px;
-  color:#168bd7;
-  font-size:1rem;
-  font-weight:900;
-}
-
-.zoom-notice{
-  position:relative;
-  z-index:2;
-
-  max-width:900px;
-
-  margin:30px auto 0;
-  padding:25px;
-
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:18px;
-
-  background:
-    linear-gradient(135deg,#063f92,#0b70bd);
-
-  color:white;
-
-  border-radius:20px;
-
-  box-shadow:
-    0 15px 35px rgba(0,58,120,.20);
-}
-
-.zoom-icon{
-  width:60px;
-  height:60px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:16px;
-
-  background:rgba(255,255,255,.15);
-
-  font-size:2rem;
-}
-
-.zoom-notice h3{
-  font-size:1.2rem;
-  margin-bottom:7px;
-}
-
-.zoom-notice p{
-  line-height:1.6;
-  color:rgba(255,255,255,.90);
-}
-
-.zoom-english{
-  display:block;
-  margin-top:10px;
-  padding-top:10px;
-
-  border-top:1px solid rgba(255,255,255,.20);
-
-  font-size:.88rem;
-  color:rgba(255,255,255,.80);
+  border:1px solid rgba(16,128,210,.16);
 }
 
 
@@ -675,6 +491,7 @@ section{
   bottom:0;
 
   padding:55px 25px 22px;
+
   text-align:left;
 
   background:
@@ -885,8 +702,7 @@ section{
   border-radius:22px;
   padding:30px;
 
-  box-shadow:
-    0 15px 45px rgba(3,55,75,.16);
+  box-shadow:0 15px 45px rgba(3,55,75,.16);
 }
 
 .finder h3{
@@ -1059,17 +875,14 @@ section{
 
   border:1px solid #e0eaed;
 
-  box-shadow:
-    0 10px 30px rgba(8,65,85,.11);
+  box-shadow:0 10px 30px rgba(8,65,85,.11);
 
   transition:.2s;
 }
 
 .cell-card:hover{
   transform:translateY(-4px);
-
-  box-shadow:
-    0 16px 36px rgba(8,65,85,.16);
+  box-shadow:0 16px 36px rgba(8,65,85,.16);
 }
 
 .cell-card.nearest{
@@ -1210,8 +1023,7 @@ section{
 
   border:4px solid white;
 
-  box-shadow:
-    0 4px 14px rgba(0,0,0,.12);
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
 }
 
 .photo img{
@@ -1342,15 +1154,13 @@ section{
 
   margin:0 auto 20px;
 
-  filter:
-    drop-shadow(0 8px 12px rgba(0,0,0,.25));
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.25));
 }
 
 .location-section h2{
   color:var(--dark);
 
-  font-size:
-    clamp(2rem,5vw,3rem);
+  font-size:clamp(2rem,5vw,3rem);
 
   margin:9px 0 12px;
 }
@@ -1400,8 +1210,7 @@ footer{
 
   margin:0 auto 18px;
 
-  filter:
-    drop-shadow(0 7px 10px rgba(0,0,0,.5));
+  filter:drop-shadow(0 7px 10px rgba(0,0,0,.5));
 }
 
 footer p{
@@ -1425,8 +1234,12 @@ footer p{
     grid-template-columns:1fr;
   }
 
-  .schedule-grid{
-    grid-template-columns:1fr;
+  .schedule-image-section{
+    padding:30px 12px;
+  }
+
+  .schedule-main-image{
+    border-radius:17px;
   }
 
 }
@@ -1484,45 +1297,13 @@ footer p{
     width:min(310px,100%);
   }
 
-  .service-times{
-    padding:65px 14px 75px;
+  .schedule-image-section{
+    padding:20px 7px;
   }
 
-  .schedule-card{
-    padding:22px 17px;
-    border-radius:19px;
-  }
-
-  .schedule-title h3{
-    font-size:1.35rem;
-  }
-
-  .schedule-item{
-    gap:11px;
-  }
-
-  .schedule-icon{
-    width:44px;
-    height:44px;
-    flex:0 0 44px;
-    font-size:1.3rem;
-  }
-
-  .schedule-name{
-    font-size:.98rem;
-  }
-
-  .schedule-time{
-    font-size:.93rem;
-  }
-
-  .zoom-notice{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .zoom-icon{
-    margin:auto;
+  .schedule-main-image{
+    border-radius:10px;
+    box-shadow:0 10px 25px rgba(0,72,135,.15);
   }
 
   .event-screen{
@@ -1668,10 +1449,7 @@ footer p{
       rel="noopener"
     >
       <span class="live-dot"></span>
-
-      <span id="liveText">
-        TRANSMISIONES
-      </span>
+      <span id="liveText">TRANSMISIONES</span>
     </a>
 
   </div>
@@ -1766,278 +1544,18 @@ footer p{
 
 
 <!-- =====================================================
-     SERVICE TIMES
+     HORARIOS
 ===================================================== -->
 
-<section id="horarios" class="service-times">
-
-  <div class="schedule-container">
-
-    <div class="schedule-heading">
-
-      <span class="section-label">
-        ACOMPÁÑANOS
-      </span>
-
-      <h2>
-        HORARIOS <span>/ SERVICE TIMES</span>
-      </h2>
-
-      <p>
-        Te invitamos a acompañarnos en nuestros servicios,
-        clases y tiempos de oración.
-      </p>
-
-    </div>
-
-
-    <div class="schedule-grid">
-
-
-      <!-- ESPAÑOL -->
-
-      <div class="schedule-card">
-
-        <div class="schedule-title">
-
-          <div class="schedule-flag">
-            🇲🇽
-          </div>
-
-          <h3>
-            Servicio Español
-          </h3>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            ⛪
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Servicio Español
-            </span>
-
-            <span class="schedule-time">
-              Domingos • 12:00 PM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            📖
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Clase de Discipulado
-            </span>
-
-            <span class="schedule-time">
-              Jueves • 7:00 PM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            🙏
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Oración por Zoom
-            </span>
-
-            <span class="schedule-time">
-              Lunes a Viernes • 6:00 AM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            🙏
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Oración
-            </span>
-
-            <span class="schedule-time">
-              Todos los Domingos • 8:00 AM
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- ENGLISH -->
-
-      <div class="schedule-card">
-
-        <div class="schedule-title">
-
-          <div class="schedule-flag">
-            🇺🇸
-          </div>
-
-          <h3>
-            English Service
-          </h3>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            ⛪
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              English Service
-            </span>
-
-            <span class="schedule-time">
-              Sunday • 10:00 AM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            📖
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Discipleship Class
-            </span>
-
-            <span class="schedule-time">
-              Thursday • 7:00 PM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            🙏
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Prayer by Zoom
-            </span>
-
-            <span class="schedule-time">
-              Monday to Friday • 6:00 AM
-            </span>
-
-          </div>
-
-        </div>
-
-
-        <div class="schedule-item">
-
-          <div class="schedule-icon">
-            🙏
-          </div>
-
-          <div class="schedule-info">
-
-            <span class="schedule-name">
-              Prayer
-            </span>
-
-            <span class="schedule-time">
-              Every Sunday • 8:00 AM
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- ZOOM NOTICE -->
-
-    <div class="zoom-notice">
-
-      <div class="zoom-icon">
-        💻
-      </div>
-
-      <div>
-
-        <h3>
-          ¿Deseas conectarte con nosotros por Zoom?
-        </h3>
-
-        <p>
-          Para recibir el enlace de acceso a nuestras reuniones
-          de oración por Zoom, acércate a uno de nuestros líderes
-          o miembros del equipo de la iglesia.
-          Con gusto te ayudaremos a conectarte.
-        </p>
-
-        <span class="zoom-english">
-
-          <strong>
-            Would you like to join us on Zoom?
-          </strong>
-
-          To receive the access link for our Zoom prayer meetings,
-          please speak with one of our church leaders or team members.
-          We will be happy to help you get connected.
-
-        </span>
-
-      </div>
-
-    </div>
+<section id="horarios" class="schedule-image-section">
+
+  <div class="schedule-image-container">
+
+    <img
+      src="horarios.png"
+      class="schedule-main-image"
+      alt="Horarios de Iglesia Apostólica Ríos de Agua Viva"
+    >
 
   </div>
 
@@ -2088,32 +1606,6 @@ footer p{
 
       <div class="event-slider" id="eventSlider">
 
-        <!--
-          CUANDO TENGAS FLYERS DE EVENTOS,
-          LOS AGREGAREMOS AQUÍ.
-
-          EJEMPLO:
-
-          <div class="event-slide">
-
-            <img src="evento1.jpg" alt="Evento">
-
-            <div class="event-overlay">
-
-              <div class="event-overlay-date">
-                PRÓXIMO EVENTO
-              </div>
-
-              <div class="event-overlay-title">
-                Nombre del Evento
-              </div>
-
-            </div>
-
-          </div>
-        -->
-
-
         <div
           class="event-no-events"
           id="eventNoEvents"
@@ -2152,7 +1644,6 @@ footer p{
         ‹
       </button>
 
-
       <button
         class="slider-arrow slider-next"
         id="eventNext"
@@ -2161,7 +1652,6 @@ footer p{
       >
         ›
       </button>
-
 
       <div
         class="event-dots"
@@ -2173,17 +1663,11 @@ footer p{
 
     <div class="event-bottom-text">
 
-      <span>
-        IGLESIA APOSTÓLICA
-      </span>
+      <span>IGLESIA APOSTÓLICA</span>
 
-      <strong>
-        RÍOS DE AGUA VIVA
-      </strong>
+      <strong>RÍOS DE AGUA VIVA</strong>
 
-      <span>
-        KANSAS CITY, KS
-      </span>
+      <span>KANSAS CITY, KS</span>
 
     </div>
 
@@ -2235,14 +1719,12 @@ footer p{
       hasta el más lejano.
     </p>
 
-
     <label
       class="address-label"
       for="addressInput"
     >
       Introduce tu dirección aquí
     </label>
-
 
     <div class="search-row">
 
@@ -2263,7 +1745,6 @@ footer p{
 
     </div>
 
-
     <div
       id="searchMessage"
       class="search-message"
@@ -2272,7 +1753,6 @@ footer p{
       “Cómo llegar” abre la ruta en Google Maps.
     </div>
 
-
     <button
       id="resetDistance"
       class="reset-distance"
@@ -2280,7 +1760,6 @@ footer p{
     >
       Mostrar orden original
     </button>
-
 
     <div class="filters">
 
@@ -3504,7 +2983,7 @@ function resetOrder(){
 
 
 /* =========================================================
-   EVENTS SLIDESHOW
+   EVENTS
 ========================================================= */
 
 let currentEvent = 0;
