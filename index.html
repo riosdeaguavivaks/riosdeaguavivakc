@@ -272,15 +272,15 @@ section{
 }
 
 .hero-actions{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:12px;
-  margin-top:28px;
+  margin:28px auto 0;
+  max-width:900px;
 }
 
 .hero-btn{
-  min-width:190px;
+  min-width:0;
   padding:15px 20px;
   border-radius:12px;
   text-decoration:none;
@@ -307,6 +307,14 @@ section{
   background:var(--blue);
   color:white;
   border:1px solid rgba(255,255,255,.45);
+}
+
+.prayer-button{background:#07975f;color:white;}
+.connection-button{background:#6f42c1;color:white;}
+.donate-button{background:#f4a51c;color:#152e3a;}
+
+@media(max-width:760px){
+  .hero-actions{grid-template-columns:1fr;}
 }
 
 
@@ -1520,11 +1528,6 @@ footer p{
       Bienvenidos a Casa
     </div>
 
-    <div class="hero-address">
-      4000 Victory Dr.<br>
-      Kansas City, KS 66102
-    </div>
-
     <div class="hero-actions">
 
       <a
@@ -1550,7 +1553,24 @@ footer p{
         target="_blank"
         rel="noopener"
       >
-        ▶ TRANSMISIONES
+        ▶ VER TRANSMISIONES
+      </a>
+
+      <a class="hero-btn prayer-button" href="#" onclick="return false;">
+        🙏 PETICIONES DE ORACIÓN
+      </a>
+
+      <a class="hero-btn connection-button" href="#" onclick="return false;">
+        👥 TARJETA DE CONEXIÓN
+      </a>
+
+      <a
+        class="hero-btn donate-button"
+        href="https://account.venmo.com/u/RiosDeAguaViva-ApostolicChurch"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        💝 DONACIONES
       </a>
 
     </div>
