@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: rav-facebook-live
+  group: rav-live-status
   cancel-in-progress: true
 
 jobs:
