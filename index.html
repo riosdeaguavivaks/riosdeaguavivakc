@@ -1266,11 +1266,14 @@ footer{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:28px;
-  height:28px;
+  width:34px;
+  height:34px;
+  padding:4px;
+  border-radius:50%;
+  background:#ffffff;
   text-decoration:none;
   transition:transform .2s ease,opacity .2s ease;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,.25));
+  box-shadow:0 2px 7px rgba(0,0,0,.25);
 }
 .social-icon:hover{transform:translateY(-2px) scale(1.10);opacity:.9;}
 .social-icon img{
@@ -1281,7 +1284,8 @@ footer{
 }
 @media(max-width:760px){
   .social-icons{top:84px;right:14px;gap:8px;}
-  .social-icon,.social-icon img{width:24px;height:24px;}
+  .social-icon{width:30px;height:30px;padding:3px;}
+  .social-icon img{width:24px;height:24px;}
 }
 
 footer p{
