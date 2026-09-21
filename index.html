@@ -1563,6 +1563,17 @@ footer p{
 .cell-card[data-order="9"] .person:nth-child(1) .photo img{transform:translate(-50%,18px) scale(1.22);}
 
 
+
+/* RAV: cubrir pequeño espacio inferior en fotos seleccionadas */
+.cell-card[data-order="4"] .person:nth-child(2) .photo img,
+.cell-card[data-order="4"] .person:nth-child(3) .photo img{
+  width:106%; height:106%; max-width:none; bottom:-4px;
+}
+.cell-card[data-order="6"] .person:nth-child(2) .photo img,
+.cell-card[data-order="6"] .person:nth-child(3) .photo img{
+  width:106%; height:106%; max-width:none; bottom:-4px;
+}
+
 /* PASTOR HERMINIO LEAL Y VIKI LEAL */
 .pastor-feature{
   padding:55px 20px 65px;
