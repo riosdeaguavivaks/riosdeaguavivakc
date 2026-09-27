@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   # GitHub usa UTC.
-  # Durante el domingo revisamos con frecuencia.
+  # Domingo: revisar cada 5 minutos durante la ventana de servicios.
   schedule:
     - cron: "*/5 14-21 * * 0"
 
@@ -33,9 +33,15 @@ jobs:
           import os
           import urllib.parse
           import urllib.request
+          import urllib.error
 
-          api_key = os.environ["YOUTUBE_API_KEY"]
+          api_key = os.environ.get("YOUTUBE_API_KEY", "").strip()
           handle = "riosdeaguavivaks1087"
+
+          if not api_key:
+              raise RuntimeError(
+                  "YOUTUBE_API_KEY no está configurada en GitHub Secrets."
+              )
 
           def get_json(base_url, params):
               url = base_url + "?" + urllib.parse.urlencode(params)
@@ -45,10 +51,47 @@ jobs:
                   headers={"User-Agent": "RAV-Live-Checker"}
               )
 
-              with urllib.request.urlopen(request, timeout=30) as response:
-                  return json.loads(response.read().decode("utf-8"))
+              try:
+                  with urllib.request.urlopen(
+                      request,
+                      timeout=30
+                  ) as response:
+                      return json.loads(
+                          response.read().decode("utf-8")
+                      )
 
-          # Obtener el Channel ID automáticamente
+              except urllib.error.HTTPError as e:
+                  body = e.read().decode(
+                      "utf-8",
+                      errors="replace"
+                  )
+
+                  print("====================================")
+                  print("YOUTUBE API HTTP ERROR")
+                  print("HTTP STATUS:", e.code)
+                  print(body)
+                  print("====================================")
+
+                  raise
+
+              except Exception as e:
+                  print("====================================")
+                  print("ERROR CONSULTANDO YOUTUBE")
+                  print(type(e).__name__)
+                  print(str(e))
+                  print("====================================")
+
+                  raise
+
+          print("====================================")
+          print("RAV YOUTUBE LIVE CHECK")
+          print("Canal:", handle)
+          print("====================================")
+
+          # -------------------------------------------------
+          # 1. OBTENER CHANNEL ID
+          # -------------------------------------------------
+
           channel_data = get_json(
               "https://www.googleapis.com/youtube/v3/channels",
               {
@@ -61,13 +104,21 @@ jobs:
           items = channel_data.get("items", [])
 
           if not items:
+              print("No se encontró el canal usando el handle.")
+              print(json.dumps(channel_data, indent=2))
+
               raise RuntimeError(
                   "No se pudo encontrar el canal de YouTube."
               )
 
           channel_id = items[0]["id"]
 
-          # Buscar únicamente transmisiones que estén LIVE ahora mismo
+          print("Channel ID:", channel_id)
+
+          # -------------------------------------------------
+          # 2. BUSCAR TRANSMISIÓN LIVE
+          # -------------------------------------------------
+
           live_data = get_json(
               "https://www.googleapis.com/youtube/v3/search",
               {
@@ -75,28 +126,46 @@ jobs:
                   "channelId": channel_id,
                   "eventType": "live",
                   "type": "video",
-                  "maxResults": 1,
+                  "maxResults": 5,
                   "key": api_key
               }
           )
 
-          youtube_live = len(live_data.get("items", [])) > 0
+          live_items = live_data.get("items", [])
 
-          # Conservar el estado de Facebook para agregarlo después
-          facebook_live = False
+          youtube_live = len(live_items) > 0
 
-          try:
-              with open("live-status.json", "r", encoding="utf-8") as f:
-                  old_status = json.load(f)
-                  facebook_live = bool(
-                      old_status.get("facebook", False)
+          print("------------------------------------")
+          print("YouTube LIVE:", youtube_live)
+          print("Videos LIVE encontrados:", len(live_items))
+
+          if youtube_live:
+              for item in live_items:
+                  video_id = item.get(
+                      "id",
+                      {}
+                  ).get(
+                      "videoId",
+                      ""
                   )
-          except Exception:
-              pass
+
+                  print(
+                      "LIVE VIDEO:",
+                      video_id
+                  )
+
+          print("------------------------------------")
+
+          # -------------------------------------------------
+          # 3. GUARDAR ESTADO
+          #
+          # YouTube controla la leyenda LIVE de RAV.
+          # Facebook NO controla este indicador.
+          # -------------------------------------------------
 
           new_status = {
               "youtube": youtube_live,
-              "facebook": facebook_live
+              "facebook": False
           }
 
           with open(
@@ -104,10 +173,21 @@ jobs:
               "w",
               encoding="utf-8"
           ) as f:
-              json.dump(new_status, f, indent=2)
+              json.dump(
+                  new_status,
+                  f,
+                  indent=2
+              )
 
-          print("YouTube LIVE:", youtube_live)
-          print("Channel ID:", channel_id)
+          print("Nuevo live-status.json:")
+          print(
+              json.dumps(
+                  new_status,
+                  indent=2
+              )
+          )
+
+          print("====================================")
 
           PY
 
