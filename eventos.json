@@ -1,0 +1,10 @@
+[
+  {
+    "tituloEs": "Ejemplo: Próximo Evento",
+    "tituloEn": "Example: Upcoming Event",
+    "fechaInicio": "2026-10-01",
+    "fechaFin": "2026-10-01",
+    "imagen": "evento1.jpg",
+    "active": false
+  }
+]
