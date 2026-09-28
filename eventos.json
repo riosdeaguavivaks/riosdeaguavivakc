@@ -1,10 +1,12 @@
 [
   {
-    "tituloEs": "Ejemplo: Próximo Evento",
-    "tituloEn": "Example: Upcoming Event",
-    "fechaInicio": "2026-10-01",
-    "fechaFin": "2026-10-01",
-    "imagen": "evento1.jpg",
-    "active": false
+    "tituloEs": "Conferencia de Liderazgo Celular",
+    "tituloEn": "",
+    "fechaInicio": "2026-09-27",
+    "fechaFin": "2026-10-31",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1fr3FKf-R1-Oz0lw6XfeWCiS5-ykltBGy&sz=w1600",
+    "flyerNombre": "evento5.jpg",
+    "flyerFileId": "1fr3FKf-R1-Oz0lw6XfeWCiS5-ykltBGy"
   }
 ]
