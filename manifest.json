@@ -1,0 +1,17 @@
+{
+  "name": "RIOS DE AGUA VIVA",
+  "short_name": "RIOS DE AGUA VIVA",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "icons": [
+    {
+      "src": "ravofficial.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
