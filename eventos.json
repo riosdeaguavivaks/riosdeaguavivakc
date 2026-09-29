@@ -1,0 +1,42 @@
+[
+  {
+    "tituloEs": "21 DIAS DE ORACIÓN Y AYUNO",
+    "tituloEn": "",
+    "fechaInicio": "2026-09-28",
+    "fechaFin": "2026-10-18",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=16wtmvgCEDLmyRUeDupfvsAeTGKbjeUXB&sz=w1600",
+    "flyerNombre": "evento3.jpg",
+    "flyerFileId": "16wtmvgCEDLmyRUeDupfvsAeTGKbjeUXB"
+  },
+  {
+    "tituloEs": "Celebremos la SANTA CENA",
+    "tituloEn": "",
+    "fechaInicio": "2026-10-18",
+    "fechaFin": "2026-10-18",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1jUpEt4K7h7vFgFT0KiJwoJOMqtbpAD27&sz=w1600",
+    "flyerNombre": "evento4.jpg",
+    "flyerFileId": "1jUpEt4K7h7vFgFT0KiJwoJOMqtbpAD27"
+  },
+  {
+    "tituloEs": "Conferencia de Liderazgo Celular",
+    "tituloEn": "",
+    "fechaInicio": "2026-10-31",
+    "fechaFin": "2026-10-31",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1QJnpAWxCN82SesaASCQaRICVAr1DoDYW&sz=w1600",
+    "flyerNombre": "evento5.jpg",
+    "flyerFileId": "1QJnpAWxCN82SesaASCQaRICVAr1DoDYW"
+  },
+  {
+    "tituloEs": "Festival de Otoño",
+    "tituloEn": "",
+    "fechaInicio": "2026-10-31",
+    "fechaFin": "2026-10-31",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1Yc5MLuSm2ElKFfr4qStRBjW0l9TvOciN&sz=w1600",
+    "flyerNombre": "evento6.jpg",
+    "flyerFileId": "1Yc5MLuSm2ElKFfr4qStRBjW0l9TvOciN"
+  }
+]
