@@ -1,0 +1,17 @@
+{
+  "name": "RAV - Célula 1",
+  "short_name": "RAV Célula 1",
+  "start_url": "./?activar-celula=1",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "icons": [
+    {
+      "src": "rav-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
