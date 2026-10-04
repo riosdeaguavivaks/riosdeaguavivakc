@@ -3,7 +3,6 @@ name: RAV YouTube LIVE
 on:
   workflow_dispatch:
 
-  # Revisión automática cada 10 minutos
   schedule:
     - cron: "*/10 * * * *"
 
@@ -35,7 +34,11 @@ jobs:
           import urllib.error
 
           API_KEY = os.environ.get("YOUTUBE_API_KEY", "").strip()
-          HANDLE = "riosdeaguavivaks1087"
+
+          # =================================================
+          # PRUEBA DIRECTA DEL LIVE ACTUAL DE RAV
+          # =================================================
+          VIDEO_ID = "FpZpt0kzR-c"
 
           if not API_KEY:
               raise RuntimeError(
@@ -62,7 +65,6 @@ jobs:
                       request,
                       timeout=30
                   ) as response:
-
                       return json.loads(
                           response.read().decode("utf-8")
                       )
@@ -73,190 +75,124 @@ jobs:
                       errors="replace"
                   )
 
+                  print("====================================")
                   print("YOUTUBE API ERROR")
-                  print("HTTP:", e.code)
+                  print("HTTP STATUS:", e.code)
                   print(body)
+                  print("====================================")
 
                   raise
 
-
           print("====================================")
-          print("RAV YOUTUBE LIVE CHECK")
-          print("Canal:", HANDLE)
+          print("RAV YOUTUBE LIVE - DIRECT TEST")
+          print("VIDEO ID:", VIDEO_ID)
           print("====================================")
 
-
-          # ================================================
-          # 1. OBTENER CHANNEL ID
-          # ================================================
-
-          channel_data = youtube_api(
-              "channels",
+          # =================================================
+          # CONSULTAR DIRECTAMENTE EL VIDEO LIVE
+          # =================================================
+          video_data = youtube_api(
+              "videos",
               {
-                  "part": "id",
-                  "forHandle": HANDLE
+                  "part": "snippet,liveStreamingDetails,status",
+                  "id": VIDEO_ID
               }
           )
 
-          channel_items = channel_data.get("items", [])
-
-          if not channel_items:
-              raise RuntimeError(
-                  "No se encontró el canal RAV."
-              )
-
-          channel_id = channel_items[0]["id"]
-
-          print("Channel ID:", channel_id)
-
-
-          # ================================================
-          # 2. BUSCAR VIDEOS RECIENTES DEL CANAL
-          #
-          # No dependemos solamente de eventType=live.
-          # ================================================
-
-          search_data = youtube_api(
-              "search",
-              {
-                  "part": "id,snippet",
-                  "channelId": channel_id,
-                  "type": "video",
-                  "order": "date",
-                  "maxResults": 10
-              }
-          )
-
-          video_ids = []
-
-          for item in search_data.get("items", []):
-              video_id = (
-                  item
-                  .get("id", {})
-                  .get("videoId", "")
-              )
-
-              if video_id:
-                  video_ids.append(video_id)
-
-
-          print(
-              "Videos recientes encontrados:",
-              len(video_ids)
-          )
-
-
-          # ================================================
-          # 3. CONSULTAR ESTADO REAL DE LOS VIDEOS
-          # ================================================
+          items = video_data.get("items", [])
 
           youtube_live = False
           youtube_video_id = ""
 
-          if video_ids:
+          if not items:
+              print("YouTube no devolvió información del video.")
 
-              videos_data = youtube_api(
-                  "videos",
-                  {
-                      "part": "snippet,liveStreamingDetails,status",
-                      "id": ",".join(video_ids)
-                  }
-              )
-
-              for video in videos_data.get("items", []):
-
-                  video_id = video.get("id", "")
-
-                  snippet = video.get(
-                      "snippet",
-                      {}
-                  )
-
-                  live_details = video.get(
-                      "liveStreamingDetails",
-                      {}
-                  )
-
-                  broadcast_content = snippet.get(
-                      "liveBroadcastContent",
-                      "none"
-                  )
-
-                  actual_start = live_details.get(
-                      "actualStartTime"
-                  )
-
-                  actual_end = live_details.get(
-                      "actualEndTime"
-                  )
-
-                  title = snippet.get(
-                      "title",
-                      ""
-                  )
-
-                  print("------------------------------------")
-                  print("VIDEO:", video_id)
-                  print("TITLE:", title)
-                  print(
-                      "liveBroadcastContent:",
-                      broadcast_content
-                  )
-                  print(
-                      "actualStartTime:",
-                      actual_start
-                  )
-                  print(
-                      "actualEndTime:",
-                      actual_end
-                  )
-
-                  # MÉTODO 1:
-                  # YouTube dice explícitamente LIVE
-                  is_live_by_status = (
-                      broadcast_content == "live"
-                  )
-
-                  # MÉTODO 2:
-                  # La transmisión comenzó
-                  # y todavía no terminó.
-                  is_live_by_details = (
-                      bool(actual_start)
-                      and not actual_end
-                  )
-
-                  if (
-                      is_live_by_status
-                      or is_live_by_details
-                  ):
-                      youtube_live = True
-                      youtube_video_id = video_id
-
-                      print("*** LIVE DETECTADO ***")
-                      break
-
-
-          # ================================================
-          # 4. RESULTADO
-          # ================================================
-
-          print("====================================")
-          print("YouTube LIVE:", youtube_live)
-
-          if youtube_live:
-              print(
-                  "LIVE VIDEO ID:",
-                  youtube_video_id
-              )
           else:
-              print(
-                  "No se detectó transmisión LIVE."
+              video = items[0]
+
+              snippet = video.get("snippet", {})
+              live_details = video.get(
+                  "liveStreamingDetails",
+                  {}
               )
 
+              title = snippet.get("title", "")
 
-          # ================================================
-          # 5. CREAR live-status.json
-          # ================================================
+              broadcast_content = snippet.get(
+                  "liveBroadcastContent",
+                  "none"
+              )
+
+              actual_start = live_details.get(
+                  "actualStartTime"
+              )
+
+              actual_end = live_details.get(
+                  "actualEndTime"
+              )
+
+              scheduled_start = live_details.get(
+                  "scheduledStartTime"
+              )
+
+              concurrent_viewers = live_details.get(
+                  "concurrentViewers"
+              )
+
+              print("TITLE:", title)
+              print(
+                  "liveBroadcastContent:",
+                  broadcast_content
+              )
+              print(
+                  "scheduledStartTime:",
+                  scheduled_start
+              )
+              print(
+                  "actualStartTime:",
+                  actual_start
+              )
+              print(
+                  "actualEndTime:",
+                  actual_end
+              )
+              print(
+                  "concurrentViewers:",
+                  concurrent_viewers
+              )
+
+              # =============================================
+              # DETECCIÓN LIVE
+              # =============================================
+
+              is_live_by_status = (
+                  broadcast_content == "live"
+              )
+
+              is_live_by_details = (
+                  bool(actual_start)
+                  and not actual_end
+              )
+
+              if (
+                  is_live_by_status
+                  or is_live_by_details
+              ):
+                  youtube_live = True
+                  youtube_video_id = VIDEO_ID
+
+                  print("====================================")
+                  print("*** LIVE DETECTADO ***")
+                  print("====================================")
+
+              else:
+                  print("====================================")
+                  print("VIDEO NO DETECTADO COMO LIVE")
+                  print("====================================")
+
+          # =================================================
+          # CREAR live-status.json
+          # =================================================
 
           new_status = {
               "youtube": youtube_live,
@@ -264,10 +200,9 @@ jobs:
           }
 
           if youtube_live and youtube_video_id:
-              new_status[
-                  "youtubeVideoId"
-              ] = youtube_video_id
-
+              new_status["youtubeVideoId"] = (
+                  youtube_video_id
+              )
 
           with open(
               "live-status.json",
@@ -283,8 +218,11 @@ jobs:
 
               f.write("\n")
 
-
-          print("------------------------------------")
+          print("")
+          print("====================================")
+          print("RESULTADO FINAL")
+          print("YouTube LIVE:", youtube_live)
+          print("")
           print("Nuevo live-status.json:")
           print(
               json.dumps(
@@ -295,7 +233,6 @@ jobs:
           print("====================================")
 
           PY
-
 
       - name: Save LIVE status
         run: |
