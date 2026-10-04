@@ -1,12 +1,13 @@
 name: RAV YouTube LIVE
 
 on:
+  # Permite ejecutar una prueba manual desde GitHub Actions
   workflow_dispatch:
 
-  # GitHub usa UTC.
-  # Domingo: revisar cada 5 minutos durante la ventana de servicios.
+  # Revisa automáticamente cada 10 minutos,
+  # todos los días, las 24 horas.
   schedule:
-    - cron: "*/5 14-21 * * 0"
+    - cron: "*/10 * * * *"
 
 permissions:
   contents: write
@@ -20,9 +21,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # =====================================================
+      # 1. DESCARGAR REPOSITORIO
+      # =====================================================
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # =====================================================
+      # 2. REVISAR SI RAV ESTÁ LIVE EN YOUTUBE
+      # =====================================================
       - name: Check YouTube LIVE
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -36,6 +43,8 @@ jobs:
           import urllib.error
 
           api_key = os.environ.get("YOUTUBE_API_KEY", "").strip()
+
+          # Canal oficial RAV
           handle = "riosdeaguavivaks1087"
 
           if not api_key:
@@ -43,6 +52,9 @@ jobs:
                   "YOUTUBE_API_KEY no está configurada en GitHub Secrets."
               )
 
+          # =================================================
+          # FUNCIÓN PARA CONSULTAR YOUTUBE API
+          # =================================================
           def get_json(base_url, params):
               url = base_url + "?" + urllib.parse.urlencode(params)
 
@@ -88,10 +100,9 @@ jobs:
           print("Canal:", handle)
           print("====================================")
 
-          # -------------------------------------------------
-          # 1. OBTENER CHANNEL ID
-          # -------------------------------------------------
-
+          # =================================================
+          # 3. OBTENER CHANNEL ID
+          # =================================================
           channel_data = get_json(
               "https://www.googleapis.com/youtube/v3/channels",
               {
@@ -115,10 +126,9 @@ jobs:
 
           print("Channel ID:", channel_id)
 
-          # -------------------------------------------------
-          # 2. BUSCAR TRANSMISIÓN LIVE
-          # -------------------------------------------------
-
+          # =================================================
+          # 4. BUSCAR TRANSMISIÓN ACTUALMENTE LIVE
+          # =================================================
           live_data = get_json(
               "https://www.googleapis.com/youtube/v3/search",
               {
@@ -134,39 +144,38 @@ jobs:
           live_items = live_data.get("items", [])
 
           youtube_live = len(live_items) > 0
+          youtube_video_id = ""
+
+          # Obtener ID del video que está LIVE
+          if youtube_live:
+              youtube_video_id = (
+                  live_items[0]
+                  .get("id", {})
+                  .get("videoId", "")
+              )
 
           print("------------------------------------")
           print("YouTube LIVE:", youtube_live)
           print("Videos LIVE encontrados:", len(live_items))
 
           if youtube_live:
-              for item in live_items:
-                  video_id = item.get(
-                      "id",
-                      {}
-                  ).get(
-                      "videoId",
-                      ""
-                  )
-
-                  print(
-                      "LIVE VIDEO:",
-                      video_id
-                  )
+              print("LIVE VIDEO ID:", youtube_video_id)
+          else:
+              print("No hay transmisión LIVE actualmente.")
 
           print("------------------------------------")
 
-          # -------------------------------------------------
-          # 3. GUARDAR ESTADO
-          #
-          # YouTube controla la leyenda LIVE de RAV.
-          # Facebook NO controla este indicador.
-          # -------------------------------------------------
-
+          # =================================================
+          # 5. CREAR live-status.json
+          # =================================================
           new_status = {
               "youtube": youtube_live,
               "facebook": False
           }
+
+          # Si existe un LIVE, guardar también el ID del video.
+          if youtube_live and youtube_video_id:
+              new_status["youtubeVideoId"] = youtube_video_id
 
           with open(
               "live-status.json",
@@ -178,6 +187,9 @@ jobs:
                   f,
                   indent=2
               )
+
+              # Nueva línea al final del archivo
+              f.write("\n")
 
           print("Nuevo live-status.json:")
           print(
@@ -191,6 +203,9 @@ jobs:
 
           PY
 
+      # =====================================================
+      # 6. GUARDAR EL NUEVO ESTADO EN GITHUB
+      # =====================================================
       - name: Save LIVE status
         run: |
           git config user.name "RAV Live Bot"
