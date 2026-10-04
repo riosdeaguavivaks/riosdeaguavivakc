@@ -1,4 +1,5 @@
 {
-  "youtube": false,
-  "facebook": false
+  "youtube": true,
+  "facebook": false,
+  "youtubeVideoId": "FpZpt0kzR-c"
 }
