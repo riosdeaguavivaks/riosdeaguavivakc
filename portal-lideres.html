@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061a4b">
+<title>Portal de Líderes | Ríos de Agua Viva</title>
+<link rel="icon" type="image/png" href="rav-icon.png">
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(145deg,#02152f,#075d7c);color:#17323e;min-height:100vh;padding:28px 16px}
+.wrap{max-width:900px;margin:auto}.card{background:#fff;border-radius:24px;padding:28px;box-shadow:0 22px 60px rgba(0,0,0,.28)}
+.logo{display:block;width:min(230px,65vw);margin:0 auto 12px}.top{text-align:center}.top h1{margin:8px 0;color:#063f92}.top p{color:#607784;line-height:1.55}
+.lang{display:flex;justify-content:center;gap:8px;margin:18px 0 24px}.lang button{border:1px solid #c9d9e4;background:#f5f9fc;border-radius:999px;padding:8px 16px;font-weight:900;cursor:pointer}.lang button.active{background:#063f92;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.cell{display:block;text-decoration:none;text-align:center;background:#f3f8fb;border:1px solid #d7e5ec;border-radius:15px;padding:18px 10px;color:#063f92;font-weight:900;transition:.18s}.cell:hover{transform:translateY(-2px);background:#eaf4ff}.cell small{display:block;margin-top:5px;color:#6b7f8b;font-weight:700}
+.note{margin-top:22px;padding:14px;border-radius:12px;background:#fff6d8;color:#654d00;font-size:.9rem;line-height:1.5;text-align:center}
+.back{display:block;width:max-content;margin:22px auto 0;color:#fff;font-weight:900;text-decoration:none}
+@media(max-width:650px){.grid{grid-template-columns:1fr 1fr}.card{padding:22px 15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="top">
+      <img src="ravofficial.png" class="logo" alt="Ríos de Agua Viva">
+      <h1 id="title">🔐 Portal de Líderes</h1>
+      <p id="intro">Selecciona tu Célula. La entrada al portal no requiere contraseña; la contraseña se solicita al abrir el área privada de tu Célula.</p>
+    </div>
+    <div class="lang">
+      <button id="esBtn" onclick="setLang('es')">ESPAÑOL</button>
+      <button id="enBtn" onclick="setLang('en')">ENGLISH</button>
+    </div>
+    <div class="grid" id="cells"></div>
+    <div class="note" id="note">Por ahora entra con la contraseña temporal que ya tienes asignada. La opción para crear tu contraseña personal se habilitará dentro de tu perfil.</div>
+  </div>
+  <a class="back" id="back" href="index.html">← Regresar a Ríos de Agua Viva</a>
+</div>
+<script>
+let lang=(localStorage.getItem('rav-lang')||localStorage.getItem('ravLang')||navigator.language||'es').toLowerCase().startsWith('en')?'en':'es';
+function render(){
+  document.documentElement.lang=lang;
+  document.getElementById('title').textContent=lang==='en'?'🔐 Leader Portal':'🔐 Portal de Líderes';
+  document.getElementById('intro').textContent=lang==='en'
+    ?'Select your Life Group. No password is required to enter this portal; your password is requested when you open your private Life Group area.'
+    :'Selecciona tu Célula. La entrada al portal no requiere contraseña; la contraseña se solicita al abrir el área privada de tu Célula.';
+  document.getElementById('note').textContent=lang==='en'
+    ?'For now, sign in with the temporary password already assigned to you. The option to create your personal password will be enabled inside your profile.'
+    :'Por ahora entra con la contraseña temporal que ya tienes asignada. La opción para crear tu contraseña personal se habilitará dentro de tu perfil.';
+  document.getElementById('back').textContent=lang==='en'?'← Back to Ríos de Agua Viva':'← Regresar a Ríos de Agua Viva';
+  document.getElementById('esBtn').classList.toggle('active',lang==='es');
+  document.getElementById('enBtn').classList.toggle('active',lang==='en');
+  document.getElementById('cells').innerHTML=Array.from({length:9},(_,i)=>{
+    const n=i+1, label=lang==='en'?'Life Group':'Célula', sub=lang==='en'?'OPEN PRIVATE AREA':'ABRIR ÁREA PRIVADA';
+    return `<a class="cell" href="index.html?area-lider=${n}">${label} #${n}<small>${sub}</small></a>`;
+  }).join('');
+}
+function setLang(v){lang=v;localStorage.setItem('rav-lang',v);localStorage.setItem('ravLang',v);render()}
+render();
+</script>
+</body>
+</html>
