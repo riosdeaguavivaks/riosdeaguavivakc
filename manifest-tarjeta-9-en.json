@@ -1,0 +1,19 @@
+{
+  "id": "/?celula=9",
+  "name": "RAV Life Group 9",
+  "short_name": "Life Group 9",
+  "start_url": "/?celula=9",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/rav-icon.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

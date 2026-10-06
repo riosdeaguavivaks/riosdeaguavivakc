@@ -1,0 +1,19 @@
+{
+  "id": "/?celula=1",
+  "name": "RAV Life Group 1",
+  "short_name": "Life Group 1",
+  "start_url": "/?celula=1",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/rav-icon.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

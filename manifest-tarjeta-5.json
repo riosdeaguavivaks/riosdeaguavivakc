@@ -1,0 +1,19 @@
+{
+  "id": "/?celula=5",
+  "name": "RAV Célula 5",
+  "short_name": "Célula 5",
+  "start_url": "/?celula=5",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/rav-icon.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
