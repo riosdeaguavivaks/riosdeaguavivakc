@@ -1,0 +1,23 @@
+{
+  "name": "RIOS DE AGUA VIVA",
+  "short_name": "RAV",
+  "start_url": "/?activar-eventos=1",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#061a4b",
+  "theme_color": "#061a4b",
+  "icons": [
+    {
+      "src": "/rav-icon.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/rav-icon.png?v=4",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
