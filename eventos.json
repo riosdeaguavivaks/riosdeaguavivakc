@@ -1,0 +1,80 @@
+[
+  {
+    "tituloEs": "Celebremos la SANTA CENA",
+    "tituloEn": "Celebrate The Lord's Supper",
+    "fechaInicio": "2026-10-18",
+    "fechaFin": "2026-10-18",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1jUpEt4K7h7vFgFT0KiJwoJOMqtbpAD27&sz=w1600",
+    "flyerNombre": "evento4.jpg",
+    "flyerFileId": "1jUpEt4K7h7vFgFT0KiJwoJOMqtbpAD27",
+    "imagenEn": "https://drive.google.com/thumbnail?id=1R5dSdDoaj5I4myNnDgbJQVp2SggBSKmh&sz=w1600",
+    "flyerNombreEn": "evento4ing-en.jpg",
+    "flyerFileIdEn": "1R5dSdDoaj5I4myNnDgbJQVp2SggBSKmh"
+  },
+  {
+    "tituloEs": "Conferencia de Liderazgo Celular",
+    "tituloEn": "leadership conference",
+    "fechaInicio": "2026-10-31",
+    "fechaFin": "2026-10-31",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1zdLjEtqPNcWofLxUiaJqGj_3GV5NxFH2&sz=w1600",
+    "flyerNombre": "conferencia-celular.jpg",
+    "flyerFileId": "1zdLjEtqPNcWofLxUiaJqGj_3GV5NxFH2",
+    "imagenEn": "https://drive.google.com/thumbnail?id=1Jg--o_DjWxkbrdM8LPHRsLnk6hhBzF_y&sz=w1600",
+    "flyerNombreEn": "English-cell-group-leadership-conference-flyer-en.png",
+    "flyerFileIdEn": "1Jg--o_DjWxkbrdM8LPHRsLnk6hhBzF_y"
+  },
+  {
+    "tituloEs": "Festival de Otoño",
+    "tituloEn": "Fall Festival",
+    "fechaInicio": "2026-10-31",
+    "fechaFin": "2026-10-31",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1FdVKZZEbAe4xifSKWsojjxKjyTXfxHMK&sz=w1600",
+    "flyerNombre": "festival-de-oto-o.jpg",
+    "flyerFileId": "1FdVKZZEbAe4xifSKWsojjxKjyTXfxHMK",
+    "imagenEn": "https://drive.google.com/thumbnail?id=1_BciOhYp61_rAzLUgLDeQOEt-hZuGP1S&sz=w1600",
+    "flyerNombreEn": "Fall-Festival-Flyer-en.png",
+    "flyerFileIdEn": "1_BciOhYp61_rAzLUgLDeQOEt-hZuGP1S"
+  },
+  {
+    "tituloEs": "21 Dias de Oración y Ayuno",
+    "tituloEn": "21 Days of Prayer and Fasting",
+    "fechaInicio": "2026-09-28",
+    "fechaFin": "2026-10-18",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1loJ_IrpbLyehODg0u3EB3FQsnJT69SOf&sz=w1600",
+    "flyerNombre": "evento3.jpg",
+    "flyerFileId": "1loJ_IrpbLyehODg0u3EB3FQsnJT69SOf",
+    "imagenEn": "https://drive.google.com/thumbnail?id=14dD2Pw_2_YoNbw_L_zg183hF1FUK1j96&sz=w1600",
+    "flyerNombreEn": "evento3ing-en.jpeg",
+    "flyerFileIdEn": "14dD2Pw_2_YoNbw_L_zg183hF1FUK1j96"
+  },
+  {
+    "tituloEs": "fiesta de la cosecha",
+    "tituloEn": "harvest festival",
+    "fechaInicio": "2026-10-25",
+    "fechaFin": "2026-10-26",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1wFLgx9QMegf9DtN6IyG1r2WpiH6h8teb&sz=w1600",
+    "flyerNombre": "Fiesta_de_la_Cosecha_Bautismos.jpg",
+    "flyerFileId": "1wFLgx9QMegf9DtN6IyG1r2WpiH6h8teb",
+    "imagenEn": "https://drive.google.com/thumbnail?id=12tctXQf9k0bZaePnY17MDi7YRaRCrEhT&sz=w1600",
+    "flyerNombreEn": "lifegroup-celebration-en.jpeg",
+    "flyerFileIdEn": "12tctXQf9k0bZaePnY17MDi7YRaRCrEhT"
+  },
+  {
+    "tituloEs": "AVIVA EL FUEGO 2026",
+    "tituloEn": "REKINDLE THE FIRE  2026",
+    "fechaInicio": "2026-10-09",
+    "fechaFin": "2026-11-15",
+    "active": true,
+    "imagen": "https://drive.google.com/thumbnail?id=1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv&sz=w1600",
+    "flyerNombre": "AVIVA-EL-FUEGO-2026.jpeg",
+    "flyerFileId": "1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv",
+    "imagenEn": "https://drive.google.com/thumbnail?id=1IkfQ8WxelhOdpHNCBUemz1Xy5wtZstuE&sz=w1600",
+    "flyerNombreEn": "REKINDLE-THE-FIRE-en.jpeg",
+    "flyerFileIdEn": "1IkfQ8WxelhOdpHNCBUemz1Xy5wtZstuE"
+  }
+]
