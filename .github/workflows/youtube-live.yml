@@ -3,9 +3,11 @@ name: RAV YouTube LIVE
 on:
   workflow_dispatch:
 
-  # Revisión automática cada 10 minutos
+  # Solo domingos, cada 10 minutos. GitHub Actions utiliza UTC.
+  # 14:00-23:50 UTC cubre los servicios en Kansas City
+  # tanto con horario de verano como con horario de invierno.
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/10 14-23 * * 0"
 
 permissions:
   contents: write
