@@ -5901,6 +5901,11 @@ function renderEventRegistration(){
         <label><input type="radio" name="metodoPago" value="Cash" required onchange="updateRegistrationSummary()"> 💵 Cash</label>
         <label><input type="radio" name="metodoPago" value="Venmo" required onchange="updateRegistrationSummary()"> 💙 Venmo</label>
       </div>
+      <div id="registrationCash" class="reg-venmo" role="note" aria-live="polite">
+        <strong>${es?'💵 Pago en efectivo':'💵 Cash Payment'}</strong>
+        <p style="margin-top:9px;line-height:1.65">${es?'Puede realizar su pago directamente con la persona encargada del evento. También puede solicitar un sobre a uno de nuestros ujieres. Escriba claramente en el sobre su nombre completo, el nombre del evento y el concepto del pago; coloque el efectivo dentro y deposite el sobre en uno de los buzones de nuestra iglesia.':'You may pay directly to the person in charge of the event. Alternatively, request an envelope from one of our ushers. Clearly write your full name, the event name, and the purpose of your payment on the envelope; place your cash inside and deposit the envelope in one of our church’s designated offering boxes.'}</p>
+        <p style="margin-top:9px;line-height:1.6;font-weight:800">${es?'Importante: Su registración permanecerá pendiente de pago hasta que recibamos y confirmemos el efectivo.':'Important: Your registration will remain pending payment until we receive and confirm your cash payment.'}</p>
+      </div>
       <div id="registrationVenmo" class="reg-venmo">
         <strong>${es?'Pago por Venmo':'Venmo payment'}</strong>
         <div style="margin-top:7px">${es?'En los detalles de su pago escriba exactamente:':'In your payment details, write exactly:'}</div>
@@ -5941,6 +5946,8 @@ function updateRegistrationSummary(){
     `${es?'Personas registradas':'Registered people'}: <strong>${count}</strong><br>`+
     `${es?'Total':'Total'}: <strong>$${total.toFixed(2)}</strong>`+
     (payment?`<br>${es?'Método de pago':'Payment method'}: <strong>${payment}</strong>`:'');
+  const cash=document.getElementById('registrationCash');
+  cash.classList.toggle('show',payment==='Cash');
   const venmo=document.getElementById('registrationVenmo');
   venmo.classList.toggle('show',payment==='Venmo');
   document.getElementById('registrationVenmoDetail').textContent=
