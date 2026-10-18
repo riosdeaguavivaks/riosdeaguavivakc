@@ -3,11 +3,11 @@ name: RAV YouTube LIVE
 on:
   workflow_dispatch:
 
-  # Solo domingos, cada 10 minutos. GitHub Actions utiliza UTC.
-  # 14:00-23:50 UTC cubre los servicios en Kansas City
-  # tanto con horario de verano como con horario de invierno.
+  # GitHub Actions usa UTC. Este rango cubre las dos ventanas
+  # dominicales tanto en horario de verano como de invierno.
+  # El paso "Check Kansas City time" filtra las horas exactas.
   schedule:
-    - cron: "*/10 14-23 * * 0"
+    - cron: "*/5 14-18 * * 0"
 
 permissions:
   contents: write
@@ -24,7 +24,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check Kansas City time
+        id: time_window
+        shell: bash
+        run: |
+          python3 <<'PY'
+          import os
+          from datetime import datetime, time
+          from zoneinfo import ZoneInfo
+
+          local_now = datetime.now(ZoneInfo("America/Chicago"))
+          current = local_now.time()
+          is_sunday = local_now.weekday() == 6
+          in_first = time(9, 50) <= current <= time(10, 30, 59)
+          in_second = time(11, 50) <= current <= time(12, 30, 59)
+          is_manual = os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch"
+          should_run = is_manual or (is_sunday and (in_first or in_second))
+          print("Kansas City:", local_now.isoformat())
+          print("YouTube check enabled:", should_run)
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              output.write(f"run={'true' if should_run else 'false'}\n")
+          PY
+
       - name: Detect RAV YouTube LIVE
+        if: steps.time_window.outputs.run == 'true'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
@@ -71,393 +94,3 @@ jobs:
                   ) as response:
 
                       return json.loads(
-                          response.read().decode("utf-8")
-                      )
-
-              except urllib.error.HTTPError as e:
-
-                  body = e.read().decode(
-                      "utf-8",
-                      errors="replace"
-                  )
-
-                  print("====================================")
-                  print("YOUTUBE API ERROR")
-                  print("HTTP STATUS:", e.code)
-                  print(body)
-                  print("====================================")
-
-                  raise
-
-
-          print("====================================")
-          print("RAV AUTOMATIC YOUTUBE LIVE CHECK")
-          print("Canal:", HANDLE)
-          print("====================================")
-
-
-          # =================================================
-          # 1. OBTENER EL CHANNEL ID
-          # =================================================
-
-          channel_data = youtube_api(
-              "channels",
-              {
-                  "part": "id,contentDetails",
-                  "forHandle": HANDLE
-              }
-          )
-
-          channel_items = channel_data.get(
-              "items",
-              []
-          )
-
-          if not channel_items:
-
-              raise RuntimeError(
-                  "No se encontró el canal RAV."
-              )
-
-          channel = channel_items[0]
-
-          channel_id = channel["id"]
-
-          uploads_playlist = (
-              channel
-              .get("contentDetails", {})
-              .get("relatedPlaylists", {})
-              .get("uploads", "")
-          )
-
-          print("Channel ID:", channel_id)
-          print(
-              "Uploads playlist:",
-              uploads_playlist
-          )
-
-
-          # =================================================
-          # 2. CREAR LISTA DE CANDIDATOS
-          # =================================================
-          #
-          # Usamos DOS métodos:
-          #
-          # A) búsqueda específica de LIVE
-          # B) playlist de uploads del canal
-          #
-          # Así no dependemos de una sola búsqueda.
-          # =================================================
-
-          candidate_ids = []
-
-
-          # -------------------------------------------------
-          # MÉTODO A:
-          # BUSCAR LIVE DIRECTAMENTE
-          # -------------------------------------------------
-
-          try:
-
-              live_search = youtube_api(
-                  "search",
-                  {
-                      "part": "id",
-                      "channelId": channel_id,
-                      "eventType": "live",
-                      "type": "video",
-                      "maxResults": 10
-                  }
-              )
-
-              for item in live_search.get(
-                  "items",
-                  []
-              ):
-
-                  video_id = (
-                      item
-                      .get("id", {})
-                      .get("videoId", "")
-                  )
-
-                  if (
-                      video_id
-                      and video_id not in candidate_ids
-                  ):
-                      candidate_ids.append(
-                          video_id
-                      )
-
-          except Exception as e:
-
-              print(
-                  "Búsqueda LIVE no disponible:",
-                  str(e)
-              )
-
-
-          print(
-              "Candidatos después de búsqueda LIVE:",
-              len(candidate_ids)
-          )
-
-
-          # -------------------------------------------------
-          # MÉTODO B:
-          # REVISAR ÚLTIMOS VIDEOS DE LA PLAYLIST UPLOADS
-          # -------------------------------------------------
-
-          if uploads_playlist:
-
-              uploads_data = youtube_api(
-                  "playlistItems",
-                  {
-                      "part": "contentDetails",
-                      "playlistId": uploads_playlist,
-                      "maxResults": 25
-                  }
-              )
-
-              for item in uploads_data.get(
-                  "items",
-                  []
-              ):
-
-                  video_id = (
-                      item
-                      .get("contentDetails", {})
-                      .get("videoId", "")
-                  )
-
-                  if (
-                      video_id
-                      and video_id not in candidate_ids
-                  ):
-                      candidate_ids.append(
-                          video_id
-                      )
-
-
-          print(
-              "Total de videos candidatos:",
-              len(candidate_ids)
-          )
-
-
-          # =================================================
-          # 3. CONSULTAR EL ESTADO REAL DE LOS VIDEOS
-          # =================================================
-
-          youtube_live = False
-          youtube_video_id = ""
-
-
-          if candidate_ids:
-
-              # videos.list permite varios IDs en una consulta
-              videos_data = youtube_api(
-                  "videos",
-                  {
-                      "part": (
-                          "snippet,"
-                          "liveStreamingDetails,"
-                          "status"
-                      ),
-                      "id": ",".join(
-                          candidate_ids[:50]
-                      )
-                  }
-              )
-
-              for video in videos_data.get(
-                  "items",
-                  []
-              ):
-
-                  video_id = video.get(
-                      "id",
-                      ""
-                  )
-
-                  snippet = video.get(
-                      "snippet",
-                      {}
-                  )
-
-                  details = video.get(
-                      "liveStreamingDetails",
-                      {}
-                  )
-
-                  title = snippet.get(
-                      "title",
-                      ""
-                  )
-
-                  live_content = snippet.get(
-                      "liveBroadcastContent",
-                      "none"
-                  )
-
-                  actual_start = details.get(
-                      "actualStartTime"
-                  )
-
-                  actual_end = details.get(
-                      "actualEndTime"
-                  )
-
-                  concurrent_viewers = details.get(
-                      "concurrentViewers"
-                  )
-
-
-                  print("------------------------------------")
-                  print("VIDEO:", video_id)
-                  print("TITLE:", title)
-                  print(
-                      "liveBroadcastContent:",
-                      live_content
-                  )
-                  print(
-                      "actualStartTime:",
-                      actual_start
-                  )
-                  print(
-                      "actualEndTime:",
-                      actual_end
-                  )
-                  print(
-                      "concurrentViewers:",
-                      concurrent_viewers
-                  )
-
-
-                  # =========================================
-                  # DETECCIÓN REAL DE LIVE
-                  # =========================================
-
-                  live_by_status = (
-                      live_content == "live"
-                  )
-
-                  live_by_times = (
-                      bool(actual_start)
-                      and not actual_end
-                  )
-
-
-                  if (
-                      live_by_status
-                      or live_by_times
-                  ):
-
-                      youtube_live = True
-                      youtube_video_id = video_id
-
-                      print("")
-                      print(
-                          "*** LIVE RAV DETECTADO ***"
-                      )
-                      print(
-                          "VIDEO ID:",
-                          youtube_video_id
-                      )
-                      print("")
-
-                      break
-
-
-          # =================================================
-          # 4. RESULTADO
-          # =================================================
-
-          print("====================================")
-          print(
-              "YouTube LIVE:",
-              youtube_live
-          )
-
-          if youtube_live:
-
-              print(
-                  "LIVE VIDEO ID:",
-                  youtube_video_id
-              )
-
-          else:
-
-              print(
-                  "No hay transmisión LIVE."
-              )
-
-          print("====================================")
-
-
-          # =================================================
-          # 5. CREAR live-status.json
-          # =================================================
-
-          new_status = {
-              "youtube": youtube_live,
-              "facebook": False
-          }
-
-
-          if (
-              youtube_live
-              and youtube_video_id
-          ):
-
-              new_status[
-                  "youtubeVideoId"
-              ] = youtube_video_id
-
-
-          with open(
-              "live-status.json",
-              "w",
-              encoding="utf-8"
-          ) as f:
-
-              json.dump(
-                  new_status,
-                  f,
-                  indent=2
-              )
-
-              f.write("\n")
-
-
-          print("")
-          print("Nuevo live-status.json:")
-
-          print(
-              json.dumps(
-                  new_status,
-                  indent=2
-              )
-          )
-
-          print("====================================")
-
-          PY
-
-
-      - name: Save LIVE status
-        run: |
-          git config user.name "RAV Live Bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add live-status.json
-
-          if git diff --cached --quiet; then
-            echo "LIVE status has not changed."
-            exit 0
-          fi
-
-          git commit -m "Update YouTube LIVE status"
-
-          git pull --rebase origin main
-          git push origin main
