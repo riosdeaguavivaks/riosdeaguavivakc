@@ -1,39 +1,36 @@
+#!/usr/bin/env python3
+"""Read Facebook professional-profile videos using a private user token."""
+import json, os, urllib.parse, urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
 
-name: RAV Facebook LIVE detector
+token=os.environ.get("FB_TOKEN","").strip()
+if not token:
+    raise SystemExit("Missing FB_TOKEN secret; leaving existing status untouched")
+params=urllib.parse.urlencode({
+    "type":"uploaded",
+    "fields":"id,permalink_url,live_status,title,created_time",
+    "limit":"10",
+    "access_token":token,
+})
+url="https://graph.facebook.com/v26.0/me/videos?"+params
+req=urllib.request.Request(url,headers={"User-Agent":"RAV-Facebook-Live/1.0"})
+try:
+    with urllib.request.urlopen(req,timeout=25) as resp:
+        payload=json.load(resp)
+    if not isinstance(payload.get("data"),list):
+        raise ValueError("Unexpected Facebook response")
+except Exception as exc:
+    # Avoid printing URLs or access tokens in logs.
+    raise SystemExit("Facebook API request failed; keeping last known status") from None
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/5 * * * *"
-
-permissions:
-  contents: write
-
-concurrency:
-  group: rav-facebook-live
-  cancel-in-progress: false
-
-jobs:
-  detect:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Detect Facebook LIVE
-        env:
-          FB_TOKEN: ${{ secrets.FB_TOKEN }}
-        run: python3 scripts/detect_facebook_live.py
-
-      - name: Publish Facebook status
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add facebook-live.json
-
-          if ! git diff --cached --quiet; then
-            git commit -m "Update Facebook LIVE status"
-            git pull --rebase
-            git push
-          fi
+videos=payload["data"]
+live=next((v for v in videos if v.get("live_status")=="LIVE" and str(v.get("id","")).isdigit()),None)
+status={
+    "live":bool(live),
+    "videoId":str(live["id"]) if live else "",
+    "title":str(live.get("title","")) if live else "",
+    "checkedAt":datetime.now(timezone.utc).isoformat()
+}
+Path("facebook-live.json").write_text(json.dumps(status,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+print("Facebook LIVE:", "active" if live else "inactive")
