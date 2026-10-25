@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Read Facebook professional-profile videos using a private user token."""
-import json, os, urllib.parse, urllib.request
+import json, os, urllib.parse, urllib.request, urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
