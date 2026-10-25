@@ -1,20 +1,27 @@
 
 #!/usr/bin/env python3
-"""Detect RAV Facebook LIVE using a private user token."""
+"""RAV Facebook LIVE detector."""
 
 import json
 import os
 import urllib.error
 import urllib.parse
 import urllib.request
+
 from datetime import datetime, timezone
 from pathlib import Path
 
+
+# Facebook access token stored securely in GitHub
 token = os.environ.get("FB_TOKEN", "").strip()
 
 if not token:
-    raise SystemExit("Missing FB_TOKEN secret; leaving existing status untouched")
+    raise SystemExit(
+        "Missing FB_TOKEN secret; leaving existing status untouched"
+    )
 
+
+# Facebook Graph API request
 params = urllib.parse.urlencode({
     "type": "uploaded",
     "fields": "id,permalink_url,live_status,title,created_time",
@@ -24,54 +31,102 @@ params = urllib.parse.urlencode({
 
 url = "https://graph.facebook.com/v26.0/me/videos?" + params
 
-req = urllib.request.Request(
+request = urllib.request.Request(
     url,
     headers={"User-Agent": "RAV-Facebook-Live/1.0"}
 )
 
+
+# Connect to Facebook
 try:
-    with urllib.request.urlopen(req, timeout=25) as resp:
-        payload = json.load(resp)
+    with urllib.request.urlopen(request, timeout=25) as response:
+        payload = json.load(response)
 
     if not isinstance(payload.get("data"), list):
         raise ValueError("Unexpected Facebook response")
 
+
+# Facebook returned an HTTP error
 except urllib.error.HTTPError as exc:
+    try:
+        error_data = json.loads(exc.read().decode("utf-8"))
+        fb_error = error_data.get("error", {})
+
+        error_code = fb_error.get("code", "unknown")
+        error_subcode = fb_error.get("error_subcode", "none")
+        error_type = fb_error.get("type", "unknown")
+
+    except (ValueError, UnicodeError, AttributeError):
+        error_code = "unknown"
+        error_subcode = "none"
+        error_type = "unknown"
+
     raise SystemExit(
-        f"Facebook API request failed: HTTP {exc.code}; keeping last known status"
+        f"Facebook API request failed: HTTP {exc.code}; "
+        f"error code: {error_code}; "
+        f"subcode: {error_subcode}; "
+        f"type: {error_type}; "
+        "keeping last known status"
     ) from None
 
+
+# Network error
 except urllib.error.URLError as exc:
     raise SystemExit(
-        f"Facebook API network error: {type(exc.reason).__name__}; keeping last known status"
+        "Facebook API network error: "
+        f"{type(exc.reason).__name__}; "
+        "keeping last known status"
     ) from None
 
+
+# Other unexpected errors
 except Exception as exc:
     raise SystemExit(
-        f"Facebook API request failed: {type(exc).__name__}; keeping last known status"
+        "Facebook API request failed: "
+        f"{type(exc).__name__}; "
+        "keeping last known status"
     ) from None
 
+
+# Search for an active Facebook LIVE video
 videos = payload["data"]
 
-live = next(
+live_video = next(
     (
-        v for v in videos
-        if v.get("live_status") == "LIVE"
-        and str(v.get("id", "")).isdigit()
+        video
+        for video in videos
+        if video.get("live_status") == "LIVE"
+        and str(video.get("id", "")).isdigit()
     ),
     None
 )
 
+
+# Prepare LIVE status
 status = {
-    "live": bool(live),
-    "videoId": str(live["id"]) if live else "",
-    "title": str(live.get("title", "")) if live else "",
+    "live": bool(live_video),
+    "videoId": str(live_video["id"]) if live_video else "",
+    "title": str(live_video.get("title", "")) if live_video else "",
     "checkedAt": datetime.now(timezone.utc).isoformat()
 }
 
+
+# Save the result
 Path("facebook-live.json").write_text(
-    json.dumps(status, ensure_ascii=False, indent=2) + "\n",
+    json.dumps(
+        status,
+        ensure_ascii=False,
+        indent=2
+    ) + "\n",
     encoding="utf-8"
 )
 
-print("Facebook LIVE:", "active" if live else "inactive")
+
+# Safe diagnostic output
+print(
+    "Facebook LIVE:",
+    "active" if live_video else "inactive"
+)
+
+if live_video:
+    print("Facebook video ID:", live_video["id"])
