@@ -21,9 +21,17 @@ try:
     if not isinstance(payload.get("data"),list):
         raise ValueError("Unexpected Facebook response")
 except Exception as exc:
-    # Avoid printing URLs or access tokens in logs.
-    raise SystemExit("Facebook API request failed; keeping last known status") from None
+   except Exception as exc:
+    if isinstance(exc, urllib.error.HTTPError):
+        detail = f"HTTP {exc.code}"
+    elif isinstance(exc, urllib.error.URLError):
+        detail = f"Network error ({type(exc.reason).__name__})"
+    else:
+        detail = type(exc).__name__
 
+    raise SystemExit(
+        f"Facebook API request failed: {detail}; keeping last known status"
+    ) from None
 videos=payload["data"]
 live=next((v for v in videos if v.get("live_status")=="LIVE" and str(v.get("id","")).isdigit()),None)
 status={
