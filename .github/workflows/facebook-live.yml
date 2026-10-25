@@ -4,8 +4,10 @@ name: RAV Facebook LIVE detector
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
-
+  - cron: "50,55 14,16 * * 0"
+  - cron: "0,5 15,17 * * 0"
+  - cron: "40 16 * * 0"
+  - cron: "5 20 * * 0"
 permissions:
   contents: write
 
