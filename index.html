@@ -3958,6 +3958,26 @@ html:not(.rav-private-push) .onesignal-popover-dialog{
 .desktop-live-card .rav-live-audio-toggle svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .desktop-live-card .rav-live-audio-toggle:focus-visible{outline:3px solid #fff;outline-offset:2px}
 </style>
+
+<style id="rav-location-weather-header">
+/* Solo cambia la barra superior; no toca el reproductor LIVE. */
+.navbar{height:78px!important}
+.rav-header-center{flex:1;min-width:0;margin:0 18px;display:flex;flex-direction:column;gap:3px;justify-content:center}
+.rav-header-center .nav-motto{display:block!important;flex:none;width:100%;margin:0!important;min-width:0;font-size:.72rem}
+.rav-local-strip{display:flex;align-items:center;justify-content:center;gap:clamp(7px,1.5vw,22px);white-space:nowrap;color:#d9edff;font-size:clamp(.58rem,.76vw,.8rem);font-weight:700;min-width:0}
+.rav-local-strip span{overflow:hidden;text-overflow:ellipsis}
+#ravLocalPlace{max-width:28%}
+#ravLocateButton{border:1px solid #6589ad;background:#143657;color:white;border-radius:7px;padding:2px 7px;cursor:pointer;font-size:1rem}
+#ravLocateButton:hover{background:#225481}
+@media(max-width:1100px){.rav-local-strip{font-size:.55rem;gap:5px}.rav-header-center{margin:0 9px}.rav-local-strip{gap:7px}.rav-header-center .nav-motto{font-size:.58rem}}
+@media(max-width:760px){
+.navbar{height:86px!important;flex-wrap:wrap;align-content:center;gap:4px}
+.rav-header-center{order:3;flex-basis:100%;margin:0;width:100%;gap:3px}
+.rav-header-center .nav-motto{display:none!important}
+.rav-local-strip{font-size:.55rem;gap:5px;justify-content:space-around;flex-wrap:wrap}
+#ravLocalPlace{max-width:27%}
+}
+</style>
 </head>
 
 <body>
@@ -3992,12 +4012,24 @@ html:not(.rav-private-push) .onesignal-popover-dialog{
   </a>
 
 
+  <div class="rav-header-center">
   <div class="nav-motto" aria-label="Misión de Ríos de Agua Viva">
     <span class="nav-motto-track">
       EXISTIMOS PARA ADORAR A DIOS POR LO QUE ÉL ES, CRECIENDO UNIDOS A TRAVÉS DE SU PALABRA, PARA QUE, CONVIVIENDO JUNTOS EN SANTIDAD, ATRAIGAMOS A LOS PERDIDOS A CRISTO Y ASÍ EQUIPARLES PARA EL MINISTERIO DE VIDA.
     </span>
   </div>
 
+
+  <div class="rav-local-strip" id="ravLocalStrip" aria-live="off">
+    <span id="ravLocalPlace">📍 Kansas City, KS</span>
+    <span id="ravLocalWeather">☁️ --°F</span>
+    <span id="ravRainChance">🌧️ --%</span>
+    <span id="ravSnowChance">❄️ --%</span>
+    <span id="ravLocalDate"></span>
+    <span id="ravLocalTime"></span>
+    <button type="button" id="ravLocateButton" title="Usar mi ubicación" aria-label="Usar mi ubicación">⌖</button>
+  </div>
+  </div>
 
   <div class="nav-links">
 
@@ -5259,9 +5291,8 @@ async function refreshLiveStatus(){
   const yt=results[1].status==='fulfilled'?results[1].value:{};
   const fbId=String(fb.videoId||'').trim();
   const validFbId=/^[0-9]{5,30}$/.test(fbId)?fbId:'';
-  // Facebook is authoritative when its status is readable. YouTube is fallback
-  // only if Facebook status cannot be fetched. Ignore stale positive Facebook
-  // status to avoid leaving LIVE on after the detector stops updating.
+  // Facebook has priority when confirmed live. YouTube is fallback whenever
+  // Facebook is not confirmed live. Ignore stale positive Facebook status.
   const facebookAvailable=results[0].status==='fulfilled' && typeof fb.live==='boolean';
   const fbCheckedAt=Date.parse(fb.checkedAt||'');
   const facebookFresh=Number.isFinite(fbCheckedAt) && fbCheckedAt<=Date.now()+120000 && Date.now()-fbCheckedAt<20*60*1000;
@@ -5269,7 +5300,7 @@ async function refreshLiveStatus(){
   const ytReported=ravLiveFlag(yt.youtube);
   const ytCandidate=String(yt.youtubeVideoId||yt.videoId||yt.youtube_video_id||'').trim();
   const ytId=/^[A-Za-z0-9_-]{11}$/.test(ytCandidate)?ytCandidate:'';
-  const youtube=!facebookAvailable && ytReported && Boolean(ytId);
+  const youtube=!facebook && ytReported && Boolean(ytId);
   const anyLive=facebook||youtube;
   window.ravTransmissionActive=anyLive;
   updateDesktopLiveHeading();
@@ -5307,10 +5338,11 @@ async function refreshLiveStatus(){
       iframe.dataset.provider=provider;
       ravPaintLiveAudioToggle();
       iframe.src=provider==='facebook'
-        ?'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(fbUrl)+'&show_text=false&autoplay=true&mute=true'
-        :'https://www.youtube.com/embed/'+ytId+'?autoplay=1&mute=1&controls=0&rel=0&playsinline=1';
+        ?'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent(fbUrl)+'&show_text=false&autoplay=true&mute=true&allowfullscreen=true'
+        :'https://www.youtube.com/embed/'+ytId+'?autoplay=1&mute=1&controls=0&rel=0&playsinline=1&enablejsapi=1';
       iframe.title=provider==='facebook'?'RAV Facebook LIVE':'RAV YouTube LIVE';
       iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.setAttribute('loading','eager');
       iframe.setAttribute('allowfullscreen','');
       iframe.referrerPolicy='strict-origin-when-cross-origin';
       iframe.setAttribute('tabindex','-1');
@@ -7526,5 +7558,84 @@ document.addEventListener('DOMContentLoaded',()=>{
     <div class="rav-reg-choice-grid" id="ravRegChoiceGrid"></div>
   </div>
 </div>
+
+<script id="rav-local-weather-script">
+(function(){
+  'use strict';
+  const fallback={latitude:39.1155,longitude:-94.6268,city:'Kansas City, KS'};
+  let position=fallback;
+  const $=id=>document.getElementById(id);
+  const isEnglish=()=>((window.ravSiteLanguage||document.documentElement.lang||'es').toLowerCase().startsWith('en'));
+  const weatherNames={0:['Despejado','Clear'],1:['Mayormente despejado','Mostly clear'],2:['Parcialmente nublado','Partly cloudy'],3:['Nublado','Cloudy'],45:['Niebla','Fog'],48:['Niebla','Fog'],51:['Llovizna','Drizzle'],53:['Llovizna','Drizzle'],55:['Llovizna','Drizzle'],61:['Lluvia','Rain'],63:['Lluvia','Rain'],65:['Lluvia intensa','Heavy rain'],71:['Nieve','Snow'],73:['Nieve','Snow'],75:['Nieve','Snow'],80:['Chubascos','Showers'],81:['Chubascos','Showers'],82:['Chubascos','Showers'],95:['Tormenta','Thunderstorm'],96:['Tormenta','Thunderstorm'],99:['Tormenta','Thunderstorm']};
+  let lastWeather=null;
+  let lastChances=null;
+  function clock(){
+    const en=isEnglish(),locale=en?'en-US':'es-US',now=new Date();
+    if($('ravLocalDate'))$('ravLocalDate').textContent='📅 '+new Intl.DateTimeFormat(locale,{weekday:'short',month:'short',day:'numeric',year:'numeric'}).format(now);
+    if($('ravLocalTime'))$('ravLocalTime').textContent='🕒 '+new Intl.DateTimeFormat(locale,{hour:'numeric',minute:'2-digit'}).format(now);
+    if($('ravLocateButton')){
+      $('ravLocateButton').title=en?'Use my location':'Usar mi ubicación';
+      $('ravLocateButton').setAttribute('aria-label',$('ravLocateButton').title);
+    }
+    showWeather();
+  }
+  function showWeather(){
+    if(!lastWeather||!$('ravLocalWeather'))return;
+    const w=lastWeather,desc=(weatherNames[w.code]||['Clima actual','Current weather'])[isEnglish()?1:0];
+    $('ravLocalWeather').textContent=(w.code===0?'☀️':w.code>=95?'⛈️':w.code>=71&&w.code<=75?'❄️':w.code>=61?'🌧️':'☁️')+' '+Math.round(w.temp)+'°F · '+desc;
+    if(lastChances){
+      if($('ravRainChance'))$('ravRainChance').textContent='🌧️ '+lastChances.rain+'%';
+      if($('ravSnowChance')){$('ravSnowChance').textContent='❄️ '+lastChances.snow+'%';$('ravSnowChance').title=isEnglish()?'Estimated snow chance based on forecast snowfall':'Probabilidad estimada de nieve según el pronóstico';}
+    }
+  }
+  async function weather(){
+    try{
+      const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(position.latitude)+'&longitude='+encodeURIComponent(position.longitude)+'&current=temperature_2m,weather_code&hourly=precipitation_probability,rain,snowfall&forecast_days=2&temperature_unit=fahrenheit&timezone=auto';
+      const res=await fetch(url,{cache:'no-store'});
+      if(!res.ok)throw new Error('weather');
+      const data=await res.json();
+      if(data.current){lastWeather={temp:data.current.temperature_2m,code:data.current.weather_code};}
+      if(data.hourly&&data.hourly.time){
+        const times=data.hourly.time, now=data.current?.time||'';
+        let idx=times.findIndex(t=>t>=now);if(idx<0)idx=0;
+        const prob=Math.max(0,Math.min(100,Math.round(data.hourly.precipitation_probability?.[idx]??0)));
+        const snowAmount=Number(data.hourly.snowfall?.[idx]||0);
+        const rainAmount=Number(data.hourly.rain?.[idx]||0);
+        // Open-Meteo no proporciona probabilidades separadas de lluvia y nieve.
+        // Se usa la probabilidad de precipitación como estimación del tipo pronosticado.
+        lastChances={rain:rainAmount>0?prob:0,snow:snowAmount>0?prob:0};
+      }
+      showWeather();
+    }catch(e){if($('ravLocalWeather'))$('ravLocalWeather').textContent=isEnglish()?'☁️ Weather unavailable':'☁️ Clima no disponible';}
+  }
+  async function resolvePlace(lat,lon){
+    try{
+      const url='https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=10&addressdetails=1&lat='+encodeURIComponent(lat)+'&lon='+encodeURIComponent(lon);
+      const res=await fetch(url,{headers:{'Accept-Language':isEnglish()?'en':'es'}});
+      if(!res.ok)return;
+      const d=await res.json(),a=d.address||{};
+      const city=a.city||a.town||a.village||a.municipality||a.county;
+      const region=a.state_code||a.state||'';
+      if(city&&$('ravLocalPlace'))$('ravLocalPlace').textContent='📍 '+city+(region?', '+region:'');
+    }catch(e){}
+  }
+  function requestLocation(){
+    if(!navigator.geolocation){return;}
+    navigator.geolocation.getCurrentPosition(function(p){
+      position={latitude:p.coords.latitude,longitude:p.coords.longitude};
+      if($('ravLocalPlace'))$('ravLocalPlace').textContent=isEnglish()?'📍 Current location':'📍 Ubicación actual';
+      resolvePlace(position.latitude,position.longitude);weather();
+    },function(){
+      if($('ravLocalPlace'))$('ravLocalPlace').textContent='📍 '+fallback.city;
+    },{enableHighAccuracy:false,timeout:10000,maximumAge:600000});
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    clock();weather();setInterval(clock,15000);setInterval(weather,600000);
+    $('ravLocateButton')?.addEventListener('click',requestLocation);
+    // El navegador puede solicitar permiso; si se rechaza permanece Kansas City.
+    requestLocation();
+  });
+})();
+</script>
 </body>
 </html>
