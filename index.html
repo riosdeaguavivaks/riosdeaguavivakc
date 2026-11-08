@@ -7566,50 +7566,82 @@ document.addEventListener('DOMContentLoaded',()=>{
 (function(){
   'use strict';
   const fallback={latitude:39.1155,longitude:-94.6268,city:'Kansas City, KS'};
-  let position=fallback;
+  const CACHE_KEY='rav-weather-v2', MAX_CACHE_AGE=24*60*60*1000;
+  let position={...fallback}, lastWeather=null, lastChances=null, updatedAt=0, pending=false, retryTimer=null, failures=0;
   const $=id=>document.getElementById(id);
   const isEnglish=()=>((window.ravSiteLanguage||document.documentElement.lang||'es').toLowerCase().startsWith('en'));
-  const weatherNames={0:['Despejado','Clear'],1:['Mayormente despejado','Mostly clear'],2:['Parcialmente nublado','Partly cloudy'],3:['Nublado','Cloudy'],45:['Niebla','Fog'],48:['Niebla','Fog'],51:['Llovizna','Drizzle'],53:['Llovizna','Drizzle'],55:['Llovizna','Drizzle'],61:['Lluvia','Rain'],63:['Lluvia','Rain'],65:['Lluvia intensa','Heavy rain'],71:['Nieve','Snow'],73:['Nieve','Snow'],75:['Nieve','Snow'],80:['Chubascos','Showers'],81:['Chubascos','Showers'],82:['Chubascos','Showers'],95:['Tormenta','Thunderstorm'],96:['Tormenta','Thunderstorm'],99:['Tormenta','Thunderstorm']};
-  let lastWeather=null;
-  let lastChances=null;
+  const names={0:['Despejado','Clear'],1:['Mayormente despejado','Mostly clear'],2:['Parcialmente nublado','Partly cloudy'],3:['Nublado','Cloudy'],45:['Niebla','Fog'],48:['Niebla','Fog'],51:['Llovizna','Drizzle'],53:['Llovizna','Drizzle'],55:['Llovizna','Drizzle'],56:['Llovizna','Drizzle'],57:['Llovizna','Drizzle'],61:['Lluvia','Rain'],63:['Lluvia','Rain'],65:['Lluvia intensa','Heavy rain'],66:['Lluvia helada','Freezing rain'],67:['Lluvia helada','Freezing rain'],71:['Nieve','Snow'],73:['Nieve','Snow'],75:['Nieve','Snow'],77:['Nieve','Snow'],80:['Chubascos','Showers'],81:['Chubascos','Showers'],82:['Chubascos','Showers'],85:['Nieve','Snow'],86:['Nieve','Snow'],95:['Tormenta','Thunderstorm'],96:['Tormenta','Thunderstorm'],99:['Tormenta','Thunderstorm']};
+  const cacheId=()=>position.latitude.toFixed(2)+','+position.longitude.toFixed(2);
+  function restore(){
+    try{
+      const saved=JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+      if(saved&&saved.location===cacheId()&&Date.now()-saved.at<MAX_CACHE_AGE&&Date.now()>=saved.at&&Number.isFinite(saved.weather?.temp)){
+        lastWeather=saved.weather;lastChances=saved.chances;updatedAt=saved.at;return true;
+      }
+    }catch(e){}return false;
+  }
+  function showWeather(){
+    const weather=$('ravLocalWeather');if(!weather)return;
+    const en=isEnglish();
+    if(!lastWeather){weather.textContent=en?'☁️ Weather loading…':'☁️ Cargando clima…';return;}
+    const w=lastWeather,desc=(names[w.code]||['Clima actual','Current weather'])[en?1:0];
+    const symbol=w.code===0?'☀️':w.code>=95?'⛈️':(w.code>=71&&w.code<=77)||(w.code>=85&&w.code<=86)?'❄️':w.code>=61?'🌧️':'☁️';
+    const old=Date.now()-updatedAt>30*60*1000;
+    weather.textContent=symbol+' '+Math.round(w.temp)+'°F · '+desc+(old?' ⏱':'');
+    weather.title=old?(en?'Last saved weather; updated '+new Date(updatedAt).toLocaleString('en-US'): 'Último clima guardado; actualizado '+new Date(updatedAt).toLocaleString('es-US')):'';
+    if(lastChances){
+      if($('ravRainChance')){$('ravRainChance').textContent='🌧️ '+lastChances.rain+'%';$('ravRainChance').title=en?'Estimated rain chance, based on precipitation forecast':'Probabilidad estimada de lluvia según el pronóstico';}
+      if($('ravSnowChance')){$('ravSnowChance').textContent='❄️ '+lastChances.snow+'%';$('ravSnowChance').title=en?'Estimated snow chance, not a separate measured probability':'Probabilidad estimada de nieve, no una probabilidad independiente';}
+    }
+  }
   function clock(){
     const en=isEnglish(),locale=en?'en-US':'es-US',now=new Date();
     if($('ravLocalDate'))$('ravLocalDate').textContent='📅 '+new Intl.DateTimeFormat(locale,{weekday:'short',month:'short',day:'numeric',year:'numeric'}).format(now);
     if($('ravLocalTime'))$('ravLocalTime').textContent='🕒 '+new Intl.DateTimeFormat(locale,{hour:'numeric',minute:'2-digit'}).format(now);
-    if($('ravLocateButton')){
-      $('ravLocateButton').title=en?'Use my location':'Usar mi ubicación';
-      $('ravLocateButton').setAttribute('aria-label',$('ravLocateButton').title);
-    }
+    if($('ravLocateButton')){$('ravLocateButton').title=en?'Use my location':'Usar mi ubicación';$('ravLocateButton').setAttribute('aria-label',$('ravLocateButton').title);}
     showWeather();
   }
-  function showWeather(){
-    if(!lastWeather||!$('ravLocalWeather'))return;
-    const w=lastWeather,desc=(weatherNames[w.code]||['Clima actual','Current weather'])[isEnglish()?1:0];
-    $('ravLocalWeather').textContent=(w.code===0?'☀️':w.code>=95?'⛈️':w.code>=71&&w.code<=75?'❄️':w.code>=61?'🌧️':'☁️')+' '+Math.round(w.temp)+'°F · '+desc;
-    if(lastChances){
-      if($('ravRainChance'))$('ravRainChance').textContent='🌧️ '+lastChances.rain+'%';
-      if($('ravSnowChance')){$('ravSnowChance').textContent='❄️ '+lastChances.snow+'%';$('ravSnowChance').title=isEnglish()?'Estimated snow chance based on forecast snowfall':'Probabilidad estimada de nieve según el pronóstico';}
-    }
+  function scheduleRetry(){
+    clearTimeout(retryTimer);
+    const delays=[30000,120000,300000];
+    retryTimer=setTimeout(weather,delays[Math.min(failures-1,delays.length-1)]);
   }
   async function weather(){
+    if(pending)return;
+    pending=true;
+    const requestedLocation=cacheId();
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),12000);
     try{
       const url='https://api.open-meteo.com/v1/forecast?latitude='+encodeURIComponent(position.latitude)+'&longitude='+encodeURIComponent(position.longitude)+'&current=temperature_2m,weather_code&hourly=precipitation_probability,rain,snowfall&forecast_days=2&temperature_unit=fahrenheit&timezone=auto';
-      const res=await fetch(url,{cache:'no-store'});
-      if(!res.ok)throw new Error('weather');
+      const res=await fetch(url,{cache:'no-store',signal:controller.signal});
+      if(!res.ok)throw new Error('Weather HTTP '+res.status);
       const data=await res.json();
-      if(data.current){lastWeather={temp:data.current.temperature_2m,code:data.current.weather_code};}
-      if(data.hourly&&data.hourly.time){
-        const times=data.hourly.time, now=data.current?.time||'';
-        let idx=times.findIndex(t=>t>=now);if(idx<0)idx=0;
-        const prob=Math.max(0,Math.min(100,Math.round(data.hourly.precipitation_probability?.[idx]??0)));
-        const snowAmount=Number(data.hourly.snowfall?.[idx]||0);
-        const rainAmount=Number(data.hourly.rain?.[idx]||0);
-        // Open-Meteo no proporciona probabilidades separadas de lluvia y nieve.
-        // Se usa la probabilidad de precipitación como estimación del tipo pronosticado.
-        lastChances={rain:rainAmount>0?prob:0,snow:snowAmount>0?prob:0};
-      }
+      const temp=Number(data.current?.temperature_2m),code=Number(data.current?.weather_code);
+      if(!Number.isFinite(temp)||!Number.isFinite(code))throw new Error('Incomplete weather response');
+      const times=data.hourly?.time||[];
+      const now=data.current?.time||'';
+      let idx=times.findIndex(t=>t>=now);if(idx<0)idx=Math.max(0,times.length-1);
+      const prob=Number(data.hourly?.precipitation_probability?.[idx]);
+      const chance=Number.isFinite(prob)?Math.max(0,Math.min(100,Math.round(prob))):null;
+      const snow=Number(data.hourly?.snowfall?.[idx]||0),rain=Number(data.hourly?.rain?.[idx]||0);
+      if(requestedLocation!==cacheId())return;
+      lastWeather={temp,code};
+      // Open-Meteo supplies precipitation probability, not separate rain/snow probabilities.
+      lastChances=chance===null?null:{rain:rain>0?chance:0,snow:snow>0?chance:0};
+      updatedAt=Date.now();failures=0;clearTimeout(retryTimer);
+      try{localStorage.setItem(CACHE_KEY,JSON.stringify({location:requestedLocation,at:updatedAt,weather:lastWeather,chances:lastChances}));}catch(e){}
       showWeather();
-    }catch(e){if($('ravLocalWeather'))$('ravLocalWeather').textContent=isEnglish()?'☁️ Weather unavailable':'☁️ Clima no disponible';}
+    }catch(e){
+      failures++;
+      if(!lastWeather){
+        if(!restore()){
+          const el=$('ravLocalWeather');if(el)el.textContent=isEnglish()?'☁️ Weather temporarily unavailable':'☁️ Clima temporalmente no disponible';
+        }
+      }
+      showWeather();scheduleRetry();
+      console.warn('RAV weather request failed:',e);
+    }finally{clearTimeout(timeout);pending=false;}
   }
   async function resolvePlace(lat,lon){
     try{
@@ -7623,9 +7655,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     }catch(e){}
   }
   function requestLocation(){
-    if(!navigator.geolocation){return;}
+    if(!navigator.geolocation)return;
     navigator.geolocation.getCurrentPosition(function(p){
       position={latitude:p.coords.latitude,longitude:p.coords.longitude};
+      lastWeather=null;lastChances=null;updatedAt=0;
+      restore();showWeather();
       if($('ravLocalPlace'))$('ravLocalPlace').textContent=isEnglish()?'📍 Current location':'📍 Ubicación actual';
       resolvePlace(position.latitude,position.longitude);weather();
     },function(){
@@ -7633,10 +7667,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     },{enableHighAccuracy:false,timeout:10000,maximumAge:600000});
   }
   document.addEventListener('DOMContentLoaded',function(){
-    clock();weather();setInterval(clock,15000);setInterval(weather,600000);
+    restore();clock();weather();setInterval(clock,15000);setInterval(weather,900000);
     $('ravLocateButton')?.addEventListener('click',requestLocation);
-    // El navegador puede solicitar permiso; si se rechaza permanece Kansas City.
     requestLocation();
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-updatedAt>900000)weather();});
+    window.addEventListener('online',weather);
   });
 })();
 </script>
