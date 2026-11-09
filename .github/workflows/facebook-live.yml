@@ -1,13 +1,11 @@
-
 name: RAV Facebook LIVE detector
 
 on:
   workflow_dispatch:
   schedule:
-  - cron: "50,55 14,16 * * 0"
-  - cron: "0,5 15,17 * * 0"
-  - cron: "40 16 * * 0"
-  - cron: "5 20 * * 0"
+    # Every five minutes, UTC; internal gate handles CST/CDT in Kansas City.
+    - cron: "*/5 14-21 * * 0"
+
 permissions:
   contents: write
 
@@ -20,13 +18,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+      - name: Check Sunday window in Kansas City
+        id: window
+        shell: bash
+        run: |
+          python3 - <<'PYCODE'
+          import os
+          from datetime import datetime, time
+          from zoneinfo import ZoneInfo
+          now = datetime.now(ZoneInfo('America/Chicago'))
+          manual = os.environ.get('GITHUB_EVENT_NAME') == 'workflow_dispatch'
+          enabled = manual or (now.weekday() == 6 and time(9, 40) <= now.time() <= time(14, 30))
+          print('Kansas City time:', now.isoformat(), 'Run:', enabled)
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f"run={'true' if enabled else 'false'}\n")
+          PYCODE
       - name: Detect Facebook LIVE
+        if: steps.window.outputs.run == 'true'
         env:
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
         run: python3 scripts/detect_facebook_live.py
-
       - name: Save Facebook status
+        if: steps.window.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
