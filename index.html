@@ -4214,12 +4214,12 @@ html:not(.rav-private-push) .onesignal-popover-dialog{
     <p id="ravRegIntro">Selecciona un evento y registra tu participación.</p>
   </div>
   <div class="rav-register-frame" id="ravRegisterFrame" aria-live="polite">
-    <div class="rav-register-picture"><img id="ravRegImage" src="https://drive.google.com/thumbnail?id=1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv&sz=w1600" alt="AVIVA EL FUEGO 2026" loading="lazy"></div>
+    <div class="rav-register-picture"><img id="ravRegImage" src="https://drive.google.com/thumbnail?id=1zdLjEtqPNcWofLxUiaJqGj_3GV5NxFH2&sz=w1600" alt="CONFERENCIA DE LIDERAZGO CELULAR" loading="lazy"></div>
     <div class="rav-register-info">
-      <div class="rav-register-kicker" id="ravRegKicker">CONFERENCIA DE PREDICACIÓN</div>
-      <h3 id="ravRegName">AVIVA EL FUEGO 2026</h3>
-      <p id="ravRegDescription">¡Acompáñanos! Inscríbete en nuestra conferencia de predicación.</p>
-      <a class="rav-register-cta" id="ravRegLink" href="https://riosdeaguavivaks.github.io/rav-aviva-el-fuego-2026/" target="_blank" rel="noopener noreferrer">🔥 REGÍSTRATE AQUÍ ↗</a>
+      <div class="rav-register-kicker" id="ravRegKicker">CAPACITACIÓN DE LÍDERES</div>
+      <h3 id="ravRegName">CONFERENCIA DE LIDERAZGO CELULAR</h3>
+      <p id="ravRegDescription">Regístrate para la Conferencia de Liderazgo Celular.</p>
+      <a class="rav-register-cta" id="ravRegLink" href="#registro-liderazgo" target="_blank" rel="noopener noreferrer">🔥 REGÍSTRATE AQUÍ ↗</a>
       <div class="rav-register-nav" id="ravRegNav" aria-label="Cambiar evento de registración" hidden>
         <button type="button" id="ravRegPrev" aria-label="Evento anterior">❮</button>
         <div id="ravRegDots" class="rav-register-dots"></div>
@@ -7413,17 +7413,6 @@ function openRavVenmo(event, webUrl) {
    en formato YYYY-MM-DD; dejar null si aún no se ha confirmado la fecha. */
 const RAV_PUBLIC_REGISTRATIONS = [
   {
-    titleEs: 'AVIVA EL FUEGO 2026',
-    titleEn: 'REKINDLE THE FIRE 2026',
-    labelEs: 'CONFERENCIA DE PREDICACIÓN', labelEn: 'PREACHING CONFERENCE',
-    descriptionEs: '¡Acompáñanos! Inscríbete en nuestra conferencia de predicación.',
-    descriptionEn: 'Join us! Register for our preaching conference.',
-    imageEs: 'https://drive.google.com/thumbnail?id=1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv&sz=w1600',
-    imageEn: 'https://drive.google.com/thumbnail?id=1IkfQ8WxelhOdpHNCBUemz1Xy5wtZstuE&sz=w1600',
-    url: 'https://riosdeaguavivaks.github.io/rav-aviva-el-fuego-2026/',
-    endDate: '2026-11-15'
-  },
-  {
     titleEs: 'CONFERENCIA DE LIDERAZGO CELULAR',
     titleEn: 'LIFE GROUP LEADERSHIP CONFERENCE',
     labelEs: 'CAPACITACIÓN DE LÍDERES', labelEn: 'LIFE GROUP LEADERSHIP TRAINING',
@@ -7444,9 +7433,8 @@ async function ravSyncRegistrationFlyersFromEvents(){
     const data=await response.json();
     if(!Array.isArray(data))return;
     const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-    const aviva=data.find(e=>/aviva\s+el\s+fuego|rekindle\s+the\s+fire/.test(normalize([e.tituloEs,e.tituloEn,e.flyerNombre].join(' '))));
     const liderazgo=data.find(e=>/liderazgo\s+celular|cell\s+leadership/.test(normalize([e.tituloEs,e.tituloEn,e.flyerNombre].join(' '))));
-    [[RAV_PUBLIC_REGISTRATIONS[0],aviva],[RAV_PUBLIC_REGISTRATIONS[1],liderazgo]].forEach(([target,source])=>{
+    [[RAV_PUBLIC_REGISTRATIONS[0],liderazgo]].forEach(([target,source])=>{
       if(!source)return;
       if(source.imagen)target.imageEs=source.imagen;
       if(source.imagenEn)target.imageEn=source.imagenEn;
@@ -7552,7 +7540,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 </script>
 
-<!-- Elección de registración: ambos eventos permanecen independientes -->
+<!-- Elección de registración para eventos vigentes -->
 <div class="rav-reg-choice-overlay" id="ravRegChoice" hidden role="dialog" aria-modal="true" aria-labelledby="ravRegChoiceTitle">
   <div class="rav-reg-choice-panel">
     <button class="rav-reg-choice-close" type="button" aria-label="Cerrar" onclick="ravCloseRegistrationChooser()">×</button>
