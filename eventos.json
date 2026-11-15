@@ -1,3 +1,4 @@
+
 [
   {
     "tituloEs": "Celebremos la SANTA CENA",
@@ -63,18 +64,5 @@
     "imagenEn": "https://drive.google.com/thumbnail?id=12tctXQf9k0bZaePnY17MDi7YRaRCrEhT&sz=w1600",
     "flyerNombreEn": "lifegroup-celebration-en.jpeg",
     "flyerFileIdEn": "12tctXQf9k0bZaePnY17MDi7YRaRCrEhT"
-  },
-  {
-    "tituloEs": "AVIVA EL FUEGO 2026",
-    "tituloEn": "REKINDLE THE FIRE  2026",
-    "fechaInicio": "2026-10-09",
-    "fechaFin": "2026-11-15",
-    "active": true,
-    "imagen": "https://drive.google.com/thumbnail?id=1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv&sz=w1600",
-    "flyerNombre": "AVIVA-EL-FUEGO-2026.jpeg",
-    "flyerFileId": "1ewHjvq7qcmaUdAO54q6E1Ksw-8nTdIYv",
-    "imagenEn": "https://drive.google.com/thumbnail?id=1IkfQ8WxelhOdpHNCBUemz1Xy5wtZstuE&sz=w1600",
-    "flyerNombreEn": "REKINDLE-THE-FIRE-en.jpeg",
-    "flyerFileIdEn": "1IkfQ8WxelhOdpHNCBUemz1Xy5wtZstuE"
   }
 ]
